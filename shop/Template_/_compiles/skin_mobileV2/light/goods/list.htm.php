@@ -97,7 +97,7 @@ function loadGoodsHtml(is_empty) {
 			beforeSend: function (xhr) {
 				// is_empty가 true인 경우 수행
 				if(is_empty) {
-					
+
 					$(".goods-content").empty();
 				}
 				$('.indicator').show();
@@ -148,7 +148,7 @@ $(document).ready(function(){
 	/*
 	 * 스토리지에 값이 있는 경우 : 스토리지의 html 데이터를 본문에 추가
 	 * 스토리지에 값이 없는 경우 : Ajax 호출 후 html 데이터를 본문에 추가
-	 */ 
+	 */
 	if(GD_STORAGE && GD_STORAGE != 'null' && !$("[name=keyword]").val()) {
 		toggleViewType(GD_VIEW_TYPE);
 		//alert("test");
@@ -221,7 +221,7 @@ $(document).ready(function(){
 		<div class="goods-sort">
 			<select name="goods_sort" onChange="javascript:setSortType(this.value);">
 				<option value="sort">상품정렬</option>
-				<option value="model_name">상품명순</option>
+				<option value="goodsnm">상품명순</option>
 				<option value="regdt">등록순</option>
 				<option value="low_price">낮은가격순</option>
 				<option value="high_price">높은가격순</option>

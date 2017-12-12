@@ -190,8 +190,8 @@ class Clib_Model_Category_Category extends Clib_Model_Abstract
 	/**
 	 * @see GoodsSort::getSortField
 	 */
-	
-	/* 
+
+	/*
 	public function getSortColumnName($target = 'goods_link')
 	{
 		$name = 'sort';
@@ -210,7 +210,7 @@ class Clib_Model_Category_Category extends Clib_Model_Abstract
 	}
 	*/
 	//상품정렬 상품명 순서로 by jung
-	public function getSortColumnName($target = 'model_name')
+	public function getSortColumnName($target = 'goodsnm')
 	{
 		$name = 'sort';
 

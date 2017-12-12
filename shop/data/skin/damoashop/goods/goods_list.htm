@@ -58,7 +58,7 @@
 <form name=frmList>
 <input type=hidden name=category value="{_category}">
 <!--{? _GET['sort'] == 'goodsnm'|| _GET['sort'] == '' }-->
-<input type=hidden name=sort value="model_name">
+<input type=hidden name=sort value="goodsnm">
 <!--{:}-->
 <input type=hidden name=sort value="{_GET['sort']}">
 <!--{/}-->
@@ -82,9 +82,9 @@
 <!--{ @ dataSubCategory( _category, true ) }-->
 <!--{ ? _category == .category }--><b><!--{ / }-->
 <!--{ ? .category == "004089"}-->
-<a href="?category=027007005&sort=model_name">{.catnm}<font color=#777777>({.gcnt+0})</font></a>
+<a href="?category=027007005&sort=goodsnm">{.catnm}<font color=#777777>({.gcnt+0})</font></a>
 <!--{ : }-->
-<a href="?category={.category}&sort=model_name">{.catnm}<font color=#777777>({.gcnt+0})</font></a>
+<a href="?category={.category}&sort=goodsnm">{.catnm}<font color=#777777>({.gcnt+0})</font></a>
 <!--{ / }-->
 <!--{ ? _category == .category }--></b><!--{ / }-->
 <!--{ ? .index_!=.size_-1 }--> <font color=#cccccc>|</font> <!--{ / }-->
@@ -135,7 +135,7 @@
 <!-- capture_start("list_top") -->
 <table width=100% cellpadding=0 cellspacing=0>
 <tr>
-<td><img src="../img/common/goodlist_txt_01.gif"><a href="javascript:sort('maker desc')"><img name=sort_maker_desc src="../img/common/list_up_off.gif"></a><a href="javascript:sort('maker')"><img name=sort_maker src="../img/common/list_down_off.gif"></a><img src="../img/common/goodlist_txt_03.gif"><a href="javascript:sort('model_name desc')"><img name=sort_goodsnm_desc src="../img/common/list_up_off.gif"></a><a href="javascript:sort('model_name')"><img name=sort_goodsnm src="../img/common/list_down_off.gif"></a><img src="../img/common/goodlist_txt_04.gif"><a href="javascript:sort('price desc')"><img name=sort_price_desc src="../img/common/list_up_off.gif"></a><a href="javascript:sort('price')"><img name=sort_price src="../img/common/list_down_off.gif"></a><img src="../img/common/goodlist_txt_05.gif"><a href="javascript:sort('reserve desc')"><img name=sort_reserve_desc src="../img/common/list_up_off.gif"></a><a href="javascript:sort('reserve')"><img name=sort_reserve src="../img/common/list_down_off.gif"></a></td>
+<td><img src="../img/common/goodlist_txt_01.gif"><a href="javascript:sort('maker desc')"><img name=sort_maker_desc src="../img/common/list_up_off.gif"></a><a href="javascript:sort('maker')"><img name=sort_maker src="../img/common/list_down_off.gif"></a><img src="../img/common/goodlist_txt_03.gif"><a href="javascript:sort('goodsnm desc')"><img name=sort_goodsnm_desc src="../img/common/list_up_off.gif"></a><a href="javascript:sort('goodsnm')"><img name=sort_goodsnm src="../img/common/list_down_off.gif"></a><img src="../img/common/goodlist_txt_04.gif"><a href="javascript:sort('price desc')"><img name=sort_price_desc src="../img/common/list_up_off.gif"></a><a href="javascript:sort('price')"><img name=sort_price src="../img/common/list_down_off.gif"></a><img src="../img/common/goodlist_txt_05.gif"><a href="javascript:sort('reserve desc')"><img name=sort_reserve_desc src="../img/common/list_up_off.gif"></a><a href="javascript:sort('reserve')"><img name=sort_reserve src="../img/common/list_down_off.gif"></a></td>
 <td align=right><img src="../img/common/goodlist_txt_06.gif" align=absmiddle><select onchange="if(typeof(document.sSearch) != 'undefined') { _ID('page_num').value=this.value; document.sSearch.submit() } else { this.form.page_num.value=this.value;this.form.submit() }" style="font:8pt 돋움"><!--{ @ lstcfg.page_num }--><option value="{.value_}" {_selected.page_num[.value_]}>{.value_}개씩 정렬<!--{ / }--></select></td>
 </tr>
 </table>
@@ -201,9 +201,9 @@ function sort_chk(sort)
 {
 if (!sort) return;
 sort = sort.replace(" ","_");
-if(sort == 'model_name'){
+if(sort == 'goodsnm'){
 	var obj = document.getElementsByName('sort_goodsnm');
-}else if(sort == 'model_name_desc'){
+}else if(sort == 'goodsnm_desc'){
 	var obj = document.getElementsByName('sort_goodsnm_desc');
 }else{
 	var obj = document.getElementsByName('sort_'+sort);

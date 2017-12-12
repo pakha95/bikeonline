@@ -1428,8 +1428,8 @@ class Mobile2GoodsDisplay
 			case 'regdt' :
 				$order_by = 'goods.regdt desc';
 				break;
-			case 'model_name' :
-				$order_by = 'goods.model_name asc';
+			case 'goodsnm' :
+				$order_by = 'goods.goodsnm asc';
 				break;
 			case 'low_price' :
 				$order_by = 'goods.goods_price asc';
@@ -1539,8 +1539,8 @@ class Mobile2GoodsDisplay
 			case 'regdt' :
 				$order_by = 'goods.regdt desc';
 				break;
-			case 'model_name' :
-				$order_by = 'goods.model_name asc';
+			case 'goodsnm' :
+				$order_by = 'goods.goodsnm asc';
 				break;
 			case 'low_price' :
 				$order_by = 'goods.goods_price asc';

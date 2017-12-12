@@ -1656,7 +1656,7 @@ function currPosition($category,$mode=0)
 	order by category
 	";
 	$res = $db->query($query);
-	while ($data=$db->fetch($res)) $pos[] = "<a href='../goods/goods_list.php?category=$data[category]&sort=model_name'>$data[catnm]</a>";
+	while ($data=$db->fetch($res)) $pos[] = "<a href='../goods/goods_list.php?category=$data[category]&sort=goodsnm'>$data[catnm]</a>";
 	$ret = @implode(" > ",$pos);
 	if ($mode) $ret = strip_tags($ret);
 	return $ret;
