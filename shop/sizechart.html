@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>어패럴 사이즈 차트</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<style>
+      div.contents {
+	  float:left;
+        /*margin: auto;*/
+        width: 640px;
+        /*height: 2000px;*/
+		overflow-x:hidden;
+
+      }
+      a.top {
+		text-decoration: none;
+		color: grey;
+        position: fixed;
+		right:10px;
+        /*left: 50%;*/
+        bottom: 50px;
+        display: none;
+      }
+	a.top:hover{color:#000;}
+</style>
+
+<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+</head>
+
+<body>
+<div class="contents">
+<!-- <div id="log"></div> -->
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_010_main.png" usemap = "#size_map" border=0 id="img_top"/>
+<map name="size_map">
+<area class="scroll" shape="rect" coords="0,546,113,570" href="#helmet_size_chart" title="helmet_size_chart" alt="helmet_size_chart" />
+<area class="scroll" shape="rect" coords="0,504,111,527" href="#troy_lee_designs" title="troy_lee_designs" alt="troy_lee_designs" />
+<area class="scroll" shape="rect" coords="0,483,111,504" href="#thor" title="thor" alt="thor" />
+<area class="scroll" shape="rect" coords="0,463,111,483" href="#spidi" title="spidi" alt="spidi" />
+<area class="scroll" shape="rect" coords="0,440,111,463" href="#sidi" title="sidi" alt="sidi" />
+<area class="scroll" shape="rect" coords="0,420,111,440" href="#revit" title="revit" alt="revit" />
+<area class="scroll" shape="rect" coords="0,399,111,420" href="#msr" title="msr" alt="msr" />
+<area class="scroll" shape="rect" coords="0,379,111,399" href="#moose_racing" title="moose_racing" alt="moose_racing" />
+<area class="scroll" shape="rect" coords="0,357,111,379" href="#leatt_brace" title="leatt_brace" alt="leatt_brace" />
+<area class="scroll" shape="rect" coords="0,335,111,357" href="#ktm" title="ktm" alt="ktm" />
+<area class="scroll" shape="rect" coords="0,315,111,335" href="#klim" title="klim" alt="klim" />
+<area class="scroll" shape="rect" coords="0,294,111,315" href="#icon" title="icon" alt="icon" />
+<area class="scroll" shape="rect" coords="0,273,111,294" href="#gaerne" title="gaerne" alt="gaerne" />
+<area class="scroll" shape="rect" coords="0,253,111,273" href="#fox_racing" title="fox_racing" alt="fox_racing" />
+<area class="scroll" shape="rect" coords="0,230,111,253" href="#firstgear" title="firstgear" alt="firstgear" />
+<area class="scroll" shape="rect" coords="0,211,111,230" href="#ducati" title="ducati" alt="ducati" />
+<area class="scroll" shape="rect" coords="0,188,111,211" href="#dainese" title="dainese" alt="dainese" />
+<area class="scroll" shape="rect" coords="0,168,111,188" href="#bmw" title="bmw" alt="bmw" />
+<area class="scroll" shape="rect" coords="0,147,111,168" href="#axo" title="axo" alt="axo" />
+<area class="scroll" shape="rect" coords="0,126,111,147" href="#answer" title="answer" alt="answer" />
+<area class="scroll" shape="rect" coords="0,101,111,126" href="#alpinestar" title="alpinestar" alt="alpinestar" />
+</map>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_011_alpinestar.png" border=0 id="alpinestar"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/an_size chart.jpg" border=0 id="answer"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_012_axo.png" border=0 id="axo"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_013_bmw.png" border=0 id="bmw"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_014_dainese.png" border=0 id="dainese"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_015_ducati.png" border=0 id="ducati"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_016_firstgear.png" border=0 id="firstgear"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_017_foxracing.png" border=0 id="fox_racing"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_018_gaerne.png" border=0 id="gaerne"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_019_icon.png" border=0 id="icon"/>
+
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_021_klim.png" border=0 id="klim"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_022_ktm.png" border=0 id="ktm"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_023_leattbrace.png" border=0 id="leatt_brace"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/mo_size_chart.jpg?" border=0 id="moose_racing"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/msr_size chart.jpg" border=0 id="msr"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_025_revit.png" border=0 id="revit"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_026_sidi.png" border=0 id="sidi"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_027_spidi.png" border=0 id="spidi"/>
+<!-- <img src="http://jbsinter2.godohosting.com/sizechart/sizechart_028_thor.png" border=0 id="thor"/> -->
+<img src="http://jbsinter2.godohosting.com/sizechart/thor_size chart.jpg" border=0 id="thor"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_029_troylee.png" border=0 id="troy_lee_designs"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_0210_helmets_1.png" border=0 id="helmet_size_chart"/>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_0210_helmets_2.png" border=0 id="helmet_size_chart2"/>
+<!--
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_01.jpg" usemap = "#size_map" border=0 id="img_top"/>
+<map name="size_map">
+<AREA class="scroll" SHAPE = "RECT" COORDS = "2,107,114,133" HREF = "#alpinestar" alt="alpinestar">
+<area class="scroll" shape="rect" coords="2,134,114,154" href="#axo" alt="axo" />
+<area class="scroll" shape="rect" coords="4,155,113,177" href="#bmw" alt="bmw" />
+<area class="scroll" shape="rect" coords="4,178,113,200" href="#dainese" alt="dainese" />
+<area class="scroll" shape="rect" coords="4,201,112,221" href="#ducati" alt="ducati" />
+<area class="scroll" shape="rect" coords="2,221,114,245" href="#firstgear" alt="firstgear" />
+<area class="scroll" shape="rect" coords="4,246,113,269" href="#fox_racing" alt="fox_racing" />
+<area class="scroll" shape="rect" coords="2,270,115,290" href="#gaerne" alt="gaerne" />
+<area class="scroll" shape="rect" coords="2,292,114,313" href="#icon" alt="icon" />
+<area class="scroll" shape="rect" coords="1,314,114,337" href="#klim" alt="klim" />
+<area class="scroll" shape="rect" coords="2,338,115,358" href="#ktm" alt="ktm" />
+<area class="scroll" shape="rect" coords="2,359,116,382" href="#leatt_brace" alt="leatt_brace" />
+<area class="scroll" shape="rect" coords="3,383,116,404" href="#moose_racing" alt="moose_racing" />
+<area class="scroll" shape="rect" coords="1,405,115,425" href="#revit" alt="revit" />
+<area class="scroll" shape="rect" coords="1,426,114,450" href="#sidi" alt="sidi" />
+<area class="scroll" shape="rect" coords="2,452,114,469" href="#spidi" alt="spidi" />
+<area class="scroll" shape="rect" coords="1,470,115,493" href="#thor" alt="thor" />
+<area class="scroll" shape="rect" coords="2,494,114,524" href="#troy_lee_designs" alt="troy_lee_designs" />
+<area class="scroll" shape="rect" coords="3,530,114,569" href="#helmet_size_chart" alt="helmet_size_chart" />
+
+<area class="scroll"  shape="rect" coords="151,2284,433,2319" href="#img_top" alt="alpinestar" />
+<area class="scroll"  shape="rect" coords="145,4787,454,4839" href="#img_top" alt="axo" />
+<area class="scroll"  shape="rect" coords="167,6606,457,6656" href="#img_top" alt="bmw" />
+<area class="scroll"  shape="rect" coords="57,11072,536,11125" href="#img_top" alt="dainese" />
+<area class="scroll"  shape="rect" coords="117,16369,466,16416" href="#img_top" alt="ducati" />
+<area class="scroll"  shape="rect" coords="88,18450,516,18497" href="#img_top" alt="firstgear" />
+<area class="scroll"  shape="rect" coords="126,19669,469,19721" href="#img_top" alt="fox_racing" />
+<area class="scroll"  shape="rect" coords="140,22400,442,22450" href="#img_top" alt="gaerne" />
+<area class="scroll"  shape="rect" coords="113,23030,431,23083" href="#img_top" alt="icon" />
+
+</map>
+<img src="http://jbsinter2.godohosting.com/sizechart/sizechart_02.jpg" usemap = "#size_map2" border=0 id="img_top2"/>
+<map name="size_map2">
+
+  <area class="scroll"  shape="rect" coords="180,63,443,115" href="#img_top" alt="klim" />
+  <area class="scroll"  shape="rect" coords="133,4236,426,4277" href="#img_top" alt="ktm" />
+  <area class="scroll"  shape="rect" coords="147,5475,448,5525" href="#img_top" alt="leatt brace" />
+  <area class="scroll"  shape="rect" coords="143,6275,470,6390" href="#img_top" alt="moose_racing" />
+  <area class="scroll"  shape="rect" coords="183,7544,408,7581" href="#img_top" alt="revit" />
+  <area class="scroll"  shape="rect" coords="173,10820,427,10860" href="#img_top" alt="sidi" />
+  <area class="scroll"  shape="rect" coords="160,11275,440,11313" href="#img_top" alt="spidi" />
+  <area class="scroll"  shape="rect" coords="136,13706,482,13750" href="#img_top" alt="thor" />
+  <area class="scroll"  shape="rect" coords="85,15589,513,15636" href="#img_top" alt="troy_lee_designs" />
+  <area class="scroll"  shape="rect" coords="170,17744,428,17785" href="#img_top" alt="helmet_size_chart" />
+</map>
+<div id = "alpinestar" style="position:absolute; left: 151px; top: 2284px;"></div>
+<div id = "axo" style="position:absolute; left: 193px; top: 4795px;"></div>
+<div id = "bmw" style="position:absolute; left: 191px; top: 6605px;"></div>
+<div id = "dainese" style="position:absolute; left: 86px; top: 11072px;"></div>
+<div id = "ducati" style="position:absolute; left: 144px; top: 16366px;"></div>
+<div id = "firstgear" style="position:absolute; left: 107px; top: 18442px;"></div>
+<div id = "fox_racing" style="position:absolute; left: 143px; top: 19667px;"></div>
+<div id = "gaerne" style="position:absolute; left: 160px; top: 22386px;"></div>
+<div id = "icon" style="position:absolute; left: 129px; top: 23014px;"></div>
+<div id = "klim" style="position:absolute; left: 169px; top: 25361px;"></div>
+<div id = "ktm" style="position:absolute; left: 124px; top: 29529px;"></div>
+<div id = "leatt_brace" style="position:absolute; lleft: 154px; top: 30806px;"></div>
+<div id = "moose_racing" style="position:absolute; left: 214px; top: 31601px;"></div>
+<div id = "revit" style="position:absolute; left: 163px; top: 32850px;"></div>
+<div id = "sidi" style="position:absolute; left: 177px; top: 36117px;"></div>
+<div id = "spidi" style="position:absolute; left: 161px; top: 36576px;"></div>
+<div id = "thor" style="position:absolute; left: 142px; top: 38998px;"></div>
+<div id = "troy_lee_designs" style="position:absolute; left: 85px; top: 40877px;"></div>
+<div id = "helmet_size_chart" style="position:absolute; left: 114px; top: 43028px;"></div>
+-->
+<!-- <div><a href="#" class="top"><img src="/shop/data/skin/damoashop/img/main/wing_bt_top.jpg" width="30" height="30" data-pin-nopin="true"></a></div> -->
+<div style="text-align:center;"><a href="#img_top" class="top scroll"><i class="fa fa-chevron-circle-up fa-2x"></i><br><span style="font-size:12px;font-weight:bold;">TOP</span></a></div>
+</div>
+<script>
+$( document ).on( "mousedown", function( event ) {
+	if(event.which==3){
+		console.log("left: " + event.pageX + "px; top: " + event.pageY + "px;");
+	}
+});
+$( document ).ready( function() {
+	$( window ).scroll( function() {
+	  if ( $( this ).scrollTop() > 200 ) {
+		$( '.top' ).fadeIn();
+	  } else {
+		$( '.top' ).fadeOut();
+	  }
+	} );
+	/*
+	$( '.scroll' ).click( function() {
+	  $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+	  return false;
+	} );
+	*/
+	$(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+        });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+div.aquamsgBoxbg { position: absolute; left: 0; top: 0; background: #E6E6E6; z-Index: 2000; }
+div#aquamsgBox { position: absolute; left: 40%; top: 40%; z-Index: 2001; }
+div#aquamsgBox div.aquamsgBox_t { background-color: #FFFFFF; border-top:1px solid grey;border-left:1px solid grey; border-right:1px solid grey;width: 386px; height: 34px; 
+border-top-left-radius: 10px;		/* 좌상단 */
+border-top-right-radius: 10px;		/* 우상단 */
+-moz-border-top-left-radius: 10px;		/* 파폭 */
+-moz-border-top-right-radius: 10px;		/* 파폭 */
+-webkit-border-top-left-radius: 10px;		/*사파리  */
+-webkit-border-top-right-radius: 10px;		/* 사파리우상단 */
+-o-border-top-left-radius: 10px;		/* 오페라 */
+-o-border-top-right-radius: 10px;		/* 오페라우상단 */
+  
+}
+div#aquamsgBox div.aquamsgBox_t div.aquamsgBoxtitle { font: 12px Verdana,Tahoma; color: #18609C; font-weight: bold; float: left; margin-left: 15px; margin-top: 10px; cursor: move; }
+div#aquamsgBox div.aquamsgBox_t img.aquamsgBoxclose { float: right; margin-top: 10px; margin-right: 10px; cursor: pointer; }
+div#aquamsgBox div.aquamsgBox_ml { background-color: #FFFFFF; border-left:1px solid grey; border-right:1px solid grey; }
+div#aquamsgBox div.aquamsgBox_ml div.aquamsgBox_mr { background-color: #FFFFFF; }
+div#aquamsgBox div.aquamsgBox_ml div.aquamsgBox_mr div.aquamsgBox_mm {background-color: #FFFFFF;  width: 360px; margin: 0 13px; }
+div#aquamsgBox div.aquamsgBox_ml div.aquamsgBox_mr div.aquamsgBox_mm img.aquamsgBoximg { float: left; } 
+div#aquamsgBox div.aquamsgBox_ml div.aquamsgBox_mr div.aquamsgBox_mm div.aquamsgBoxmsg { float: left; font: 12px Verdana, Tahoma; color: #000000; margin-left: 5px; margin-bottom: 10px; width: 300px; padding: 0; }
+div#aquamsgBox div.aquamsgBox_ml div.aquamsgBox_mr div.aquamsgBox_mm div.aquamsgBoxmsg span {font-weight:bolder;color: #FF0000;}
+div#aquamsgBox div.aquamsgBox_ml div.aquamsgBox_mr div.aquamsgBox_mm div.aquamsgBoxmsg a {color: #18609C; 
+}
+div#aquamsgBox div.aquamsgBoxbtn { clear: left; text-align: center; margin: 0; margin-top: 15px; }
+div#aquamsgBox div.aquamsgBoxbtn input.aquamsgBoxbtnin { margin: 0 3px; background: url(img/aquamsgBox/msgbox_btn.gif) no-repeat; border: 0; width: 60px; height: 21px; cursor: pointer; }
+div#aquamsgBox div.aquamsgBox_b { background-color: #FFFFFF; border-bottom:1px solid grey;border-left:1px solid grey; border-right:1px solid grey; width: 386px; height: 15px;
+border-bottom-right-radius: 10px;	/* 우하단 */
+border-bottom-left-radius: 10px;       /* 좌하단 */
+-moz-border-bottom-right-radius: 10px;	/* 우하단 */
+-moz-border-bottom-left-radius: 10px;       /* 좌하단 */
+-webkit-border-bottom-right-radius: 10px;	/* 우하단 */
+-webkit-border-bottom-left-radius: 10px;       /* 좌하단 */
+-o-border-bottom-right-radius: 10px;	/* 우하단 */
+-o-border-bottom-left-radius: 10px;       /* 좌하단 */
+}

@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_URI} ^(.*)$ [NC]
+RewriteRule ^(.*)$ /m2/$1 [R,L,NE]
