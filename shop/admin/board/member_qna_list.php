@@ -178,6 +178,13 @@ $replyTotal = $db->count_($replyRes);
 <?
 $i = 0;
 while ($data=$db->fetch($res)){
+	if (class_exists('validation') && method_exists('validation', 'xssCleanArray')) {
+		$data = validation::xssCleanArray($data, array(
+			validation::DEFAULT_KEY => 'text',
+			'subject' => array('html', 'ent_quotes'),
+			'contents' => array('html', 'ent_quotes'),
+		));
+	}
 
 	list( $data[m_id] ) = $db->fetch("select m_id from ".GD_MEMBER." where m_no='$data[m_no]'" );
 
@@ -283,7 +290,7 @@ function view_content(obj, e)
 	else if ( !document.all && ( e.target.tagName == 'A' || e.target.tagName == 'IMG' || e.srcElement.tagName == 'INPUT' ) ) return;
 
 	var div = obj.parentNode;
-	
+
 	for (var i=1, m=div.childNodes.length;i<m;i++) {
 		if (div.childNodes[i].nodeType != 1) continue;	// text node.
 		else if (obj == div.childNodes[ i ]) continue;
@@ -300,7 +307,7 @@ function view_content(obj, e)
 	else if (preContent == null ) obj.style.display = "block";
 
 	preContent = obj;
-	
+
 }
 
 function go_excel(){

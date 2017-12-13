@@ -221,6 +221,14 @@ $replyTotal = $db->count_($replyRes);
 <?
 $i = 0;
 while ($data=$db->fetch($res)){
+	// 부정태그 방지
+	if (class_exists('validation') && method_exists('validation', 'xssCleanArray')) {
+		$data = validation::xssCleanArray($data, array(
+			validation::DEFAULT_KEY => 'html',
+			'subject' => array('html', 'ent_quotes'),
+			'contents' => array('html', 'ent_quotes'),
+		));
+	}
 
 	if ( empty($data['m_no']) ) $data['m_id'] = $data['name']; // 비회원명
 	else {

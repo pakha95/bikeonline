@@ -57,6 +57,16 @@ $dealera_price = $dealer_price[0]/100;
 $dealerb_price = $dealer_price[1]/100;
 $dealerc_price = $dealer_price[2]/100;
 
+//상품 상세보기 시 SQL Injection 방어
+if (class_exists('validation')) {
+	$validation = new validation();
+	if (method_exists($validation, 'check_digit')) {
+		if ($_GET['goodsno'] != null && $validation->check_digit($_GET['goodsno']) === false) {
+			$_GET['goodsno'] = null;
+		}
+	}
+}
+
 //상품리뷰개수
 list ($review_count) = $db->fetch("select count(*) as cnt from gd_goods_review where goodsno = '".$goodsno."'");
 //상품문의개수
@@ -203,7 +213,7 @@ if (Lib_Robot::isRobotAccess() === false) {
 	$tpl->assign('dealera_price', $dealera_price);
 	$tpl->assign('dealerb_price', $dealerb_price);
 	$tpl->assign('dealerc_price', $dealerc_price);
-	
+
 	//PDF관련 추가 by jung
 	//$tpl->assign('remot_file_name', $remot_file_name);
 	//$tpl->assign('pdfExist', $pdfExist);
