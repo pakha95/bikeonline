@@ -1834,8 +1834,66 @@ function goodsimg($src,$size='',$tmp='',$hidden='', $viewerid='')
 	else $nosize = 100;
 
 	$onerror = ($hidden<2) ? "onerror=this.src='".$GLOBALS[cfg][rootDir]."/data/skin/".$GLOBALS[cfg][tplSkin]."/img/common/noimg_$nosize.gif'" : "onerror=this.style.display='none'";
-
+	//$sizeWidth=$size[0]*0.5;
 	$rtn = "<img style='max-width: 1000px; height: auto;' src='$path{$src}'{$vsize}{$tmp} $onerror ";
+	if ($viewerid) $rtn .= ' viewerid="'.$viewerid.'" ';
+	$rtn .= '/>';
+	return $rtn;
+}
+//상세페이지 이미지프리뷰용 추가 by jung
+function goodsimgPreview($src,$size='',$tmp='',$hidden='', $viewerid='')
+{
+	if(!preg_match('/http:\/\//',$src)){
+		if ($hidden) $path = "../";
+		$path .= "../data/goods/";
+		if ($hidden==3) $path = "http://".$GLOBALS[cfg][shopUrl].$GLOBALS[cfg][rootDir]."/data/goods/";
+		if ($hidden==4) $path = "http://".$_SERVER['HTTP_HOST'].$GLOBALS[cfg][rootDir]."/data/goods/";
+	}
+	if ($size){
+		$size = explode(",",$size);
+		$vsize = " width=$size[0]";
+		if ($size[1]) $vsize .= " height=$size[1]";
+	}
+
+	if ($tmp) $tmp = " ".$tmp;
+
+	if ($size[0]>300) $nosize = 500;
+	else if ($size[0]>130) $nosize = 300;
+	else if ($size[0]>100) $nosize = 130;
+	else $nosize = 100;
+
+	$onerror = ($hidden<2) ? "onerror=this.src='".$GLOBALS[cfg][rootDir]."/data/skin/".$GLOBALS[cfg][tplSkin]."/img/common/noimg_$nosize.gif'" : "onerror=this.style.display='none'";
+	//$sizeWidth=$size[0]*0.5;
+	$rtn = "<img style='max-width: 1000px; max-height: 300px;position: relative;top: 50%;transform: translate(0, -50%);-webkit-transform: translate(0, -50%);' src='$path{$src}'{$vsize}{$tmp} $onerror ";
+	if ($viewerid) $rtn .= ' viewerid="'.$viewerid.'" ';
+	$rtn .= '/>';
+	return $rtn;
+}
+//이미지프리뷰 팝업창 썸네일클릭용 추가 by jung
+function goodsimgPop($src,$size='',$tmp='',$hidden='', $viewerid='')
+{
+	if(!preg_match('/http:\/\//',$src)){
+		if ($hidden) $path = "../";
+		$path .= "../data/goods/";
+		if ($hidden==3) $path = "http://".$GLOBALS[cfg][shopUrl].$GLOBALS[cfg][rootDir]."/data/goods/";
+		if ($hidden==4) $path = "http://".$_SERVER['HTTP_HOST'].$GLOBALS[cfg][rootDir]."/data/goods/";
+	}
+	if ($size){
+		$size = explode(",",$size);
+		$vsize = " width=$size[0]";
+		if ($size[1]) $vsize .= " height=$size[1]";
+	}
+
+	if ($tmp) $tmp = " ".$tmp;
+
+	if ($size[0]>300) $nosize = 500;
+	else if ($size[0]>130) $nosize = 300;
+	else if ($size[0]>100) $nosize = 130;
+	else $nosize = 100;
+
+	$onerror = ($hidden<2) ? "onerror=this.src='".$GLOBALS[cfg][rootDir]."/data/skin/".$GLOBALS[cfg][tplSkin]."/img/common/noimg_$nosize.gif'" : "onerror=this.style.display='none'";
+	//$sizeWidth=$size[0]*0.5;
+	$rtn = "<img style='max-width: 700px; max-height: 630px;position: relative;left: 50%;transform: translate(-50%, 0);-webkit-transform: translate(-50%, 0);' src='$path{$src}'{$vsize}{$tmp} $onerror ";
 	if ($viewerid) $rtn .= ' viewerid="'.$viewerid.'" ';
 	$rtn .= '/>';
 	return $rtn;

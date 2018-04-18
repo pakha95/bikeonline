@@ -166,7 +166,7 @@ SELECT
 	) AS stats
 
 FROM ".GD_ORDER_ITEM." AS a
-INNER join ".GD_GOODS." AS b on a.goodsno=b.goodsno
+LEFT join ".GD_GOODS." AS b on a.goodsno=b.goodsno
 LEFT JOIN ".GD_TODAYSHOP_GOODS." AS C ON a.goodsno = C.goodsno
 where
 	a.ordno = '$_GET[ordno]'

@@ -173,6 +173,15 @@ $_POST['address_sub'] = iconv('utf-8','euc-kr',$_POST['address_sub']);
 $_POST['road_address'] = iconv('utf-8','euc-kr',$_POST['road_address']);
 $_POST['memo'] = iconv('utf-8','euc-kr',$_POST['memo']);
 $_POST['memo'] = htmlspecialchars(stripslashes($_POST['memo']), ENT_QUOTES);
+$_POST['memoModel'] = iconv('utf-8','euc-kr',$_POST['memoModel']);
+$_POST['memoModel'] = htmlspecialchars(stripslashes($_POST['memoModel']), ENT_QUOTES);
+$_POST['memoModelYear'] = iconv('utf-8','euc-kr',$_POST['memoModelYear']);
+$_POST['memoModelYear'] = htmlspecialchars(stripslashes($_POST['memoModelYear']), ENT_QUOTES);
+$_POST['memoJacket'] = iconv('utf-8','euc-kr',$_POST['memoJacket']);
+$_POST['memoJacket'] = htmlspecialchars(stripslashes($_POST['memoJacket']), ENT_QUOTES);
+$_POST['memoPants'] = iconv('utf-8','euc-kr',$_POST['memoPants']);
+$_POST['memoPants'] = htmlspecialchars(stripslashes($_POST['memoPants']), ENT_QUOTES);
+
 //Ãß°¡³¡
 
 if($_POST['updateMemberInfo']=='y' && $sess[m_no]){

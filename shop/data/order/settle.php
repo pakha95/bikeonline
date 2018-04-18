@@ -187,8 +187,8 @@ switch ($_POST[settlekind]){
 		}
 		// 다날 휴대폰 결제가 사용중일때
 		else if ($_POST['settlekind'] == 'h' && $cfg['settleCellPg'] === 'danal' && $danal->isEnabled() === true) {
-			$tpl->define('>card_gate',$_SERVER['DOCUMENT_ROOT']."/$cfg[rootDir]/blank.php"); // PG사 card_gate 무력화 
-			break; 
+			$tpl->define('>card_gate',$_SERVER['DOCUMENT_ROOT']."/$cfg[rootDir]/blank.php"); // PG사 card_gate 무력화
+			break;
 		}
 	case "p":	// 포인트
 	case "u":	// 중국카드결제 (현재 LG u+ 만 가능함)
@@ -260,6 +260,12 @@ if ($isScope !== true){
 
 ### 주문데이타 가공
 $_POST[memo] = htmlspecialchars(stripslashes($_POST[memo]), ENT_QUOTES);
+//바이크기종,연식,자켓용가슴둘레,팬츠용허리둘레 추가 by jung
+$_POST[memoModel] = htmlspecialchars(stripslashes($_POST[memoModel]), ENT_QUOTES);
+$_POST[memoModelYear] = htmlspecialchars(stripslashes($_POST[memoModelYear]), ENT_QUOTES);
+$_POST[memoJacket] = htmlspecialchars(stripslashes($_POST[memoJacket]), ENT_QUOTES);
+$_POST[memoPants] = htmlspecialchars(stripslashes($_POST[memoPants]), ENT_QUOTES);
+//추가 끝
 
 if($_POST['updateMemberInfo']=='y' && $sess[m_no]){
 	$zipcode = @implode("-",$_POST['zipcode']);

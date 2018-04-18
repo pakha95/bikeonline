@@ -147,24 +147,32 @@ if (Lib_Robot::isRobotAccess() === false) {
 	//PDF파일 유무체크 by jung
 	function remoteFileName($server_path,$search){
 	  $pdfName = array();
-	  $ftp_host = "jbsinter2.godohosting.com";    // ftp host명
-	  $ftp_id = "jbsinter2";           // ftp 아이디
-	  $ftp_pw = "piston3535";   // ftp 비밀번호
+	  //$ftp_host = "jbsinter2.godohosting.com";    // ftp host명
+	  //$ftp_id = "jbsinter2";           // ftp 아이디
+	  //$ftp_pw = "piston5546!";   // ftp 비밀번호
+	  //$ftp_port = "21";            // ftp 포트
+		$ftp_host = "sagazy07.vps.phps.kr";    // ftp host명
+	  $ftp_id = "bike1";           // ftp 아이디
+	  $ftp_pw = "bike1";   // ftp 비밀번호
 	  $ftp_port = "21";            // ftp 포트
-	    if(!($fc = ftp_connect($ftp_host, $ftp_port))) die("$server_host : $server_post - 연결에 실패하였습니다.");
-	    if(!ftp_login($fc, $ftp_id, $ftp_pw)) die("$server_id - 로그인에 실패하였습니다.");
+	    if(!($fc = ftp_connect($ftp_host, $ftp_port))) {}//die("$server_host : $server_post - 연결에 실패하였습니다.");
+	    if(!ftp_login($fc, $ftp_id, $ftp_pw)) {}//die("$server_id - 로그인에 실패하였습니다.");
 	    //$server_path = "/pdf/";
 	    ftp_chdir($fc, $server_path);
 	    $contents = ftp_nlist($fc, $server_path);
 			$search2 = substr($search,0,-2)."_";
 			$search3 = substr($search,0,-2)."-";
 	    foreach($contents as $value){
+				//$value = str_replace("/pdf","",$value);
 				if(strpos($value, $search) !== false) {
-	      	$pdfName[] = "http://jbsinter2.godohosting.com".$value;
+	      	//$pdfName[] = "http://jbsinter2.godohosting.com".$value;
+					$pdfName[] = "http://sagazy07.vps.phps.kr/bike1".$value;
 	    	}elseif(strpos($value, $search2) !== false){
-					$pdfName[] = "http://jbsinter2.godohosting.com".$value;
+					//$pdfName[] = "http://jbsinter2.godohosting.com".$value;
+					$pdfName[] = "http://sagazy07.vps.phps.kr/bike1".$value;
 				}elseif(strpos($value, $search3) !== false){
-					$pdfName[] = "http://jbsinter2.godohosting.com".$value;
+					//$pdfName[] = "http://jbsinter2.godohosting.com".$value;
+					$pdfName[] = "http://sagazy07.vps.phps.kr/bike1".$value;
 				}
 			}
 	  return $pdfName;

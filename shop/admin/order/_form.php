@@ -1055,10 +1055,17 @@ if($db->count_($rres)){
 		<td>고객요청사항</td>
 		<td><textarea name=memo style="width:100%;height:100px"><?=$order[memo]?></textarea></td>
 	</tr>
+	<tr height=10>
+		<td>고객바이크정보</td>
+		<td>바이크 기종:&nbsp;<?=$order[memoModel]?>&nbsp;&nbsp;바이크 연식:&nbsp;<?=$order[memoModelYear]?>&nbsp;&nbsp;자켓용가슴둘레:&nbsp;<?=$order[memoJacket]?>cm&nbsp;&nbsp;팬츠용허리둘레:&nbsp;<?=$order[memoPants]?>cm</td>
+	</tr>
 	<tr height=25>
 		<td>고객상담메모</td>
 		<td><textarea name=adminmemo style="width:100%;height:100px"><?=$order[adminmemo]?></textarea></td>
 	</tr>
+
+
+
 	<tr height=25>
 		<td>결제로그</td>
 		<td><textarea style="width:100%;height:100px;overflow:visible;font:9pt 굴림체;padding:10px 0 0 8px"><?=trim($order[settlelog])?></textarea></td>

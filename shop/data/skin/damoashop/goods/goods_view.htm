@@ -383,7 +383,7 @@ tooltip.style.display = 'none';
 <!-- 상품 이미지 -->
 <div style="margin:0px auto 0px auto">
 <div style="width:49%;float:left;text-align:center;">
-<div style="padding-bottom:10"><span onclick="popup('goods_popup_large.php?goodsno={goodsno}',800,600)" style="cursor:pointer"><!--디테일뷰수정--><!--{?detailView=='y'}--><!--{? sc_img[0]}-->{=goodsimg(sc_img[0],300,'id="objImg"','','zoom_view')}<!--{:}-->{=goodsimg(r_img[0],300,'id="objImg"','','zoom_view')}<!--{/}--><!--{:}-->{=goodsimg(r_img[0],300,'id=objImg')}<!--{/}--><!--디테일뷰수정--></span></div>
+<div style="height:300px;padding-bottom:10"><span onclick="popup('goods_popup_large.php?goodsno={goodsno}',800,600)" style="cursor:pointer"><!--디테일뷰수정--><!--{?detailView=='y'}--><!--{? sc_img[0]}-->{=goodsimgPreview(sc_img[0],300,'id="objImg"','','zoom_view')}<!--{:}-->{=goodsimgPreview(r_img[0],300,'id="objImg"','','zoom_view')}<!--{/}--><!--{:}-->{=goodsimgPreview(r_img[0],300,'id=objImg')}<!--{/}--><!--디테일뷰수정--></span></div>
 <div style="padding-bottom:10">
 <img src="../img/common/btn_zoom.gif" onclick="popup('goods_popup_large.php?goodsno={goodsno}',800,600)" style="cursor:pointer" align=absmiddle>
 </div>

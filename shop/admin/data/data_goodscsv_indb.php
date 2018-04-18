@@ -118,6 +118,10 @@ else { // 화일이 있으면
 
 					if ( $key == 'goods_price' ) $Recode[$key] = preg_replace( '/[^0-9]/', '', $Recode[$key] ); // 숫자만 저장
 
+					if ( $key == 'goods_consumer' ) $Recode[$key] = preg_replace( '/[^0-9]/', '', $Recode[$key] ); // 숫자만 저장
+
+					if ( $key == 'icon' ) $Recode[$key] = preg_replace( '/[^0-9]/', '', $Recode[$key] ); // 숫자만 저장
+
 					//if ( $key == 'goods_reserve' ) $Recode[$key] = preg_replace( '/[^0-9]/', '', $Recode[$key] ); // 숫자만 저장
 
 				} // end foreach
@@ -132,7 +136,7 @@ else { // 화일이 있으면
 					if($data[$FieldNm[goodsno]] == '' || $getScnt == 0) $insert = true;
 
 					$tmpSQL = array();
-					foreach ( $Recode as $key => $value ) {	
+					foreach ( $Recode as $key => $value ) {
 						if($key=="img_i"||$key=="img_s"||$key=="img_m"||$key=="img_l"){
 							$hosting="http://jbsinter2.godohosting.com/goods/";
 							$value = str_replace("|","|".$hosting,$value);
@@ -141,11 +145,20 @@ else { // 화일이 있으면
 
 						if($key=="longdesc"){
 							$value = str_replace("|","<br >",$value);
+							preg_match_all('/\{([^{}]+)\}/', $value, $matches);
+							if(!empty($matches[0])){
+								$maNo = 0;
+								foreach($matches[0] as $element) {
+									$element2 = $matches[1][$maNo];
+									$value = str_replace($element,"<a target=\"_blank\" style=\"color:blue;font-weight:bold\" href = \"".$element2."\">".$element2."</a>",$value);
+									$maNo++;
+								}
+							}
 						}
 
 						$tmpSQL[] = "$key='$value'";
-					
-					
+
+
 					}
 					// 시즌4 신규 상점은 상품 등록일 항목이 삭제 되었으므로, insert 시 등록일을 설정한다.
 					////if ($getScnt == 0 && !array_key_exists('regdt',$Recode)) {
@@ -174,16 +187,16 @@ else { // 화일이 있으면
 					$etcRecode['opts'] = '';
 				}
 				$price = '';
-				
+
 				foreach ( $etcRecode as $key => $value ){ // 별도처리 필드
-					
-					
+
+
 					//if ( $key == 'goods_price') ){ //대표가격
-						
+
 					//$price		= preg_replace( '/[^0-9]/', '', $etcRecode[$key] ); // 숫자만 저장
-					
+
 					//	$price = $etcRecode['goods_price']);
-					//}					
+					//}
 
 					if ( $key == 'goodscate' ){ // 상품분류
 
@@ -285,18 +298,18 @@ else { // 화일이 있으면
 
 							if ( trim( $recode ) == '' ) continue;
 							list( $opt1, $opt2) = explode( "^", $recode );
-							
+
 							$opt1		= trim( $opt1 );
 							$opt2		= trim( $opt2 );
 							$price		= preg_replace( '/[^0-9]/', '', $etcRecode['goods_price'] ); // 숫자만 저장
-							
+
 
 							if ($idx == 0) {
 								$link = 1;
 
 								// 상품 대표 가격, 적립금, 매입가, 소비자가
 								$goods_price = $price;
-								
+
 							}
 							else {
 								$link = 0;
@@ -304,7 +317,7 @@ else { // 화일이 있으면
 
 							$link		= ( $idx == 0 ? '1' : '0' );
 							$idx++;
-							
+
 							list( $cnt ) = $db->fetch( "select count(*) from ".GD_GOODS_OPTION." where goodsno='" . $Recode['goodsno'] . "' and opt1='" . $opt1 . "' and opt2='" . $opt2 . "' and go_is_deleted <> '1'" );
 							if ( $cnt < 1 ) $db->query( "insert into ".GD_GOODS_OPTION." set goodsno='" . $Recode['goodsno'] . "', opt1='" . $opt1 . "', opt2='" . $opt2 . "', price='" . $price . "', link='" . $link . "', go_is_deleted = '0', go_is_display = '1'" );
 							else if ( $cnt == 1 ) $db->query( "update ".GD_GOODS_OPTION." set price='" . $price . "', link='" . $link . "', go_is_deleted = '0', go_is_display = '1' where goodsno='" . $Recode['goodsno'] . "' and opt1='" . $opt1 . "' and opt2='" . $opt2 . "' and go_is_deleted <> '1'" );
@@ -314,59 +327,59 @@ else { // 화일이 있으면
 						}
 						*/
 						//추가시작
-						
-						$item_a = explode( "|" , $value ); 
-						//for ($i=0; $i < count($item_a); $i++) 
-						//{ 
-					       $itemtmp1 = explode(";",$item_a[0]); 
+
+						$item_a = explode( "|" , $value );
+						//for ($i=0; $i < count($item_a); $i++)
+						//{
+					       $itemtmp1 = explode(";",$item_a[0]);
 						   $itemtmp2 = explode(";",$item_a[1]);
-					       		for ($j=0; $j < count($itemtmp1); $j++) { 
+					       		for ($j=0; $j < count($itemtmp1); $j++) {
 								 $opt1 = $itemtmp1[$j];
-								 						 
+
 								 for ($k=0; $k < count($itemtmp2); $k++) {
-								 $opt2 = $itemtmp2[$k]; 
+								 $opt2 = $itemtmp2[$k];
 							     $price = preg_replace( '/[^0-9]/', '', $Recode['goods_price'] ); // 숫자만 저장
-								
+
 								//$opt1 = @array_shift($item[0][$j]);
 								//$opt2 = @array_shift($item[1][$j]);
 
-				
+
 
 						if ($idx == 0) {
 									$link = 1;
 
 									// 상품 대표 가격, 적립금, 매입가, 소비자가
 									$goods_price = $price;
-								
+
 								}
 								else {
 									$link = 0;
 									//$goods_price = $price;
 								}
-								
+
 
 								$link		= ( $idx == 0 ? '1' : '0' );
-								
+
 								$idx++;
-							
+
 								list( $cnt ) = $db->fetch( "select count(*) from ".GD_GOODS_OPTION." where goodsno='" . $Recode['goodsno'] . "' and opt1='" . $opt1 . "' and opt2='" . $opt2 . "' and go_is_deleted <> '1'" );
 								if ( $cnt < 1 ) $db->query( "insert into ".GD_GOODS_OPTION." set stock = '".$Recode['totstock']."', goodsno='" . $Recode['goodsno'] . "', opt1='" . $opt1 . "', opt2='" . $opt2 . "', price='" . $price . "', link='" . $link . "', go_is_deleted = '0', go_is_display = '1'" );
 								else if ( $cnt == 1 ) $db->query( "update ".GD_GOODS_OPTION." set stock = '".$Recode['totstock']."', price='" . $price . "', link='" . $link . "', go_is_deleted = '0', go_is_display = '1' where goodsno='" . $Recode['goodsno'] . "' and opt1='" . $opt1 . "' and opt2='" . $opt2 . "' and go_is_deleted <> '1'" );
 								$tmp[] = $opt1 . '^' . $opt2;
 								$option_value[1][$k] = $opt2;
-						
+
 					}
-					
+
 								$option_value[0][$j] = $opt1;
-								
+
 				}
-								
-			
+
+
 						//추가끝
 
 						$option_value = implode(',',array_notnull($option_value[0])).'|'.implode(',',array_notnull($option_value[1]));
 
-						
+
 						//$db->query( "update ".GD_GOODS." set goods_price = '".$goods_price."', use_option = '".($idx > 1 ? 1 : 0)."', option_name = optnm, option_value = '".$option_value."' where goodsno='". $Recode['goodsno'] ."'");
 						$db->query( "update ".GD_GOODS." set use_option = '".($idx > 1 ? 1 : 0)."', option_name = optnm, option_value = '".$option_value."' where goodsno='". $Recode['goodsno'] ."'");
 						$db->query( "update ".GD_GOODS_OPTION." set go_is_deleted = '1' where goodsno='" . $Recode['goodsno'] . "' and concat( opt1, '^', opt2 ) not in ('" . implode( "','", $tmp ) . "') and go_is_deleted <> '1'" );
@@ -450,24 +463,24 @@ else { // 화일이 있으면
 							$discount_lv=array();
 							$discount_amount=array();
 							$discount_unit=array();
-							$unit = '';	
+							$unit = '';
 							//데이터 생성
-							$discount_a = explode( "|" , $value ); 
+							$discount_a = explode( "|" , $value );
 							for($l=0;$l<count($discount_a);$l++){
 								$discount_b[$l] = explode(";",$discount_a[$l]);
-								
+
 								//if(preg_match("/[%]/", $discount_b[$l][1])){
 								//	$unit = '%';
 								//}
 								//else {
 								//	$unit = '=';
 								//}
-								
+
 								$discount_lv[] = $discount_b[$l][0];
 								$discount_amount[] = str_replace("%", "", $discount_b[$l][1]);
 								//$discount_unit[] = $unit;
-								
-								
+
+
 							}
 							$gd_level = implode(",",$discount_lv);
 							$gd_amount = implode(",",$discount_amount);

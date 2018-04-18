@@ -36,7 +36,9 @@ $searchForm = Clib_Application::form('admin_goods_search')->setData(Clib_Applica
 
 //재고량연동 변경(재고 0되면 자동으로 무한판매)및 문구변경 by jung //////////////////////////////////////
 	mysql_query("update ".GD_GOODS." set runout = 0, usestock = '' where runout = 1 or (usestock ='o' and totstock < 1) ");
+	//mysql_query("update ".GD_GOODS." a left join(SELECT goodsno,stock FROM gd_goods_option WHERE stock=0 or stock=null) b on a.goodsno=b.goodsno set a.totstock = 0 where a.totstock>0 ");
 	mysql_query("update ".GD_GOODS." set usestock = 'o' where totstock > 0 ");
+	//mysql_query("update ".GD_GOODS." a left join(SELECT goodsno,stock FROM gd_goods_option WHERE stock=0 or stock=null) b on a.goodsno=b.goodsno set a.usestock = '' where a.totstock>0 ");
 	$red_b = "<span class='red_b'>[국내배송]</span>";
 	$green_b = "<span class='green_b'>[해외]</span>";
 	mysql_query("update ".GD_GOODS." set 	naver_import_flag='1',goods_prefix = REPLACE(	goods_prefix, \"<span class='red_b'>[국내배송]</span>\",\"<span class='green_b'>[해외]</span>\") where (usestock <>'o' or totstock<1) and 	goods_prefix LIKE '%국내배송%' ");
@@ -61,22 +63,29 @@ $searchForm = Clib_Application::form('admin_goods_search')->setData(Clib_Applica
 	mysql_query("delete from gd_goods_link where autoadd = '1' and category = 050  and goodsno in (SELECT goodsno FROM `gd_goods` where totstock < 1)");
 	mysql_query("update gd_goods_link set hidden = 1,hidden_mobile = 1 where category = 050  and goodsno in (SELECT goodsno FROM `gd_goods` where open = 1 and totstock < 1)");
 	mysql_query("update gd_goods_link set hidden = 0,hidden_mobile = 0 where category = 050  and goodsno in (SELECT goodsno FROM `gd_goods` where open = 1 and totstock > 0) and (hidden = 1 or hidden_mobile = 1)");
+	//재고 추가될 경우 국내재고상품 카테고리에 추가
+
 
 // 재고량연동 변경 끝 ///////////////////////////////////////////////////////////////////////////////////
 
 	$res_link = $db->query("select distinct(b.goodsno) from gd_goods as a left join gd_goods_link as b on a.goodsno = b.goodsno where (b.goodsno not in (select goodsno from gd_goods_link where category = '050' or category = '002')) and a.totstock > 0 order by b.goodsno desc ");
 
-
-
 	while ($data_link= mysql_fetch_array($res_link)) {
-
 	mysql_query("insert into gd_goods_link set goodsno='".$data_link[goodsno]."', category = '050', autoadd = '1' ");
 	$last_sno = $db->lastID();
 	$goods_link_sort = "-unix_timestamp()-".$last_sno;
 	mysql_query("update gd_goods_link SET sort='".$goods_link_sort."' where sno = '".$last_sno."' ");
-
 	//echo $data_link[goodsno]."<br />\n" ."|||".$goods_link_sort."<br />\n";
+	}
 
+	$res_link2 = $db->query("select distinct(b.goodsno) from gd_goods as a left join gd_goods_link as b on a.goodsno = b.goodsno where (b.goodsno not in (select goodsno from gd_goods_link where category = '050')) and a.totstock > 0 order by b.goodsno desc ");
+
+	while ($data_link2= mysql_fetch_array($res_link2)) {
+	mysql_query("insert into gd_goods_link set goodsno='".$data_link2[goodsno]."', category = '050', autoadd = '1' ");
+	$last_sno = $db->lastID();
+	$goods_link_sort = "-unix_timestamp()-".$last_sno;
+	mysql_query("update gd_goods_link SET sort='".$goods_link_sort."' where sno = '".$last_sno."' ");
+	//echo $data_link[goodsno]."<br />\n" ."|||".$goods_link_sort."<br />\n";
 	}
 
 

@@ -1792,7 +1792,7 @@ function scrollCateList_ajax(qStr, page, page_num) {
 	newDiv.style.background = "#ffffff";
 	newDiv.style.color = "#000000";
 	newDiv.style.border = "1px solid #DFDFDF";
-	document.body.insertBefore(newDiv);
+	document.body.insertBefore(newDiv,null);
 
 	var url = "../goods/ajax_cateList.php?" + qStr;
 	if(page) url = url + "&page=" + page;
