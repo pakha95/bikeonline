@@ -39,7 +39,8 @@ if($_POST[mode] == 'register' || $_POST[mode] == 'modify' || $_POST[mode] == 're
 			`eactl` 		= '$_POST[eactl]',
 			`dncnt` 		= '$_POST[dncnt]',
 			`duplctl` 		= '$_POST[duplctl]',
-			`edncnt` 		= '$_POST[edncnt]'
+			`edncnt` 		= '$_POST[edncnt]',
+			`coupon_expireSms` = '$_POST[coupon_expireSms]'
 		";
 }
 

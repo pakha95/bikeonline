@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.7 2016/11/03 17:51:41 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/order/order.htm 000048584 */  $this->include_("displayEggBanner");
+<?php /* Template_ 2.2.7 2018/03/05 18:55:00 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/order/order.htm 000049338 */  $this->include_("displayEggBanner");
 if (is_array($GLOBALS["r_deli"])) $TPL__r_deli_1=count($GLOBALS["r_deli"]); else if (is_object($GLOBALS["r_deli"]) && in_array("Countable", class_implements($GLOBALS["r_deli"]))) $TPL__r_deli_1=$GLOBALS["r_deli"]->count();else $TPL__r_deli_1=0;?>
 <?php $this->print_("header",$TPL_SCP,1);?>
 
@@ -206,6 +206,24 @@ scrollbar-arrow-color: #838383;
 		<td>남기실 말씀</td>
 		<td><input type=text name=memo style="width:100%"></td>
 	</tr>
+	<tr>
+		<td>모터사이클 기종</td>
+		<td><input type=text name=memoModel placeholder="예)BMW S1000R" style="display:inline;width:50%">
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;연식</span>
+		<input type=text name=memoModelYear placeholder="예)2018" style="display:inline;width:30%"></td>
+	</tr>
+	<tr>
+		<td>자켓용 가슴둘레</td>
+		<td><input type=text name=memoJacket placeholder="예)100" style="display:inline;width:30%"><span>&nbsp;cm</span>
+		<span>&nbsp;&nbsp;&nbsp;&nbsp;팬츠용 허리둘레</span>
+		<input type=text name=memoPants placeholder="예)100" style="display:inline;width:30%"><span>&nbsp;cm</span></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<span style="color:#FF6C68;"> ※ 정확한 주문을 원하시면 바이크 정보와 치수를 입력하여 주시기 바랍니다.</span>
+		</td>
+	</tr>
+
 	<tr id="delivery_check" style="display:none;">
 		<td>&nbsp;</td>
 		<td>
@@ -585,7 +603,7 @@ function chkForm2(fm)
 	}
 
 	if(check_naverNcashUseAble() === false){
-		return false;	
+		return false;
 	}
 
 	if( (save_mode == 'ncash' || save_mode == 'both') && document.getElementById('reqTxId<?php echo $TPL_VAR["ncash"]["api_id"]?>').value == ''){
@@ -639,7 +657,7 @@ function copy_field()
 <?php }?>
 	getDelivery();
 }
-function last_field() 
+function last_field()
 {
 	var form = document.frmOrder;
 	form.nameReceiver.value = "<?php echo $TPL_VAR["last_name"]?>";
@@ -719,7 +737,7 @@ function chk_emoney(obj)
 	var erangeprice = goodsprice;
 <?php }?>
 	var special_discount_amount= (_ID('special_discount_amount')) ? uncomma(_ID('special_discount_amount').innerHTML) : 0;
-	var max_base = erangeprice - uncomma(_ID('memberdc').innerHTML) - uncomma(document.getElementsByName('coupon')[0].value) - special_discount_amount; 
+	var max_base = erangeprice - uncomma(_ID('memberdc').innerHTML) - uncomma(document.getElementsByName('coupon')[0].value) - special_discount_amount;
 	max_base		= max_base > 0 ? max_base : 0;
 	var coupon = coupon_emoney = 0;
 	if( form.coupon ){
@@ -972,7 +990,7 @@ function cash_save_use(){
 		}
 	}
 	if(check_naverNcashUseAble() === false){
-		return false;	
+		return false;
 	}
 	if(save_mode != 'ncash' && save_mode != 'both'){ alert('네이버 마일리지 적립을 선택해주세요.'); return; }
 	var reqTxId = document.getElementById('reqTxId<?php echo $TPL_VAR["ncash"]["api_id"]?>').value;
@@ -1094,7 +1112,7 @@ function readonlyEvent() {
 function submitForm()
 {
 	var fm = document.frmOrder;
-	
+
 	var example_result = document.getElementById('example_result');
 	var msg_title = '중요 : 읽어주세요!';
 	var msg1 = '해외주문 특성상 마감후 해외에 주문이 들어간 후에는 \n무료 철회가 불가능하며&nbsp;';
@@ -1105,10 +1123,10 @@ function submitForm()
 	//var msg3 = '&nbsp;가 부과됩니다.\n자세한 사항은 이용약관을 참조하시기 바랍니다. \n\n주문하시겠습니까 ?';
 	//aquamsgBox.show(msg_title, msg1+msg2+msg3, aquamsgreturnexample, '예|아니오;아니오', 1);
 	aquamsgBox.show(msg_title, msg1+msg2+msg3, aquamsgreturnexample, '예|아니오;아니오', 1);
-	
+
 	function aquamsgreturnexample() {
 		var example_result = document.getElementById('example_result');
-		if (aquamsgBox.getValue() == "아니오") 	{ 
+		if (aquamsgBox.getValue() == "아니오") 	{
 			//alert("취소하셨습니다");
 			return false;
 			}
@@ -1116,7 +1134,7 @@ function submitForm()
 
 
 		fm.submit();
-	
+
 		}
 }
 </script>

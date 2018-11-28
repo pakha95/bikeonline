@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.7 2017/12/06 13:33:30 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/main/index.htm 000035246 */  $this->include_("dataPopup","dataBanner","dataGoods","dataDisplayGoods");?>
+<?php /* Template_ 2.2.7 2018/10/04 12:09:53 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/main/index.htm 000035290 */  $this->include_("dataPopup","dataBanner","dataGoods","dataDisplayGoods");?>
 <?php $this->print_("header",$TPL_SCP,1);?>
 
 <!-- script src="/shop/data/skin/damoashop/jquery.cycle.all.js"></script -->
@@ -53,17 +53,19 @@ if(win) win.focus();
 	<!-- ¸ÞÀÎ ºñÁê¾ó ½æ³×ÀÏ ½ÃÀÛ -->
 	<div id="main_banner">
 		<div><a href="/shop/goods/goods_list.php?category=003&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/1_how_to_search.png" alt="HowToSearch" ></a></div>
-		<div><a href="/shop/goods/goods_list.php?category=024001&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/2_akrapovic.jpg" alt="Akrapovic" ></a></div>
-		<div><a href="/shop/goods/goods_list.php?&category=004069&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/2_mra.jpg" alt="MRA" ></a></div>
-		<div><a href="/shop/goods/goods_list.php?category=004004&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/2_answer_racing.jpg" alt="Answer Racing" ></a></div>
-		<div><a href="/shop/goods/goods_list.php?category=048005&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/2_bell.jpg" alt="Bell" ></a></div>
-		<div><a href="/shop/goods/goods_list.php?&category=004027&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/2_moose_racing.jpg" alt="Moose Racing" ></a></div>
-		<div><a href="/shop/goods/goods_list.php?category=004048&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/10_thormx.jpg" alt="Thor MX" ></a></div>
-		<div><a href="/shop/goods/goods_list.php?category=004106&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/2_evotech.jpg" alt="Evotech Performance" ></a></div>
-		<div><a href="/shop/goods/goods_list.php?category=048014&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/3_nolan.jpg" alt="Nolan" ></a></div>
-		<div><a href="/shop/goods/goods_list.php?&category=004033&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/4_pro_circuit.jpg" alt="Pro circuit" ></a></div>
-		<div><a href="/shop/goods/goods_list.php?category=048024&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/1_biltwell.jpg" alt="Biltwell" ></a></div>
-		<div><a href="/shop/goods/goods_list.php?category=048023&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/2_just1.jpg" alt="Just1" ></a></div>
+		<div><a href="/shop/goods/goods_list.php?category=048033&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/airoh_2018.jpg" alt="Airoh" ></a></div>
+		<div><a href="/shop/goods/goods_list.php?category=048005&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/bell_2018.jpg" alt="Bell" ></a></div>
+		<div><a href="/shop/goods/goods_list.php?category=004106&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/evotech_2018.jpg" alt="Evotech" ></a></div>
+		<div><a href="/shop/goods/goods_list.php?category=025015&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/ilmberger_2018.jpg" alt="Ilmberger" ></a></div>
+		<div><a href="/shop/goods/goods_list.php?category=004081&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/akrapovic_2018.jpg" alt="Akrapovic" ></a></div>
+		<div><a href="/shop/goods/goods_list.php?category=048008&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/icon_2018.jpg" alt="Icon" ></a></div>
+		<div><a href="/shop/goods/goods_list.php?category=004103&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/sidi_2018.jpg" alt="Sidi" ></a></div>
+		<div><a href="/shop/goods/goods_list.php?category=004096&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/eks_2018.jpg" alt="EKS Brand" ></a></div>
+		<div><a href="/shop/goods/goods_list.php?category=004094&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/magura_2018.jpg" alt="Magura" ></a></div>
+		<div><a href="/shop/goods/goods_list.php?category=004016&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/gaerne_2018.jpg" alt="Gaerne" ></a></div>
+		<div><a href="/shop/goods/goods_list.php?category=048022&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/bmw_helmet_2018.jpg" alt="BMW Helmet" ></a></div>
+		<div><a href="/shop/goods/goods_list.php?category=004003&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/main/alpinestars_2018.jpg" alt="Alpinestars" ></a></div>
+
 
 		<!--
 		<div><img name="n2_thor_ansr_msr_moose" src="/shop/data/skin/damoashop/img/main/2_thor_ansr_msr_moose.png" width="790" height="459" id="n2_thor_ansr_msr_moose" usemap="#m_2_thor_ansr_msr_moose" alt="" />
@@ -226,10 +228,10 @@ if(win) win.focus();
 		<li><a href="/shop/goods/goods_list.php?category=004060&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/bmw.jpg"  width="191" height="63" alt="BMW"/></a></li>
 <!--		<li><a href="/shop/goods/goods_list.php?category=026001"><img src="/shop/data/skin/damoashop/img/banner/s_banner/braking.jpg" alt="Braking"/></a></li> -->
 		<li><a href="/shop/goods/goods_list.php?category=004009&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/brembo.jpg"  width="191" height="63" alt="Brembo"/></a></li>
-		<li><a href="/shop/goods/goods_list.php?category=004010&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/crg.jpg"  width="191" height="63" alt="CRG"/></a></li>
+		<!-- <li><a href="/shop/goods/goods_list.php?category=004010&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/crg.jpg"  width="191" height="63" alt="CRG"/></a></li> -->
 		<li><a href="/shop/goods/goods_list.php?category=004011&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/dainese.jpg"  width="191" height="63" alt="Dainese"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=004099&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/denali.png"  width="191" height="63" alt="Denali"/></a></li>
-<!--		<li><a href="/shop/goods/goods_list.php?category=030001&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/denso.jpg"  width="191" height="63" alt="Denso"/></a></li> -->
+		<li><a href="/shop/goods/goods_list.php?&category=004110&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/denso.jpg"  width="191" height="63" alt="Denso"/></a></li>
 
 		<li><a href="/shop/goods/goods_list.php?category=004066&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/ducati.jpg"  width="191" height="63" alt="Ducati"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=026004&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/ebc.jpg"  width="191" height="63" alt="EBC"/></a></li>
@@ -258,7 +260,7 @@ if(win) win.focus();
 		<li><a href="/shop/goods/goods_list.php?category=031006&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/kineo.jpg " width="191" height="63"  alt="Kineo "/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=004024&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/klim.jpg" width="191" height="63"  alt="Klim"/></a></li>
 <!--		<li><a href="/shop/goods/goods_list.php?category=004067"><img src="/shop/data/skin/damoashop/img/banner/s_banner/ktm.jpg" alt="KTM"/></a></li> -->
-		<li><a href="/shop/goods/goods_list.php?category=004025&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/leatt.jpg" width="191" height="63"  alt="Leatt"/></a></li>
+<!-- 		<li><a href="/shop/goods/goods_list.php?category=004025&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/leatt.jpg" width="191" height="63"  alt="Leatt"/></a></li> -->
 		<li><a href="/shop/goods/goods_list.php?category=024004&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/leo.jpg" width="191" height="63"  alt="Leo Vince"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=024005&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/m4.jpg" width="191" height="63"  alt="M4"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=004026&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/machineart.jpg" width="191" height="63"  alt="Machine Art Moto"/></a></li>
@@ -291,6 +293,7 @@ if(win) win.focus();
 		<li><a href="/shop/goods/goods_list.php?category=004101&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/rotopax.jpg"  width="191" height="63" alt="Rotopax"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=004038&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/rox.jpg"  width="191" height="63" alt="Rox"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=048016&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/schuberth.jpg"  width="191" height="63" alt="Schuberth"/></a></li>
+		<li><a href="/shop/goods/goods_list.php?category=048032&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/scorpion.jpg"  width="191" height="63" alt="Scorpion"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=004041&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/scott.jpg"  width="191" height="63" alt="Scott"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=048017&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/shoei.jpg"  width="191" height="63" alt="Shoei"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=004103&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/sidi.png"  width="191" height="63" alt="Sidi"/></a></li>
@@ -303,7 +306,7 @@ if(win) win.focus();
 		<li><a href="/shop/goods/goods_list.php?category=004047&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/sw-motech.jpg"  width="191" height="63" alt="SW-Motech"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=004097&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/techmount.png"  width="191" height="63" alt="Techmount"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=027007005&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/techspec.jpg"  width="191" height="63" alt="Techspec"/></a></li>
-		<li><a href="/shop/goods/goods_list.php?category=024007&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/termignoni.jpg"  width="191" height="63" alt="Termignoni"/></a></li>
+		<li><a href="/shop/goods/goods_list.php?category=004085&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/termignoni.jpg"  width="191" height="63" alt="Termignoni"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=004051&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/touratech.jpg"  width="191" height="63" alt="Touratech"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=004048&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/thor.jpg" width="191" height="63"  alt="Thor"/></a></li>
 <!--	<li><a href="/shop/goods/goods_list.php?category=004050&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/troylee.jpg"  width="191" height="63" alt="Troy Lee Designs"/></a></li> -->
@@ -314,7 +317,7 @@ if(win) win.focus();
 		<li><a href="/shop/goods/goods_list.php?category=024009&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/yoshimura.jpg" width="191" height="63"  alt="Yoshimura"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=004095&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/zard.png"  width="191" height="63" alt="Zard"/></a></li>
 		<li><a href="/shop/goods/goods_list.php?category=025008&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/zero.jpg"  width="191" height="63" alt="Zero Gravity"/></a></li>
-		<li><a href="/shop/goods/goods_list.php?category=004065&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/ztechnik.jpg"  width="191" height="63" alt="Ztechnik"/></a></li>
+		<!-- <li><a href="/shop/goods/goods_list.php?category=004065&sort=goodsnm"><img src="/shop/data/skin/damoashop/img/banner/s_banner/ztechnik.jpg"  width="191" height="63" alt="Ztechnik"/></a></li> -->
 
 	</ul>
 

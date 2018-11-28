@@ -14,6 +14,8 @@ $checked_mobile[useField] = array(
 'ex2'	=> 'checked',
 'ex3'	=> 'checked',
 'ex4'	=> 'checked',
+'ex5'	=> 'checked',
+'ex6'	=> 'checked',
 );
 $checked_mobile[reqField] = array(
 'email'	=> 'checked',
@@ -21,6 +23,5 @@ $checked_mobile[reqField] = array(
 'birth'	=> 'checked',
 'address'	=> 'checked',
 'mobile'	=> 'checked',
-'sms'	=> 'checked',
 );
 ?>

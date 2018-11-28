@@ -35,6 +35,8 @@ $checked['vtype_goods_view_skin'][$cfgMobileShop['vtype_goods_view_skin']] = 'ch
 if($cfgMobileShop['goods_view_quick_menu_useyn'] !== 'n' ) $cfgMobileShop['goods_view_quick_menu_useyn'] = 'y';
 $checked['goods_view_quick_menu_useyn'][$cfgMobileShop['goods_view_quick_menu_useyn']] = 'checked';
 
+if(!$cfgMobileShop['vtype_main_pc_disp']) $cfgMobileShop['vtype_main_pc_disp'] = 0;
+
 $selected[tplSkinMobile][$cfgMobileShop['tplSkinMobile']] = 'selected';
 
 { // 스킨 디렉토리 정의
@@ -76,7 +78,14 @@ a.extext:hover{
 		<div>
 			<input type="radio" name="vtype_main" value="pc" id="vtype-main-pc" <?php echo $checked['vtype_main']['pc']; ?>/>
 			<label for="vtype-main-pc">온라인 쇼핑몰(PC버전)과 동일하게 메인 상품진열 적용</label><br/>
-			<span class="extext">* 디스플레이 유형은 "상품스크롤형"으로 적용되어 출력됩니다.</span>
+			<span class="extext">* 디스플레이 유형은
+			<select name="vtype_main_pc_disp">
+				<option value="0" <?if($cfgMobileShop['vtype_main_pc_disp'] == 0){?> selected <?}?>>상품 스크롤형</option>
+				<option value="1" <?if($cfgMobileShop['vtype_main_pc_disp'] == 1){?> selected <?}?>>상품 더보기형</option>
+			</select>
+			으로 적용되어 출력됩니다.</span><br/>
+			※<font color="red"> 상품 더보기형</font>은 <font color="red"><b>2016년 03월 31일 이전 제작 무료 스킨</b></font>을 사용하시는 경우 <b><u>반드시 스킨패치를 적용</u></b>해야 기능 사용이 가능합니다. <a href="javascript:" onclick="javascript:window.open('http://www.godo.co.kr/customer_center/patch.php?sno=2363');"><font class="extext">[패치 바로가기]</font></a><br/>
+			<span style="margin-left: 15px;">스킨패치를 하지 않고 <font color="red">상품 더보기형</font> 선택 시 <font color="red">상품 스크롤형</font>으로 출력되니 주의하시기 바랍니다.</span>
 		</div>
 		<div style="margin-top: 7px;">
 			<input type="radio" name="vtype_main" value="mobile" id="vtype-main-mobile" <?php echo $checked['vtype_main']['mobile']; ?>/>

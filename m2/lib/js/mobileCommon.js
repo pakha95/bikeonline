@@ -38,7 +38,10 @@ $(document).ready(function() {
 	$(document).click(function(){
 		$("#more-view-menu").css("display", "none");
 	});
-
+	$("#more-view-menu .notice").click(function(){
+		//document.location.href = "/" + getMobileHomepath() + "/board/index.php";
+		document.location.href = "/" + getMobileHomepath() + "/board/list.php?id=notice";
+	});
 	$("#more-view-menu .goods-review").click(function(){
 		document.location.href = "/" + getMobileHomepath() + "/goods/review.php";
 	});
@@ -48,7 +51,8 @@ $(document).ready(function() {
 	});
 
 	$("#more-view-menu .community").click(function(){
-		document.location.href = "/" + getMobileHomepath() + "/board/index.php";
+		//document.location.href = "/" + getMobileHomepath() + "/board/index.php";
+		document.location.href = "/" + getMobileHomepath() + "/board/list.php?id=qnatotal";
 	});
 
 	$("#more-view-menu .wishlist").click(function(){
@@ -214,7 +218,7 @@ function makeGoodsList(goods_data, kw, category) {
 					add_html += '<div class="goods-img">' + couponImage + '<a href="'+goods_src+'&goodsno='+goods_data[i].goodsno+'">'+goods_data[i].img_html+'</a>' + speachDescription + '</div>';
 
 					add_html += '<div class="goods-nm"><a href="'+goods_src+'&goodsno='+goods_data[i].goodsno+'">'+goods_data[i].goodsnm+'</a></div>';
-					
+
 					if(goods_data[i].strprice == null || goods_data[i].strprice == ""){
 						if (goods_data[i].consumer != null && goods_data[i].consumer.trim().length != "" && goods_data[i].consumer != 0) {
 							add_html += '<div class="goods-consumer" style="display: none;"><strike>' + comma(goods_data[i].consumer) + 'ฟ๘</strike>ก้</div>';

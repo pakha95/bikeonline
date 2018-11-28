@@ -1,6 +1,18 @@
 <?
 $noDemoMsg = 1;
 include "../_header.php";
+if($_GET['htmid'] == "proc/dealer_map.htm"||$_GET['htmid'] == "proc/dealer_map2.htm") {
+	$query = "select m_id,name,address,address_sub,mobile,company from ".GD_MEMBER." where (level = '3' or level = '4') and company<>''	";
+	$mbInfo =array();
+	$res = $db->query($query);
+	while ( $data = $db->fetch( $res, 1 ) ){
+	   $mbInfo[] = $data;
+
+	}
+	$tpl->assign('mbInfo', $mbInfo);
+
+
+}
 
 function _realpath($path)
 {

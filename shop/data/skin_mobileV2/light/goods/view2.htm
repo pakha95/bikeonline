@@ -590,8 +590,10 @@ section#goodsview2 .goods-contents-area .couponlist-item .couponlist-item-name .
 							<select name="opt[]" onchange="chkOption(this);nsGodo_MultiOption.set();" required fld_esssential msgR="옵션을 선택해주세요">
 								<option value="">선택사항</option>
 								<!--{ @ _opt }--><!--{ @ .value_ }-->
-								<option value="{..opt1}{?..opt2}|{..opt2}{/}" {?usestock&&!..stock} disabled class=disabled{/}> {?usestock&&!..stock}[품절]{/} {..opt1}{?..opt2}/{..opt2}{/} {?..price!=price}({=number_format(..price)}원){/}</option>
-								<!--{ ? usestock && !..stock }--> [품절]<!--{ / }-->
+								<!-- 옵션품절 수정 by jung -->
+								<!-- <option value="{..opt1}{?..opt2}|{..opt2}{/}" {?usestock&&!..stock} disabled class=disabled{/}> {?usestock&&!..stock}[품절]{/} {..opt1}{?..opt2}/{..opt2}{/} {?..price!=price}({=number_format(..price)}원){/}</option> -->
+								<option value="{..opt1}{?..opt2}|{..opt2}{/}" {?usestock&&!..stock} {/}>{..opt1}{?..opt2}/{..opt2}{/}{?..stock} (재고 {..stock}개){/}{?..price!=price}({=number_format(..price)}원){/}
+								<!--{ ? usestock && !..stock }--> [해외주문]<!--{ / }-->
 								<!--{ / }--><!--{ / }-->
 							</select>
 						</div>
@@ -786,8 +788,8 @@ section#goodsview2 .goods-contents-area .couponlist-item .couponlist-item-name .
 							<!--{ / }-->
 							<!--{ ? reserve }-->
 							<div class="content-item">
-								<div class="content-title">적립금</div>
-								<div class="content-content blue">{=number_format(reserve)}원</div>
+								<div class="content-title">배송기간</div>
+								<div class="content-content blue">평균 {=number_format(reserve)}영업일 소요</div>
 							</div>
 							<!--{ / }-->
 							<!--{ ? naverNcash == 'Y' }-->

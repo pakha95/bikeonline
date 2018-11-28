@@ -199,12 +199,19 @@ $design_skin['html/hoho.htm'] = array(
 );
 
 $design_skin['popup/standard.htm'] = array(
-'text'			=> '±âº»ÆË¾÷',
-'popup_use'			=> 'N',
-'popup_spotw'			=> '0',
-'popup_spoth'			=> '0',
-'popup_sizew'			=> '300',
+'text'			=> '¿¬ÈÞ°£ ÈÞ¹«¾È³»',
+'popup_use'			=> 'Y',
+'popup_spotw'			=> '130',
+'popup_spoth'			=> '600',
+'popup_sizew'			=> '500',
 'popup_sizeh'			=> '400',
+'popup_dt2tm'			=> 'Y',
+'popup_sdt'			=> '20180921',
+'popup_edt'			=> '20180925',
+'popup_stime'			=> '0100',
+'popup_etime'			=> '2400',
+'popup_type'			=> 'layerMove',
+'_et'			=> 'codemirror',
 'linkurl'			=> 'main/html.php?htmid=popup/standard.htm',
 );
 

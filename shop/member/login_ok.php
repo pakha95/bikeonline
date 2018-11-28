@@ -177,7 +177,7 @@ else { // 회원 로그인 부분
 $auth_date = getAdultAuthDate($session->m_id);
 $auth_date = $auth_date['auth_date'];
 $current_date = date("Y-m-d");
-$auth_period = strtotime("+1 years", strtotime($auth_date)); 
+$auth_period = strtotime("+1 years", strtotime($auth_date));
 $auth_period = date("Y-m-d", $auth_period);
 
 if(!$_POST['returnUrl']) { $_POST['returnUrl'] = $_SERVER['HTTP_REFERER']; }
@@ -191,7 +191,10 @@ else{
 	}
 	$div = explode("/",$_POST['returnUrl']);
 	if (preg_match("/http/",$div[0]) && in_array($div[count($div)-2],array("member","mypage"))) $_POST['returnUrl'] = "../main/index.php";
-	$_POST['returnUrl'] = preg_match('/\?/',$_POST['returnUrl']) ? $_POST['returnUrl'].$ext_param : $_POST['returnUrl'].'?'.$ext_param;
+
+	if (!$cfg['fixDomain']) {
+		$_POST['returnUrl'] = preg_match('/\?/',$_POST['returnUrl']) ? $_POST['returnUrl'].$ext_param : $_POST['returnUrl'].'?'.$ext_param;
+	}
 
 	if (preg_match('/(^\.\.\/)|(^\/shop\/)/',$_POST['returnUrl'])) {
 		$_POST['returnUrl'] = preg_replace('/(^\.\.\/)|(^\/shop\/)/', '', $_POST['returnUrl']);

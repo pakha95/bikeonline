@@ -281,10 +281,10 @@ if (class_exists('validation') && method_exists('validation', 'xssCleanArray')) 
 	<? } ?>
 <? } ?>
 
-<? if($cfg['qnaSecret'] && $mode == "qnaReply") { ?>
+<? if($cfg['qnaSecret'] && $mode == "qnaReply" && $checked['secret']) { ?>
 	<tr>
 		<td class="input_txt">비밀글</td>
-		<td class="noline"><input type="checkbox" name="secret" value="1"<?=$checked['secret']?>> 비밀글</td>
+		<td class="noline"><font color="E600A9">* 비밀글로 작성된 글입니다. 답변도 비밀글로 작성됩니다.</font></td>
 	</tr>
 <? } ?>
 

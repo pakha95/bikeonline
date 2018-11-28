@@ -34,6 +34,11 @@ if ($_GET[mode]=="modify" || $_GET[mode]=="reply"){
 	where
 		b.goodsno = '" . $data[goodsno] . "'";
 	list( $data[goodsnm], $data[img_s], $data[price] ) = $db->fetch($query);
+
+		// 상품문의 답변의 원글 정보
+		if ($data['sno'] != $data['parent']) {
+			$parentData = $db->fetch("SELECT * FROM ".GD_GOODS_QNA." where sno='" . $data['parent'] . "'",1);
+		}
 }
 ?>
 <script>
@@ -115,12 +120,18 @@ else {
 	<td>작성일</td>
 	<td><font class=ver8><?=$data[regdt]?> &nbsp;&nbsp;IP: (<?=$data[ip]?>)</td>
 </tr>
-<?if($cfg['qnaSecret']){?>
-<tr>
-	<td>비밀글</td>
-	<td class="noline"><input type="checkbox" name="secret" value="1"<?=$checked['secret']?>> 비밀글</td>
-</tr>
-<?}?>
+
+<? if ($cfg['qnaSecret'] && $data['sno'] == $data['parent']) { // 원글 - 비밀글 여부 선택 ?>
+	 <tr>
+		 <td>비밀글</td>
+		<td class="noline"><input type="checkbox" name="secret" value="1"<?=$checked['secret']?>> 비밀글</td>
+	</tr>
+<? } else if ($cfg['qnaSecret'] && $data['sno'] != $data['parent'] && $parentData['secret'] == '1') { // 댓글 - 원글이 비밀글이면 비밀글 상태 출력 ?>
+	<tr>
+		<td>비밀글</td>
+		 <td class="noline"><font color="E600A9">* 비밀글로 작성된 글입니다. 답변도 비밀글로 작성됩니다.</font></td>
+	 </tr>
+<? } ?>
 
 <? if ($data['rcv_email']) { ?>
 <tr>

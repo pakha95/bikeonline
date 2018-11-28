@@ -18,7 +18,7 @@ if($_POST['encode'] == 'cp') {
 	$_POST['contents'] = iconv('utf8','cp949',urldecode($_POST['encodeContents']));
 	$_POST['subject'] = validation::xssClean($_POST['subject'], 'html', 'ent_quotes');
 	$_POST['contents'] = validation::xssClean($_POST['contents'], 'html', 'ent_quotes');
-	
+
 	$regCP949 = '/([\x81-\xA0][\x41-\x5A\x61-\x7A\x81-\xFE])|([\xA1-\xC5][\x41-\x5A\x61-\x7A\x81-\xA0])|([\xC6][\x41-\x52])/';
 	$strInput = $_POST['subject'].$_POST['contents'];
 
@@ -102,9 +102,19 @@ switch ($_POST[mode]){
 			regdt		= now(),
 			ip			= '$_SERVER[REMOTE_ADDR]'
 		";
-		$db->query($query);
+		$result = $db->query($query);
 
 		$db->query("update ".GD_MEMBER_QNA." set parent=sno where sno='" . $db->lastID() . "'");
+
+		//1:1 문의글 등록 시 SMS 발송
+		$mobile = preg_replace("/[^0-9]/", "", $mobile);
+		if($result && $_POST[sms]){
+			$GLOBALS['dataSms']['name'] = $sess['m_id'];
+			$GLOBALS['dataSms']['boardName'] = "1:1 문의";
+			if($mobile){
+				sendSmsCase('qna_register', $mobile);
+			}
+		}
 
 		/* 샵터치 push 기능 추가 2012-03-03 dn */
 		@include_once "../lib/pAPI.class.php";
@@ -131,7 +141,7 @@ switch ($_POST[mode]){
 		// @qnibus 2015-06 회원아이디와 게시글 작성자 일치여부 확인
 		list( $m_no ) = $db->fetch("select m_no from ".GD_MEMBER_QNA." where sno = '$_POST[sno]'");
 		if ( isset($sess) && $sess['level'] < 80 && $sess['m_no'] != $m_no ) msg('본인이 작성한 1:1문의만 수정하실 수 있습니다.',$code=-1);
-		
+
 		$query = "
 		update ".GD_MEMBER_QNA." set
 			itemcd		= '$_POST[itemcd]',
@@ -219,7 +229,6 @@ switch ($_POST[mode]){
 				exit;
 			}
 		}
-
 		### 가격 계산
 		$goodsnm = '';
 		$taxPrice = array();

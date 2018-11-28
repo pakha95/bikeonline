@@ -89,7 +89,7 @@ function loadGoodsHtml(is_empty) {
 			type: "post",
 			url: "/"+ mobile_root + "/proc/mAjaxAction.php",
 			cache: false,
-			async: true,
+			async: false,
 			data: param,
 			beforeSend: function (xhr) {
 				// is_empty가 true인 경우 수행
@@ -136,6 +136,8 @@ $(document).ready(function(){
 	if (isloaded) { //중복실행방지
 		return;
 	}
+	setSortType('goodsnm');
+	//setSortType('goodsnm');
 	//setViewType(GD_VIEW_TYPE);
 	// UI 초기화
 	$('.indicator').css({width: screen.width + 'px', height: (screen.height - 80) + 'px'});

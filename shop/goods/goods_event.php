@@ -9,9 +9,19 @@ if (is_file(dirname(__FILE__) . "/../conf/config.soldout.php"))
 include dirname(__FILE__) . "/../conf/config.display.php";
 
 try {
+	//상품 목록 정렬 시 SQL Injection 방어
+	if (class_exists('validation')) {
+		$validation = new validation();
+		if (method_exists($validation, 'check_goods_sort')) {
+			if ($_GET['sort'] != null && $validation->check_goods_sort($_GET['sort']) === false) {
+				$_GET['sort'] = null;
+			}
+		}
+	}
+
 	### 리스트 템플릿 기본 환경변수
 	if (!$size) $size	= $cfg[img_s];
-	
+
 	$goodsHelper   = Clib_Application::getHelperClass('front_goods');
 
 	// 이벤트
@@ -76,5 +86,3 @@ try {
 catch (Clib_Exception $e) {
 	Clib_Application::response()->jsAlert($e)->historyBack();
 }
-
-

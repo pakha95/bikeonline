@@ -1,0 +1,33 @@
+{*** 메인용 상단파일 | main/index.php ***} 
+<a name="top"></a>
+<div id="header_1" align="{_cfg['shopAlign']}">
+	<div id="top_1" style="width:{_cfg['shopSize']}px;">
+		<div style="float:left">
+		<div id="top_logo"><!-- 배너관리에서 수정가능 --><!--{ @ dataBanner( 90 ) }-->{.tag}<!--{ / }--></div>
+		<div id="top_banner"><!-- 배너관리에서 수정가능 --><!--{ @ dataBanner( 2 ) }-->{.tag}<!--{ / }--></div>
+		</div>
+		<div style="float:right;">
+		<ul id="top_menu">
+			<!--{ ? !_sess }-->
+			<li><a href="../member/login.php" class="menu"><img src="../../img/main/01login.gif"></a></li>
+			<li><a href="../member/join.php" class="menu"><img src="../../img/main/02join.gif"></a></li>
+			<!--{ : }-->
+			<li><a href="../member/logout.php" class="menu"><img src="../../img/main/01logout.gif"></a></li>
+			<!--{ / }-->
+			<li><a href="../member/myinfo.php?&" { ? useMypageLayerBox == 'y' }onClick="return fnMypageLayerBox({ ? _sess }true{ / });"{ / } class="menu"><img src="../../img/main/03mypage.gif"></a></li>
+			<li><a href="../goods/goods_cart.php" class="menu"><img src="../../img/main/04cart.gif"></a></li>
+			<li class="dropdown"><a href="#" id="dropdownCategoryMenu" data-toggle="dropdown"><i class="fa fa-folder-open"></i> Category <i class="caret"></i></a>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownCategoryMenu">
+		<li><a href="/category"><i class="fa fa-folder"></i> 전체보기</a></li>
+		<li class="divider"></li>
+		<li><a href="/category/1"><i class="fa fa-folder"></i> Test 1</a></li>
+		<li><a href="/category/2"><i class="fa fa-folder"></i> Test 2</a></li>
+		<li><a href="/category/3"><i class="fa fa-folder"></i> Test 3</a></li>
+		<li><a href="/category/4"><i class="fa fa-folder"></i> Test 4</a></li>
+	</ul>
+  </li> 
+		</ul>
+		<div id="top_delivery"><a href="../mypage/mypage_orderlist.php" class="menu"><img src="../../img/main/delivery.jpg"></a></div>
+		</div>
+	</div>
+</div>

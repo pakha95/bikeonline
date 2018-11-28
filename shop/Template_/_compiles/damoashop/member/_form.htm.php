@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.7 2015/11/14 11:53:47 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/member/_form.htm 000039661 */ 
+<?php /* Template_ 2.2.7 2018/09/20 18:04:21 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/member/_form.htm 000040519 */ 
 if (is_array($TPL_VAR["consentData"])) $TPL_consentData_1=count($TPL_VAR["consentData"]); else if (is_object($TPL_VAR["consentData"]) && in_array("Countable", class_implements($TPL_VAR["consentData"]))) $TPL_consentData_1=$TPL_VAR["consentData"]->count();else $TPL_consentData_1=0;
 if (is_array($TPL_VAR["ts_category_all"])) $TPL_ts_category_all_1=count($TPL_VAR["ts_category_all"]); else if (is_object($TPL_VAR["ts_category_all"]) && in_array("Countable", class_implements($TPL_VAR["ts_category_all"]))) $TPL_ts_category_all_1=$TPL_VAR["ts_category_all"]->count();else $TPL_ts_category_all_1=0;?>
 <script src="/shop/data/skin/damoashop/godo.password_strength.js" type="text/javascript"></script>
@@ -504,7 +504,21 @@ scrollbar-arrow-color: #838383;
 <?php if($GLOBALS["checked"]["useField"]["ex5"]){?>
 <tr>
 	<td class=memberCols1><?php if($GLOBALS["required"]["ex5"]){?><font color=FF6000>*</font> <?php }?><?php echo $GLOBALS["joinset"]["ex5"]?></td>
-	<td class=memberCols2><input type=text name=ex5 <?php echo $GLOBALS["required"]["ex5"]?> value="<?php echo $TPL_VAR["ex5"]?>" style="width:300px"></td>
+	<td class=memberCols2><input type=text name=ex5 <?php echo $GLOBALS["required"]["ex5"]?> value="<?php echo $TPL_VAR["ex5"]?>" style="width:300px">
+		<!--
+		<input type="checkbox" name=ex5[]  value="BMW">BMW
+		<input type="checkbox" name=ex5[]  value="Ducati">Ducati
+		<input type="checkbox" name=ex5[]  value="그외 유럽산 바이크">그외 유럽산 바이크
+		<input type="checkbox" name=ex5[]  value="일본산 바이크">일본산 바이크
+		<input type="checkbox" name=ex5[]  value="스쿠터">스쿠터
+		<input type="checkbox" name=ex5[]  value="트랙 레이싱 바이크">트랙 레이싱 바이크
+		<input type="checkbox" name=ex5[]  value="Off-Road(MX,Enduro)">Off-Road(MX/Enduro)
+		<input type="checkbox" name=ex5[]  value="제트 스키">제트 스키
+		<input type="checkbox" name=ex5[]  value="ATV/유틸리티">ATV/유틸리티
+		<input type="checkbox" name=ex5[]  value="Harley & Davidson 및 크루즈 커스텀 바이크">Harley & Davidson 및 크루즈 커스텀 바이크
+		<input type="checkbox" name=ex5[]  value="듀얼 퍼포즈">듀얼 퍼포즈
+		-->
+	</td>
 </tr>
 <tr><td colspan=2 height=1 bgcolor="#DEDEDE" style="padding:0px;"></td></tr>
 <?php }?>

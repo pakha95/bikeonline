@@ -10,7 +10,6 @@ $alimtalk = array(
 'order' => array( 
 'sendDate' => '15', 
 'memTemplate' => 'group_order_0001', 
-'send_c' => 'on', 
 'adminTemplate' => 'group_order_0004', 
 ), 
 'incash' => array( 
@@ -37,9 +36,8 @@ $alimtalk = array(
 'send_c' => 'on', 
 ), 
 'cancel' => array( 
-'sendDate' => '30', 
+'sendDate' => '90', 
 'memTemplate' => 'group_order_0010', 
-'send_c' => 'on', 
 ), 
 'repay' => array( 
 'sendDate' => '90', 
@@ -69,10 +67,7 @@ $alimtalk = array(
 ), 
 'qna_register' => array( 
 'memTemplate' => 'group_board_0018', 
-'send_c' => 'on', 
 'adminTemplate' => 'group_board_0019', 
-'send_a' => 'on', 
-'send_m' => 'on', 
 ), 
 'qna' => array( 
 'memTemplate' => 'group_board_0020', 

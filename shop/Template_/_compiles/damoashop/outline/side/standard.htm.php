@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.7 2017/11/29 18:47:40 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/outline/side/standard.htm 000004640 */  $this->include_("dataBoard","dataBank","displaySSLSeal","dataBanner");?>
+<?php /* Template_ 2.2.7 2018/04/24 16:55:42 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/outline/side/standard.htm 000004654 */  $this->include_("dataBoard","dataBank","displaySSLSeal","dataBanner");?>
 <!-- 카테고리 메뉴 시작 -->
 <!-- 관련 세부소스는 '기타/추가페이지(proc) > 카테고리메뉴- menuCategory.htm' 안에 있습니다 -->
 <?php $this->print_("menuCategory",$TPL_SCP,1);?>
@@ -15,10 +15,10 @@
 <?php }?>
 <?php }?>
 <?php }}?>
-		<li><a href="<?php echo url("board/list.php?")?>&id=notice">바이크온라인 소식</a></li>
-		<li><a href="<?php echo url("board/list.php?")?>&id=specialorder">특별주문 전용게시판</a></li>
-		<li><a href="<?php echo url("board/list.php?")?>&id=inquiry">상품 판매 문의</a></li>
-		<li><a href="<?php echo url("board/list.php?")?>&id=qna">묻고 답하기</a></li>
+		<li><a href="<?php echo url("board/list.php?")?>&id=notice">공지사항</a></li>
+		<!-- <li><a href="<?php echo url("board/list.php?")?>&id=specialorder">특별주문 전용게시판</a></li> -->
+		<!-- <li><a href="<?php echo url("board/list.php?")?>&id=inquiry">상품 판매 문의</a></li> -->
+		<li><a href="<?php echo url("board/list.php?")?>&id=qnatotal">문의 게시판</a></li>
 	</ul>
 </div>
 <!-- 메인왼쪽 SNS버튼 -->

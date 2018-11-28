@@ -113,7 +113,16 @@ $marriyn   = ($_POST[marriyn]) ? $_POST[marriyn] : 'n';
 $calendar  = ($_POST[calendar]) ? $_POST[calendar] : 's';
 $sex	   = ($_POST[sex]) ? $_POST[sex] : 'm';
 $foreigner = ($_POST[foreigner]) ? $_POST[foreigner] : '1';
-
+if(is_array($_POST[ex5])){
+	$ex5 = implode(",",$ex5);
+}else{
+	$ex5 = $_POST[ex5];
+}
+if(is_array($_POST[ex6])){
+	$ex6 = implode(",",$ex6);
+}else{
+	$ex6 = $_POST[ex6];
+}
 $qr = "
 name		= '$_POST[name]',
 nickname	= '$_POST[nickname]',
@@ -145,8 +154,8 @@ ex1			= '$_POST[ex1]',
 ex2			= '$_POST[ex2]',
 ex3			= '$_POST[ex3]',
 ex4			= '$_POST[ex4]',
-ex5			= '$_POST[ex5]',
-ex6			= '$_POST[ex6]',
+ex5			= '$ex5',
+ex6			= '$ex6',
 private1	= '$_POST[private1]',
 private2	= '$_POST[private2]',
 private3	= '$_POST[private3]'

@@ -123,7 +123,8 @@ section#nm_order #couponListTable td:nth-child(2) div.couponInfoOnlyBtn div.only
 	<tr>
 		<th>이메일</th>
 		<td class="email">
-			<input type="text" name="email" value="{email}" required option=regEmail class="max_width" />
+			<!-- 이메일주소에 공백 안들어가게 제거 -->
+			<input type="text" name="email" value="{email}" required option=regEmail class="max_width" onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" />
 		</td>
 	</tr>
 </table>

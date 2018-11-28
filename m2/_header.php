@@ -8,6 +8,7 @@
 include dirname(__FILE__).'/lib/library.php';
 include $shopRootDir . "/Template_/Template_.class.php";
 include_once $shopRootDir . "/lib/tplSkinMobileView.php";
+@include $shopRootDir.'/lib/facebook.class.php';
 /*
 $cfg_mobileshop_query = $db->_query_print('SELECT name, value FROM gd_env WHERE category=[s]', 'cfg_mobileshop');
 $res_cfg_mobileshop = $db->_select($cfg_mobileshop_query);
@@ -171,6 +172,12 @@ $tpl->assign( array(
 	now_cate => $now_cate,
 	customHeader => $customHeader
 	) );
+
+//페이스북 연동 치환코드
+if(class_exists('Facebook')) {
+	$fb = new Facebook();
+	$tpl->assign('mfbbnr', $fb->mbfbButton());
+}
 
 //하단주소
 $cfg['old_address'] = $cfg['address'];

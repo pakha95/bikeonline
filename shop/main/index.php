@@ -1,6 +1,27 @@
 <?
 
 $mainpage = true;
+
+@include dirname(__FILE__) . "/../lib/library.php";
+@include dirname(__FILE__) . '/../conf/config.php';
+@include dirname(__FILE__) . '/../lib/tplSkinView.php';
+
+// 인트로 출력 (일반/성인/회원)
+if ($cfg['introUseYN'] == 'Y' && $cfg['fixDomain']) {
+	if ($cfg['custom_landingpage'] == 1 ) { // 일반
+		include dirname(__FILE__) . '/../main/intro.php';
+		exit;
+	}
+	else if ($cfg['custom_landingpage'] == 2 && !Clib_Application::session()->isAdult() && !$sess) {	// 성인
+		include dirname(__FILE__) . '/../main/intro_adult.php';
+		exit;
+	}
+	else if ($cfg['custom_landingpage'] == 3 && !$sess) {	// 회원
+		include dirname(__FILE__) . '/../main/intro_member.php';
+		exit;
+	}
+}
+
 include "../_header.php";
 @include "../conf/config.pay.php";
 @include "../conf/design.search.php";

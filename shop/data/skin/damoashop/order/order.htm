@@ -106,9 +106,15 @@ scrollbar-arrow-color: #838383;
 	<tr>
 		<td>전화번호</td>
 		<td>
+		<!--{ ? phone[0] } -->
 		<input type=text name=phoneOrder[] value="{phone[0]}" size=3 maxlength=3 option=regNum required label="주문자 전화번호"> -
 		<input type=text name=phoneOrder[] value="{phone[1]}" size=4 maxlength=4 option=regNum required label="주문자 전화번호"> -
 		<input type=text name=phoneOrder[] value="{phone[2]}" size=4 maxlength=4 option=regNum required label="주문자 전화번호">
+		<!--{ : }-->
+		<input type=text name=phoneOrder[] value="{mobile[0]}" size=3 maxlength=3 option=regNum required label="주문자 전화번호"> -
+		<input type=text name=phoneOrder[] value="{mobile[1]}" size=4 maxlength=4 option=regNum required label="주문자 전화번호"> -
+		<input type=text name=phoneOrder[] value="{mobile[2]}" size=4 maxlength=4 option=regNum required label="주문자 전화번호">
+		<!--{ / }-->
 		</td>
 	</tr>
 	<tr>
@@ -121,7 +127,7 @@ scrollbar-arrow-color: #838383;
 	</tr>
 	<tr>
 		<td>이메일</td>
-		<td><input type=text name=email value="{email}" required option=regEmail></td>
+		<td><input type=text name=email value="{email}" required option=regEmail onkeyup="noSpaceFormPC(this);" onchange="noSpaceFormPC(this);"></td>
 	</tr>
 	</table>
 
@@ -184,9 +190,15 @@ scrollbar-arrow-color: #838383;
 	<tr>
 		<td>전화번호</td>
 		<td>
-		<input type=text name=phoneReceiver[] value="{phone[0]}" size=3 maxlength=3 option=regNum required label="수령자 전화번호" readonlyCheck> -
-		<input type=text name=phoneReceiver[] value="{phone[1]}" size=4 maxlength=4 option=regNum required label="수령자 전화번호" readonlyCheck> -
-		<input type=text name=phoneReceiver[] value="{phone[2]}" size=4 maxlength=4 option=regNum required label="수령자 전화번호" readonlyCheck>
+		<!--{ ? phone[0] }-->
+		<input type=text name=phoneReceiver[] id="phoneReceiver0" value="{phone[0]}" size=3 maxlength=3 option=regNum label="수령자 전화번호" readonlyCheck> -
+		<input type=text name=phoneReceiver[] id="phoneReceiver1" value="{phone[1]}" size=4 maxlength=4 option=regNum label="수령자 전화번호" readonlyCheck> -
+		<input type=text name=phoneReceiver[] id="phoneReceiver2" value="{phone[2]}" size=4 maxlength=4 option=regNum label="수령자 전화번호" readonlyCheck>
+		<!--{ : }-->
+		<input type=text name=phoneReceiver[] id="phoneReceiver0" value="{mobile[0]}" size=3 maxlength=3 option=regNum label="수령자 전화번호" readonlyCheck> -
+		<input type=text name=phoneReceiver[] id="phoneReceiver1" value="{mobile[1]}" size=4 maxlength=4 option=regNum label="수령자 전화번호" readonlyCheck> -
+		<input type=text name=phoneReceiver[] id="phoneReceiver2" value="{mobile[2]}" size=4 maxlength=4 option=regNum label="수령자 전화번호" readonlyCheck>
+		<!--{ / }-->
 		</td>
 	</tr>
 	<tr>
@@ -1106,31 +1118,33 @@ function readonlyEvent() {
 function submitForm()
 {
 	var fm = document.frmOrder;
-
-	var example_result = document.getElementById('example_result');
-	var msg_title = '중요 : 읽어주세요!';
-	var msg1 = '해외주문 특성상 마감후 해외에 주문이 들어간 후에는 \n무료 철회가 불가능하며&nbsp;';
-	var msg2 = '<span>소정의 수수료 (25%)</span>';
-	var msg3 = '&nbsp;가 \n고객님께 부과되니 신중히 주문해주시기 바랍니다.\n국내 재고 상품인 경우 왕복 택배비를 부담하시면\n 수수료 없이 청약철회 및 교환이 가능합니다. \n\n주문하시겠습니까 ?';
-	//var msg1 = '국제 운송의 특성상 무료 반품이 불가하며 (재고상품 제외),  단순 변심이나 사이즈 변경으로 인한 반품의 경우에는&nbsp;';
-	//var msg2 = '<span>반품수수료 (25%)</span>';
-	//var msg3 = '&nbsp;가 부과됩니다.\n자세한 사항은 이용약관을 참조하시기 바랍니다. \n\n주문하시겠습니까 ?';
-	//aquamsgBox.show(msg_title, msg1+msg2+msg3, aquamsgreturnexample, '예|아니오;아니오', 1);
-	aquamsgBox.show(msg_title, msg1+msg2+msg3, aquamsgreturnexample, '예|아니오;아니오', 1);
-
-	function aquamsgreturnexample() {
+	if(chkForm2(fm)) {
 		var example_result = document.getElementById('example_result');
-		if (aquamsgBox.getValue() == "아니오") 	{
-			//alert("취소하셨습니다");
-			return false;
-			}
+		var msg_title = '중요 : 읽어주세요!';
+		var msg1 = '해외주문 특성상 마감후 해외에 주문이 들어간 후에는 \n무료 철회가 불가능하며&nbsp;';
+		var msg2 = '<span>소정의 수수료 (25%)</span>';
+		var msg3 = '&nbsp;가 \n고객님께 부과되니 신중히 주문해주시기 바랍니다.\n국내 재고 상품인 경우 왕복 택배비를 부담하시면\n 수수료 없이 청약철회 및 교환이 가능합니다. \n\n주문하시겠습니까 ?';
+		//var msg1 = '국제 운송의 특성상 무료 반품이 불가하며 (재고상품 제외), 단순 변심이나 사이즈 변경으로 인한 반품의 경우에는&nbsp;';
+		//var msg2 = '<span>반품수수료 (25%)</span>';
+		//var msg3 = '&nbsp;가 부과됩니다.\n자세한 사항은 이용약관을 참조하시기 바랍니다. \n\n주문하시겠습니까 ?';
+		//aquamsgBox.show(msg_title, msg1+msg2+msg3, aquamsgreturnexample, '예|아니오;아니오', 1);
+		aquamsgBox.show(msg_title, msg1+msg2+msg3, aquamsgreturnexample, '예|아니오;아니오', 1);
+
+		function aquamsgreturnexample() {
+		var example_result = document.getElementById('example_result');
+		if (aquamsgBox.getValue() == "아니오") {
+		//alert("취소하셨습니다");
+		return false;
+		}
 
 
 
 		fm.submit();
 
 		}
+	}
 }
+
 </script>
 
 { # footer }

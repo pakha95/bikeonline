@@ -14,10 +14,10 @@
 		<!--{ / }-->
 		<!--{ / }-->
 	<!--{ / }-->
-		<li><a href="../board/list.php?id=notice">바이크온라인 소식</a></li>
-		<li><a href="../board/list.php?id=specialorder">특별주문 전용게시판</a></li>
-		<li><a href="../board/list.php?id=inquiry">상품 판매 문의</a></li>
-		<li><a href="../board/list.php?id=qna">묻고 답하기</a></li>
+		<li><a href="../board/list.php?id=notice">공지사항</a></li>
+		<!-- <li><a href="../board/list.php?id=specialorder">특별주문 전용게시판</a></li> -->
+		<!-- <li><a href="../board/list.php?id=inquiry">상품 판매 문의</a></li> -->
+		<li><a href="../board/list.php?id=qnatotal">문의 게시판</a></li>
 	</ul>
 </div>
 <!-- 메인왼쪽 SNS버튼 -->
@@ -29,7 +29,7 @@
 		<dt>MON - FRI</dt>
 		<dd>am 10:00 - pm 6:00</dd>
 		<dt>LUNCH</dt>
-		<dd>am 12:00 - pm 1:00</dd>
+		<dd>am 12:30 - pm 1:30</dd>
 		<dt>SAT, SUN, HOLIDAY </dt>
 		<dd>off</dd>
 	</dl>
@@ -39,11 +39,16 @@
 		<div class="number" style="color:#3c1e1e;font-size:12px;line-height: 10px;margin: 0 0 5 0;padding-left:10px">플러스친구: <strong>바이크온라인</strong></div>
 		<dd>am 10:00 - pm 7:00</dd>
 	</dl>
+	<div style="margin-top:5px;" id="plusfriend-chat-button" data-plusfriend-id="_ImWtxl" data-title="consult" data-size="small" data-color="yellow" data-shape="pc" data-support-multiple-densities="true"></div>
 </div>
 <!-- 메인왼쪽 고객센터 01 : End -->
 <!-- 무통장입금 : Start -->
-<div id="bankinfo">
-	<div><img src="../../img/main/banking.gif"></div>
+<div class="number" style="width: 161px;background-color: #f7f9f8;padding: 15 0 0 0;font-size:14px;font-weight: bold;background-image: url(/shop/data/skin/damoashop/img/banner/kakao_pay_icon.png);background-repeat: no-repeat;background-size: 60px;background-position: left center;height: 25px;">
+	<span style="margin-left: 60px;">로 송금하기</span></div>
+<div id="bankinfo" style="padding:0px;">
+	<div><img src="/shop/data/skin/damoashop/img/banner/kakao_pay_161.jpg"></div>
+	<!-- <div><img src="../../img/main/banking.gif"></div> -->
+	<div style="margin-top: 10px;"><strong style="font-size: 14px;"><span style="font-style: italic;">$ </span>입금계좌번호</strong></div>
 	<dl>
 		<!--{ @ dataBank() }-->
 		<dt>{.bank}</dt>

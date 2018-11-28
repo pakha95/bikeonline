@@ -43,7 +43,7 @@ if($mode != 'mod_qna' && $sess['m_no']){
 
 ### 상품 질문과답변
 if ( $mode == 'mod_qna' ){
-	$query = "select b.m_no, b.m_id, a.subject, a.contents, a.name, a.secret, a.email, a.phone, a.rcv_sms, a.rcv_email from ".GD_GOODS_QNA." a left join ".GD_MEMBER." b on a.m_no=b.m_no where a.sno='$sno'";
+	$query = "select b.m_no, b.m_id, a.subject, a.contents, a.name, a.secret, a.email, a.phone, a.rcv_sms, a.rcv_email, a.parent, a.sno from ".GD_GOODS_QNA." a left join ".GD_MEMBER." b on a.m_no=b.m_no where a.sno='$sno'";
 	$data = $db->fetch($query,1);
 
 	if(class_exists('validation') && method_exists('validation','xssCleanArray')){
@@ -69,6 +69,17 @@ if ( $mode == 'mod_qna' ){
 	}
 	$data['chksecret']= "";
 	if($data['secret'])$data['chksecret']= " checked";
+
+	// 상품문의 답변의 원글 정보
+	if ($data['sno'] != $data['parent']) { // 답글 수정모드
+		$query = "select a.secret from ".GD_GOODS_QNA." a  where a.sno='" . $data['parent'] . "'"; // 원글 $sno 기준으로 비밀글 상태 확인
+		list($data['parentSecret']) = $db->fetch($query);
+	}
+	else {} // 원글 수정모드
+}
+else if ( $mode == 'reply_qna' ) {
+	$query = "select a.secret from ".GD_GOODS_QNA." a where a.sno='$sno'"; // 원글 $sno 기준으로 비밀글 상태 확인
+	list($data['parentSecret']) = $db->fetch($query);
 }
 else {
 	$data['m_id'] = $sess['m_id'];

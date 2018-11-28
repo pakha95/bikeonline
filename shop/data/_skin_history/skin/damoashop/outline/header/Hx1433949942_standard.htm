@@ -1,0 +1,36 @@
+{*** 상단기본파일 | main/index.php ***}
+<a name="top"></a>
+<div id="header_1" align="{_cfg['shopAlign']}">
+	<div id="top_1" style="width:{_cfg['shopSize']}px;">
+		<div style="float:left">
+		<div id="top_logo"><!-- 배너관리에서 수정가능 --><!--{ @ dataBanner( 90 ) }-->{.tag}<!--{ / }--></div>
+		<div id="top_banner"><!-- 배너관리에서 수정가능 --><!--{ @ dataBanner( 2 ) }-->{.tag}<!--{ / }--></div>
+		</div>
+		<div style="float:right;">
+		<ul id="top_menu" class="menu2">
+			<!--{ ? !_sess }-->
+			<li><a href="../member/login.php" class="menu"><img src="../../img/main/01login.gif"></a></li>
+			<li><a href="../member/join.php" class="menu"><img src="../../img/main/02join.gif"></a></li>
+			<!--{ : }-->
+			<li><a href="../member/logout.php" class="menu"><img src="../../img/main/01logout.gif"></a></li>
+			<!--{ / }-->
+			<li><a href="../member/myinfo.php?&" { ? useMypageLayerBox == 'y' }onClick="return fnMypageLayerBox({ ? _sess }true{ / });"{ / } class="menu"><img src="../../img/main/03mypage.gif"></a></li>
+			<li><a href="../goods/goods_cart.php" class="menu"><img src="../../img/main/04cart.gif"></a></li>
+			
+			<li class="top"><a href="../board/list.php?id=notice" class="top_link"><span class="down"><img src="../../img/main/05board.gif"></span></a>
+			<!--[if lte IE 6]><table><tr><td><![endif]-->
+				<ul class="sub">
+					<li><a href="../menu/">test1</a></li>
+					<li><a href="../layouts/">test2</a></li>
+					<li><a href="../boxes/">test3</a></li>
+					<li><a href="../mozilla/">test4</a></li>
+				</ul>
+				<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+			</li>
+			
+		</ul>
+		<div id="top_delivery"><a href="../mypage/mypage_orderlist.php" class="menu"><img src="../../img/main/delivery.jpg"></a></div>
+		</div>
+	</div>
+</div>
+

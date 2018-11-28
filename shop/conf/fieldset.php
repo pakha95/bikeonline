@@ -12,8 +12,8 @@ $joinset[ex1] = '바이크 메이커';
 $joinset[ex2] = '모델';
 $joinset[ex3] = '배기량';
 $joinset[ex4] = '년식';
-$joinset[ex5] = '';
-$joinset[ex6] = '추가6';
+$joinset[ex5] = '전문 분야(딜러용)';
+$joinset[ex6] = '주력/관심 상품(딜러용)';
 
 $realname = array();
 $realname[id] = '';
@@ -39,6 +39,8 @@ $checked[useField] = array(
 'ex2'	=> 'checked',
 'ex3'	=> 'checked',
 'ex4'	=> 'checked',
+'ex5'	=> 'checked',
+'ex6'	=> 'checked',
 );
 $checked[reqField] = array(
 'email'	=> 'checked',
@@ -46,6 +48,5 @@ $checked[reqField] = array(
 'birth'	=> 'checked',
 'address'	=> 'checked',
 'mobile'	=> 'checked',
-'sms'	=> 'checked',
 );
 ?>

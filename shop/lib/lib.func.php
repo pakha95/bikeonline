@@ -3976,8 +3976,8 @@ function delEditorImg($contents){
 function setGoodsCoupon($ordno){
 	global $db;
 
-	$query = "select m_no from ".GD_ORDER." where ordno='$ordno'";
-	list($m_no) = $db->fetch($query);
+	$query = "select m_no, nameOrder, mobileOrder from ".GD_ORDER." where ordno='$ordno'";
+	list($m_no, $nameOrder, $mobileOrder) = $db->fetch($query);
 	if($m_no){
 
 		$query = "select goodsno from ".GD_ORDER_ITEM." where ordno='$ordno'";
@@ -4022,15 +4022,11 @@ function setGoodsCoupon($ordno){
 
 				//구매 후 자동발급 쿠폰 발급 시 SMS발송
 				if($result && $result2){
-					$memberSmsYn = '';
-					list($memberSmsYn) = $db->fetch("SELECT sms FROM ".GD_MEMBER." WHERE m_no='".$m_no."' LIMIT 1");
-					if($memberSmsYn === 'y'){
-						$GLOBALS['dataSms']['nameOrder'] = $nameOrder;
-						$GLOBALS['dataSms']['mobileOrder'] = $mobileOrder;
-						$GLOBALS['dataSms']['CouponName'] = $data['coupon'];
-						if(function_exists('sendSmsCase')){
-							sendSmsCase('buy_coupon', $mobileOrder);
-						}
+					$GLOBALS['dataSms']['nameOrder'] = $nameOrder;
+					$GLOBALS['dataSms']['mobileOrder'] = $mobileOrder;
+					$GLOBALS['dataSms']['CouponName'] = $data['coupon'];
+					if(function_exists('sendSmsCase')){
+						sendSmsCase('buy_coupon', $mobileOrder);
 					}
 				}
 			}else if($cnt == 0){

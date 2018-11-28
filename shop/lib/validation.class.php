@@ -46,13 +46,13 @@ class Validation
 	{
 		$doublePluginPattern = "/(<((".self::$_noAllowScript.").*?)\>)(.*?)(<\/((".self::$_noAllowScript.").*?)>)/ixs"; //닫기태그가 존재할 시 패턴체크
 		$str = preg_replace_callback($doublePluginPattern , array(self,'__callbackConvertScript') , $str);
-		
+
 		$singlePluginPattern = "/(<(".self::$_noAllowScript.")+.*?>)/ixs"; //닫기태그가 없을 시 패턴체크
 		$str = preg_replace_callback($singlePluginPattern , array(self,'__callbackConvertScript') , $str);
 
 		return $str;
 	}
- 
+
 	/**
 	 * 스크립트 처리
 	 * @param Array $str
@@ -70,7 +70,7 @@ class Validation
 		else{
 			$str = str_replace($matches[1],self::FILTER_TAG_COMMENT.'<noscript />',$str);
 		}
-		
+
 		return $str;
 	}
 
@@ -248,7 +248,7 @@ class Validation
 			 )\s*
 		)
 		/ixs';
-		
+
 		$str = ($matches[0]);
 
 		preg_match_all($attrPattern,$str,$matches2,PREG_SET_ORDER);
@@ -261,7 +261,7 @@ class Validation
 
 		return $str;
 	}
- 
+
 	/**
 	 * 엘리먼트 어트리뷰트 밸류 치환 콜백함수
 	 * @param Array $matches
@@ -301,7 +301,7 @@ class Validation
 
 		return $str;
 	}
- 
+
  	/**
 	 * 태그 <,> 치환
 	 * @param String $str
@@ -342,7 +342,7 @@ class Validation
 	 * @return
 	*/
 	private static function _setNoAllowPluginTag($noAllowPluginTag) {
-		if(isset($noAllowPluginTag)) {	
+		if(isset($noAllowPluginTag)) {
 			if(empty($noAllowPluginTag)) {
 				self::$_allowPluginTag = 'null';
 			}
@@ -379,7 +379,7 @@ class Validation
 			$_newTag = str_replace($_attr[0],chr(hexdec($_attr[1])),$_newTag);
 			$str = str_replace($str , $_newTag , $str);
 		}
- 
+
 		preg_match_all($charPattern,$str,$matches3,PREG_SET_ORDER);
 
 		$_newTag = $str;
@@ -395,9 +395,9 @@ class Validation
 	 * xss 보안필터 단일처리
 	 * @param String $str  : 처리할 문자열
 	 * @param String $mode : 모드 [text : html태그를 사용안할 경우 , html : html태그를 사용할 경우]
-	 * @param String $quotStyle [ent_compat : 홑따옴표에만 역슬래시 처리된 경우  , ent_quotes : 모든따옴표에 역슬래시 처리된경우, ent_noquotes : 역슬래시 처리 안되있는 경우] 
-	 * @param String $noAllowPluginTag : 허용불가 플러그인 태그  '|' 구분자로 문자열조합 
-	 * @param String $noAllowPluginTag : 허용불가 도메인 '|' 구분자로 문자열조합 
+	 * @param String $quotStyle [ent_compat : 홑따옴표에만 역슬래시 처리된 경우  , ent_quotes : 모든따옴표에 역슬래시 처리된경우, ent_noquotes : 역슬래시 처리 안되있는 경우]
+	 * @param String $noAllowPluginTag : 허용불가 플러그인 태그  '|' 구분자로 문자열조합
+	 * @param String $noAllowPluginTag : 허용불가 도메인 '|' 구분자로 문자열조합
 	 * @return $string
 	*/
 	public static function xssClean($str, $mode = 'html' , $quotStyle , $noAllowPluginTag = null, $allowPluginDomain = null, $disable = '')
@@ -413,12 +413,12 @@ class Validation
 			self::_setQuotStyle($quotStyle);
 			self::_setNoAllowPluginTag($noAllowPluginTag);
 			self::_setAllowPluginDomain($allowPluginDomain);
-			$str = self::_convertScript($str);	
+			$str = self::_convertScript($str);
 			$str = self::_convertAttribute($str);
 			$str = self::_convertPlugin($str);
 			$str = self::_convertTag($str);
 		}
- 
+
 		return $str;
 	}
 
@@ -457,7 +457,7 @@ class Validation
 				}
 			}
 		}
-		
+
 		foreach($extraData as $key=>$val) {
 			if($key == self::DEFAULT_KEY) {
 				continue;
@@ -478,7 +478,7 @@ class Validation
 				$arg[3] = $val[3];
 				$arg[4] = $val[4];
 			}
-			
+
 			$str[$key] = self::xssClean($str[$key],$arg[0], $arg[1], $arg[2], $arg[3], $arg[4] );
 		}
 
@@ -659,6 +659,28 @@ class Validation
 
 		return false;
 	}
+
+	/**
+	 * 상품 리스트 페이지 정렬 시 SQL Injection 방어
+	 * @param String $str - injection 검사 문자열
+	 * @return bool
+	*/
+	function check_goods_sort($str)
+	{
+		$chk = false;
+		$arr = array("goods_display.sort", "goods_link.sort", "goods_link.sort1", "goods_link.sort2", "goods_link.sort3", "goods_link.sort4", "goodsnm", "maker", "price", "reserve");
+		$arr2 = array("desc", "asc");
+		if (trim($str) != '') {
+			$str = explode(" ",$str);
+			if (count($str) <= 2) {
+				if (in_array($str[0],$arr) && (in_array($str[1],$arr2) || empty($str[1]))) {
+					$chk = true;
+				}
+			}
+		}
+		return $chk;
+
+	}
 }
- 
+
 ?>

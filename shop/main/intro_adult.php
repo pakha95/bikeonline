@@ -1,4 +1,5 @@
 <?
+if ($mainpage === true) $skin_key_file = 'main/intro_adult.php';
 include "../_header.php";
 include "../conf/fieldset.php";
 

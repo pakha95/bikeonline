@@ -12,6 +12,8 @@
 	<div style="margin-top:13px;"><a style="cursor: hand;" onclick="window.open('http://www.bikeonline.co.kr/shop/sizechart.html?','sizechart','width=670, height=680, Statusbar=yes, resizable=yes, scrollbars=yes')">
 	<img src="/shop/data/skin/damoashop/img/common/size-chart.jpg" alt="어패럴사이즈차트"/></a></div>
 	<div style="margin-top:1px;"><a href="http://bikeonline-thai.com" target="_blank"><img src="http://jbsinter2.godohosting.com/banner/bikeonline_thailand_flag.png" style="border:1px solid #dcdcdc;border-radius: 7px;" /></a></div>
+	<!-- <div style="margin-top:1px;"><a href="/shop/main/html.php?htmid=proc/dealer_map.htm&tplSkin=damoashop" target="_self">
+	<img src="/shop/data/skin/damoashop/img/common/dealer-map.jpg" alt="협력업체"/></a></div> -->
 <!--{? setState == 'Y' && Banner != ''}-->
 <div style="text-align:left;">{Banner}</div>
 <!--{ : }-->
@@ -91,4 +93,20 @@ addOnloadEvent(function(){ preventContentsCopy() });
 { / }
 </script>
 </body>
+<script>
+  window.kakaoAsyncInit = function () {
+    Kakao.init('b7d8ba0ffd1344486a4e29468a4f13f4');
+    Kakao.PlusFriend.createChatButton({
+      container: '#plusfriend-chat-button'
+    });
+  };
+
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//developers.kakao.com/sdk/js/kakao.plusfriend.min.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'kakao-js-sdk'));
+</script>
 </html>

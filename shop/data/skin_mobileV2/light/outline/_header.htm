@@ -13,7 +13,7 @@
 <script src="{_cfg.rootDir}/data/skin_mobileV2/{_cfgMobileShop.tplSkinMobile}/common/js/common.js?v=201507"></script>
 <script src="../common/js/goods_list_action.js"></script>
 <!-- <script src="../common/js/jquery-1.4.2.min.js"></script> -->
-<script src="../common/js/jquery.js"></script>
+{?pfile == 'view.php' || pfile == 'cart.php'}<script src="../common/js/jquery-1.4.2.min.js"></script>{:}<script src="../common/js/jquery.js"></script>{/}
 <script type="text/javascript">
 $(document).bind("mobileinit", function () {
     $.mobile.ajaxEnabled = false;
@@ -68,6 +68,9 @@ function showCateArea() {
 
 function goHome() {
 	document.location.href="/" + getMobileHomepath() + "/index.php";
+  if (loadSession('main')) {	// 메인 페이지 상품 더보기형 쿠키 재설정
+		saveSession('main','main');
+	}
 }
 
 function goMenu(page_nm) {
@@ -239,10 +242,12 @@ $(document).ready(function(){
 	<div id="more-view-btn"><div class="bar_area"><img src="../common/img/new/menu_p.png" /></div>더보기</div>
 	<div id="more-view-menu" style="display: none;">
 		<ul>
-			<li class="item wishlist">Wish List</li>
-			<li class="item goods-review">상품후기</li>
-			<li class="item goods-qna">상품문의</li>
-			<li class="item community">게시판</li>
+			<li class="item wishlist">찜한 상품</li>
+			<!-- <li class="item goods-review">상품후기</li> -->
+			<!-- <li class="item goods-qna">상품문의</li> -->
+			<!-- <li class="item community">게시판</li> -->
+			<li class="item notice">공지사항</li>
+      <li class="item community">문의 게시판</li>
 		</ul>
 	</div>
 </div>

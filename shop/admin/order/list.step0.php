@@ -5,6 +5,12 @@ include "../_header.php";
 include "../../lib/page.class.php";
 @include "../../conf/phone.php";
 include "../../lib/sAPI.class.php";
+@include "../../conf/sms/account.php";
+
+$checkSmsAutoSendAccount = '';
+if($sms_auto['useAccountAutoSend'] == 'y' && $sms_auto['send_c'] == 'on'){
+	$checkSmsAutoSendAccount = 'y';
+}
 
 $sAPI = new sAPI();
 
@@ -337,7 +343,7 @@ if (get_magic_quotes_gpc()) {
 	$res = $db->query($pg->query);
 
 ?>
-<script type="text/javascript" src="./integrate_order_common.js"></script>
+<script type="text/javascript" src="./integrate_order_common.js?actTime=<?php echo time(); ?>"></script>
 
 <div class="title title_top" style="position:relative;padding-bottom:15px">입금대기 리스트 <a href="javascript:manual('<?=$guideUrl?>board/view.php?id=order&no=25')"><img src="../img/btn_q.gif" border=0 hspace=2 align=absmiddle></a></div>
 
@@ -643,7 +649,7 @@ if (get_magic_quotes_gpc()) {
 
 	선택한 주문건을 :
 	<a href="javascript:void(0);" onClick="fnSetOrder(1);"><img src="../img/btn_int_order_confirm.gif" align="absmiddle"></a>
-	<a href="javascript:void(0);" onClick="fnRequestSMS();"><img src="../img/btn_int_order_press_pay_sms.gif" align="absmiddle"></a>
+	<a href="javascript:void(0);" onClick="fnRequestSMS('<?php echo $checkSmsAutoSendAccount; ?>');"><img src="../img/btn_int_order_press_pay_sms.gif" align="absmiddle"></a>
 	<img src="../img/orderSmsSendSmall.png" alt="주문자에게 SMS발송" border="0" class="hand" align="absmiddle" onclick="javascript:openOrderSmsPopup(document.frmList, 'chk[enamoo][]');" />
 </form>
 

@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.7 2017/03/31 02:49:33 /www/jbsinttr8192_godo_co_kr/shop/data/skin_mobileV2/light/goods/list.htm 000008318 */  $this->include_("dataSubCategory");?>
+<?php /* Template_ 2.2.7 2018/10/05 19:58:06 /www/jbsinttr8192_godo_co_kr/shop/data/skin_mobileV2/light/goods/list.htm 000008363 */  $this->include_("dataSubCategory");?>
 <?php $this->print_("header",$TPL_SCP,1);?>
 
 
@@ -139,6 +139,8 @@ $(document).ready(function(){
 	if (isloaded) { //중복실행방지
 		return;
 	}
+	setSortType('goodsnm');
+	//setSortType('goodsnm');
 	//setViewType(GD_VIEW_TYPE);
 	// UI 초기화
 	$('.indicator').css({width: screen.width + 'px', height: (screen.height - 80) + 'px'});

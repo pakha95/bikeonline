@@ -35,6 +35,7 @@ $arr_tpl_type[] = '이미지스크롤형';
 $arr_tpl_type[] = '탭';
 $arr_tpl_type[] = '매거진';
 $arr_tpl_type[] = '배너롤링형';
+$arr_tpl_type[] = '더보기형';
 
 //진열 상품선정 기준
 $ar_sort_type = array(1 => '직접진열');
@@ -42,6 +43,7 @@ $ar_sort_type[] = '인기순(판매금액)';
 $ar_sort_type[] = '인기순(판매개수)';
 $ar_sort_type[] = '상품평가순';
 
+if (!$design_data['tpl']) $design_data['tpl'] = 'tpl_08';
 $checked['chk'][$design_data['chk']] = 'checked';
 $checked['tpl'][$design_data['tpl']] = 'checked';
 $checked['stock_type'][$design_data['stock_type']] = 'checked';
@@ -97,9 +99,9 @@ switch($design_data['tpl']) {
 			list($add_table, $add_where, $add_order) = $mainAutoSort->getSortTerms($mobile_categoods_arr, $price_arr, $design_data['stock_type'], $stock_amount_arr, $design_data['regdt'], 'sort'.$design_data['sort_type']."_".$design_data['select_date']);
 
 			$display_query = "
-				SELECT 
+				SELECT
 					".$mainAutoSort->use_table.".goodsno,".GD_GOODS.".goodsnm,".GD_GOODS.".img_s, ".GD_GOODS_OPTION.".price
-				FROM 
+				FROM
 					".$mainAutoSort->use_table."
 					".$add_table."
 				where
@@ -230,6 +232,11 @@ function setTplType(tpl_no) {
 	$('banner-config').style.display = 'none';
 	$('banner-desc').style.display = 'none';
 	$('magazine-desc').style.display = 'none';
+	$('more-view-line').style.display = 'none';
+	$('more-view-disp').style.display = 'none';
+	$('stan-view-line').style.display = '';
+	$('stan-view-disp').style.display = '';
+	$('more-comment').style.display = 'none';
 
 	setDisabled($('line-cnt'), true);
 	setDisabled($('disp-cnt'), true);
@@ -280,11 +287,30 @@ function setTplType(tpl_no) {
 				e.setStyle({display:'none'});
 			});
 			break;
+		case 'tpl_08' :
+			$('line-cnt').style.display = '';
+			$('disp-cnt').style.display = '';
+			$('display-type').style.display = display_type_view;
+			$('sort_type_tr').style.display = '';
+			$('more-view-line').style.display = '';
+			$('more-view-disp').style.display = '';
+			$('stan-view-line').style.display = 'none';
+			$('stan-view-disp').style.display = 'none';
+			$('more-comment').style.display = '';
+			setDisabled($('line-cnt'), false);
+			setDisabled($('disp-cnt'), false);
+			setDisabled($('display-type'), false);
+			$$('.auto_main_sort_tr').each(function(e){
+				e.setStyle({display:sort_type_view});
+			});
+			break;
 		default :
 			$('line-cnt').style.display = '';
 			$('disp-cnt').style.display = '';
 			$('display-type').style.display = display_type_view;
 			$('sort_type_tr').style.display = '';
+			$('stan-view-line').style.display = '';
+			$('stan-view-disp').style.display = '';
 			setDisabled($('line-cnt'), false);
 			setDisabled($('disp-cnt'), false);
 			setDisabled($('display-type'), false);
@@ -337,7 +363,7 @@ function setDisplayType(disp_no) {
 			setDisabled($('display-type-catelist'), false);
 			break;
 	}
-	
+
 	sort_type_view(sort_type_value);
 	setFrameHeight();
 
@@ -532,7 +558,7 @@ function sort_type_view(value){
 			auto_main_sort_view = '';
 		}
 	}
-	
+
 	$('display-type').style.display = display_type_goodslist_view;
 	$$('.auto_main_sort_tr').each(function(e,key){
 		e.setStyle({display:auto_main_sort_view});
@@ -576,7 +602,7 @@ function mobile_addCate(name,idx) {
 			return;
 		}
 	}
-	
+
 	var html_str = '<div id="add_categoods_'+cate_val+'">';
 	html_str += '<div class="add_categoods_box">'+cate_nm+' &nbsp; <a href="javascript:mobile_delCate(\''+cate_val+'\');"><img src="../img/i_del.gif" align=absmiddle /></a></div>';
 	html_str += '<input type="hidden" name="mobile_categoods[]" value="'+cate_val+'">';
@@ -635,7 +661,13 @@ function more_terms(){
 <tr>
 	<td>디스플레이유형<?php if ($mobileGoodsDisplay) { ?> <img src="<?php echo $cfg['rootDir']; ?>/admin/img/icons/bullet_compulsory.gif" style="vertical-align: middle;"/><?php } ?></td>
 	<td>
-	<? for ($i=3;$i<count($arr_tpl_type)+1;$i++) { ?>
+		<div class="display-type-wrap">
+			<img src="../img/m_goodalign_style_<?=sprintf('%02d',8)?>.jpg"  alt="<?=$arr_tpl_type['8']?>" />
+			<div class="noline">
+				<input type="radio" name="tpl" value="tpl_<?=sprintf('%02d',8)?>" <?=$checked['tpl']['tpl_'.sprintf('%02d',8)]?> onClick="javascript:setTplType(this.value); "<?php if ($mobileGoodsDisplay) { ?> fld_esssential msgR="[디스플레이유형] 선택은 필수 입니다."<?php } ?> />
+			</div>
+		</div>
+		<? for ($i=3;$i<count($arr_tpl_type);$i++) { ?>
 	<div class="display-type-wrap">
 		<img src="../img/m_goodalign_style_<?=sprintf('%02d',$i)?>.jpg"  alt="<?=$arr_tpl_type[$i]?>" />
 		<div class="noline">
@@ -643,15 +675,32 @@ function more_terms(){
 		</div>
 	</div>
 	<? } ?>
+	<div id="more-comment" style="display:none;">
+	<br><br><br><br><br><br><br><br>
+	※<font color="red"> 상품 더보기형</font>은 <font color="red"><b>2016년 03월 31일 이전 제작 무료 스킨</b></font>을 사용하시는 경우 <b><u>반드시 스킨패치를 적용</u></b>해야 기능 사용이 가능합니다. <a href="javascript:window.open('http://www.godo.co.kr/customer_center/patch.php?sno=2363')"><font class="extext">[패치 바로가기]</font></a><br/>
+	<span style="margin-left: 15px;">스킨패치를 하지 않고 <font color="red">상품 더보기형</font> 선택 시 <font color="red">상품 스크롤형</font>으로 출력되니 주의하시기 바랍니다.</span>
+	</div>
 	</td>
 </tr>
 <tr id="line-cnt" style="display:none;">
 	<td>출력 라인수</td>
-	<td><input type="text" name="line_cnt" value="<?=$design_data['line_cnt']?>" class="rline" disabled /> 개 <font class="extext">메인페이지에 보여지는 라인수입니다</td>
+	<td id="stan-view-line"><input type="text" name="line_cnt" value="<?=$design_data['line_cnt']?>" class="rline" disabled /> 개 <font class="extext">메인페이지에 보여지는 라인수입니다</td>
+	<td id="more-view-line" style="display:none;">
+		<input type="text" name="line_cnt_more" value="<?=!$design_data['line_cnt'] ? 10 : $design_data['line_cnt']?>" class="rline" disabled />
+		<font class="extext">더보기 클릭 시 마다 출력되는 상품의 라인수입니다.</font>
+	</td>
 </tr>
 <tr id="disp-cnt" style="display:none;">
 	<td>라인당 상품수</td>
-	<td><input type="text" name="disp_cnt" value="<?=$design_data['disp_cnt']?>" class="rline" disabled /> 개 <font class="extext">한줄에 보여지는 상품수입니다</td>
+	<td id="stan-view-disp"><input type="text" name="disp_cnt" value="<?=$design_data['disp_cnt']?>" class="rline" disabled /> 개 <font class="extext">한줄에 보여지는 상품수입니다</td>
+	<td id="more-view-disp" style="display:none;">
+		<select name="disp_cnt_more">
+			<? for($i = 1; $i <= 5; $i++) { ?>
+			<option value="<?=$i?>" <?if($design_data['disp_cnt'] == $i){?> selected <?} else if (!$design_data['disp_cnt'] && $i == 3){?> selected <?}?>><?=$i?>개</option>
+			<? } ?>
+		</select>
+		<font class="extext">한줄에 보여지는 상품수입니다.</font>
+	</td>
 </tr>
 <tr id="banner-width" style="display:none;">
 	<td>이미지 가로크기</td>
@@ -862,7 +911,7 @@ function more_terms(){
 <tr class="auto_main_sort_tr" style="display:none;">
 	<td>진열 상품선정 기간</td>
 	<td>
-		최근 
+		최근
 		<select name="select_date">
 		<option value="7" <?=$selected['select_date'][7]?>>7일</option>
 		<option value="15" <?=$selected['select_date'][15]?>>15일</option>

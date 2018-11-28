@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.7 2017/04/25 18:01:56 /www/jbsinttr8192_godo_co_kr/shop/data/skin_mobileV2/light/outline/_header.htm 000014048 */ 
+<?php /* Template_ 2.2.7 2018/04/24 16:50:10 /www/jbsinttr8192_godo_co_kr/shop/data/skin_mobileV2/light/outline/_header.htm 000014168 */ 
 if (is_array($TPL_VAR["mobile_script"])) $TPL_mobile_script_1=count($TPL_VAR["mobile_script"]); else if (is_object($TPL_VAR["mobile_script"]) && in_array("Countable", class_implements($TPL_VAR["mobile_script"]))) $TPL_mobile_script_1=$TPL_VAR["mobile_script"]->count();else $TPL_mobile_script_1=0;?>
 <!DOCTYPE html>
 <head>
@@ -241,10 +241,12 @@ $(document).ready(function(){
 	<div id="more-view-btn"><div class="bar_area"><img src="/shop/data/skin_mobileV2/light/common/img/new/menu_p.png" /></div>더보기</div>
 	<div id="more-view-menu" style="display: none;">
 		<ul>
-			<li class="item wishlist">Wish List</li>
-			<li class="item goods-review">상품후기</li>
-			<li class="item goods-qna">상품문의</li>
-			<li class="item community">게시판</li>
+			<li class="item wishlist">찜한 상품</li>
+			<!-- <li class="item goods-review">상품후기</li> -->
+			<!-- <li class="item goods-qna">상품문의</li> -->
+			<!-- <li class="item community">게시판</li> -->
+			<li class="item notice">공지사항</li>
+      <li class="item community">문의 게시판</li>
 		</ul>
 	</div>
 </div>

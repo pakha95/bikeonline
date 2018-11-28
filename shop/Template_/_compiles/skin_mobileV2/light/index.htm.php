@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.7 2017/12/06 13:34:39 /www/jbsinttr8192_godo_co_kr/shop/data/skin_mobileV2/light/index.htm 000010716 */  $this->include_("mobileAnimationBanner");
+<?php /* Template_ 2.2.7 2018/10/04 12:12:03 /www/jbsinttr8192_godo_co_kr/shop/data/skin_mobileV2/light/index.htm 000011030 */  $this->include_("mobileAnimationBanner");
 if (is_array($GLOBALS["cfg_step"])) $TPL__cfg_step_1=count($GLOBALS["cfg_step"]); else if (is_object($GLOBALS["cfg_step"]) && in_array("Countable", class_implements($GLOBALS["cfg_step"]))) $TPL__cfg_step_1=$GLOBALS["cfg_step"]->count();else $TPL__cfg_step_1=0;?>
 <?php $this->print_("header",$TPL_SCP,1);?>
 
@@ -120,20 +120,22 @@ function closeTodayPop(popupNo) {
 <!-- 메인스크롤배너추가 -->
 <!-- Swiper -->
     <div class="swiper-container">
-        <div class="swiper-wrapper">
+			<div class="swiper-wrapper">
 					<div class="swiper-slide"><a href="#" onclick="goCate('003')"><img src="/shop/data/skin/damoashop/img/main/1_how_to_search.png" alt="HowToSearch" ></a></div>
-					<div class="swiper-slide"><a href="#" onclick="goCate('024001')"><img src="/shop/data/skin/damoashop/img/main/2_akrapovic.jpg" alt="Akrapovic" ></a></div>
-					<div class="swiper-slide"><a href="#" onclick="goCate('004069')"><img src="/shop/data/skin/damoashop/img/main/2_mra.jpg" alt="Revit" ></a></div>
-					<div class="swiper-slide"><a href="#" onclick="goCate('004004')"><img src="/shop/data/skin/damoashop/img/main/2_answer_racing.jpg" alt="Answer Racing" ></a></div>
-					<div class="swiper-slide"><a href="#" onclick="goCate('048005')"><img src="/shop/data/skin/damoashop/img/main/2_bell.jpg" alt="Bell" ></a></div>
-					<div class="swiper-slide"><a href="#" onclick="goCate('004027')"><img src="/shop/data/skin/damoashop/img/main/2_moose_racing.jpg" alt="Moose Racing" ></a></div>
-					<div class="swiper-slide"><a href="#" onclick="goCate('004048')"><img src="/shop/data/skin/damoashop/img/main/10_thormx.jpg" alt="Thor MX" ></a></div>
-					<div class="swiper-slide"><a href="#" onclick="goCate('004106')"><img src="/shop/data/skin/damoashop/img/main/2_evotech.jpg" alt="Evotech performance" ></a></div>
-					<div class="swiper-slide"><a href="#" onclick="goCate('048014')"><img src="/shop/data/skin/damoashop/img/main/3_nolan.jpg" alt="Nolan" ></a></div>
-					<div class="swiper-slide"><a href="#" onclick="goCate('004033')"><img src="/shop/data/skin/damoashop/img/main/4_pro_circuit.jpg" alt="Pro circuit" ></a></div>
-					<div class="swiper-slide"><a href="#" onclick="goCate('048024')"><img src="/shop/data/skin/damoashop/img/main/1_biltwell.jpg" alt="Biltwell" ></a></div>
-					<div class="swiper-slide"><a href="#" onclick="goCate('048023')"><img src="/shop/data/skin/damoashop/img/main/2_just1.jpg" alt="Just1" ></a></div>
+					<div class="swiper-slide"><a href="#" onclick="goCate('048033')"><img src="/shop/data/skin/damoashop/img/main/airoh_2018.jpg" alt="Airoh" ></a></div>
+					<div class="swiper-slide"><a href="#" onclick="goCate('048005')"><img src="/shop/data/skin/damoashop/img/main/bell_2018.jpg" alt="Bell" ></a></div>
+					<div class="swiper-slide"><a href="#" onclick="goCate('004106')"><img src="/shop/data/skin/damoashop/img/main/evotech_2018.jpg" alt="Evotech" ></a></div>
+					<div class="swiper-slide"><a href="#" onclick="goCate('025015')"><img src="/shop/data/skin/damoashop/img/main/ilmberger_2018.jpg" alt="Ilmberger" ></a></div>
+					<div class="swiper-slide"><a href="#" onclick="goCate('004081')"><img src="/shop/data/skin/damoashop/img/main/akrapovic_2018.jpg" alt="Akrapovic" ></a></div>
+					<div class="swiper-slide"><a href="#" onclick="goCate('048008')"><img src="/shop/data/skin/damoashop/img/main/icon_2018.jpg" alt="Icon" ></a></div>
+					<div class="swiper-slide"><a href="#" onclick="goCate('004103')"><img src="/shop/data/skin/damoashop/img/main/sidi_2018.jpg" alt="Sidi" ></a></div>
+					<div class="swiper-slide"><a href="#" onclick="goCate('004096')"><img src="/shop/data/skin/damoashop/img/main/eks_2018.jpg" alt="EKS Brand" ></a></div>
+					<div class="swiper-slide"><a href="#" onclick="goCate('004094')"><img src="/shop/data/skin/damoashop/img/main/magura_2018.jpg" alt="Magura" ></a></div>
+					<div class="swiper-slide"><a href="#" onclick="goCate('004016')"><img src="/shop/data/skin/damoashop/img/main/gaerne_2018.jpg" alt="Gaerne" ></a></div>
+					<div class="swiper-slide"><a href="#" onclick="goCate('048022')"><img src="/shop/data/skin/damoashop/img/main/bmw_helmet_2018.jpg" alt="BMW Helmet" ></a></div>
+					<div class="swiper-slide"><a href="#" onclick="goCate('004003')"><img src="/shop/data/skin/damoashop/img/main/alpinestars_2018.jpg" alt="Alpinestars" ></a></div>
 
+					<!-- <div class="swiper-slide"><a href="#" onclick="goCate('004069')"><img src="/shop/data/skin/damoashop/img/main/2_mra.jpg" alt="Revit" ></a></div> -->
 			<!--
 			<div class="swiper-slide">Slide 1</div>
             <div class="swiper-slide">Slide 2</div>

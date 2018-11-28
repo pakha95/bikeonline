@@ -116,7 +116,7 @@ function submitSettleForm()
 	if (!fm.nameOrder.value) return;
 	if (!fm.ordno.value) return;
 
-	if (document.getElementById('avoidDblPay')) document.getElementById('avoidDblPay').innerHTML = "--- 현재 결제처리중입니다. 잠시만 기다려주세요. ---<br><a href='javascript:swapSettleButton();'><img src='../../shop/data/skin_mobileV2/default/common/img/btn_cancel.gif'></a>";
+	if (document.getElementById('avoidDblPay')) document.getElementById('avoidDblPay').innerHTML = "--- 현재 결제처리중입니다. 잠시만 기다려주세요. ---<br><a href='javascript:swapSettleButton();'><img src='../common/img/btn_cancel.gif'></a>";
 
 	fm.submit();
 }

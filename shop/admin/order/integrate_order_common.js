@@ -138,7 +138,7 @@ function fnDeliveryTrace(channel, code, dlvno) {
 	popup(url,800,500);
 }
 
-function fnRequestSMS() {
+function fnRequestSMS(checkSmsAutoSendAccount) {
 
 	var f = document.frmList;
 
@@ -146,6 +146,12 @@ function fnRequestSMS() {
 	if ($$('input[name^="chk["]:checked').size() < 1) {
 		alert('처리할 주문건을 선택해 주세요.');
 		return;
+	}
+
+	if(checkSmsAutoSendAccount == 'y'){
+		if(!confirm("SMS 자동발송/설정에 입금요청 SMS 추가발송 설정이 되어있습니다. 계속하시겠습니까?")){
+			return;
+		}
 	}
 
 	// 처리 단계별 포함되지 말아야할 채널의 주문이 있는지 체크
@@ -246,4 +252,3 @@ function fnOrderPrint(frmp_nm, frml_nm)
 	frmp.submit();
 	orderPrint.focus();
 }
-

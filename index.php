@@ -1,4 +1,4 @@
-<? 
+<?
 	include_once "shop/_header.php";
 
 	$bgm = $config->load('bgm');

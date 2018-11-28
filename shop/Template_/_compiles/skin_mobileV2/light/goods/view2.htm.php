@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.7 2017/10/31 19:09:03 /www/jbsinttr8192_godo_co_kr/shop/data/skin_mobileV2/light/goods/view2.htm 000078853 */  $this->include_("commoninfo","dataGoodsRelation");
+<?php /* Template_ 2.2.7 2018/09/01 16:28:07 /www/jbsinttr8192_godo_co_kr/shop/data/skin_mobileV2/light/goods/view2.htm 000079382 */  $this->include_("commoninfo","dataGoodsRelation");
 if (is_array($GLOBALS["opt"])) $TPL__opt_1=count($GLOBALS["opt"]); else if (is_object($GLOBALS["opt"]) && in_array("Countable", class_implements($GLOBALS["opt"]))) $TPL__opt_1=$GLOBALS["opt"]->count();else $TPL__opt_1=0;
 if (is_array($TPL_VAR["l_img"])) $TPL_l_img_1=count($TPL_VAR["l_img"]); else if (is_object($TPL_VAR["l_img"]) && in_array("Countable", class_implements($TPL_VAR["l_img"]))) $TPL_l_img_1=$TPL_VAR["l_img"]->count();else $TPL_l_img_1=0;
 if (is_array($GLOBALS["optnm"])) $TPL__optnm_1=count($GLOBALS["optnm"]); else if (is_object($GLOBALS["optnm"]) && in_array("Countable", class_implements($GLOBALS["optnm"]))) $TPL__optnm_1=$GLOBALS["optnm"]->count();else $TPL__optnm_1=0;
@@ -605,8 +605,10 @@ section#goodsview2 .goods-contents-area .couponlist-item .couponlist-item-name .
 							<select name="opt[]" onchange="chkOption(this);nsGodo_MultiOption.set();" required fld_esssential msgR="옵션을 선택해주세요">
 								<option value="">선택사항</option>
 <?php if($TPL__opt_1){foreach($GLOBALS["opt"] as $TPL_V1){?><?php if((is_array($TPL_R2=$TPL_V1)&&!empty($TPL_R2)) || (is_object($TPL_R2) && in_array("Countable", class_implements($TPL_R2)) && $TPL_R2->count() > 0)) {foreach($TPL_R2 as $TPL_V2){?>
-								<option value="<?php echo $TPL_V2["opt1"]?><?php if($TPL_V2["opt2"]){?>|<?php echo $TPL_V2["opt2"]?><?php }?>" <?php if($TPL_VAR["usestock"]&&!$TPL_V2["stock"]){?> disabled class=disabled<?php }?>> <?php if($TPL_VAR["usestock"]&&!$TPL_V2["stock"]){?>[품절]<?php }?> <?php echo $TPL_V2["opt1"]?><?php if($TPL_V2["opt2"]){?>/<?php echo $TPL_V2["opt2"]?><?php }?> <?php if($TPL_V2["price"]!=$TPL_VAR["price"]){?>(<?php echo number_format($TPL_V2["price"])?>원)<?php }?></option>
-<?php if($TPL_VAR["usestock"]&&!$TPL_V2["stock"]){?> [품절]<?php }?>
+								<!-- 옵션품절 수정 by jung -->
+								<!-- <option value="<?php echo $TPL_V2["opt1"]?><?php if($TPL_V2["opt2"]){?>|<?php echo $TPL_V2["opt2"]?><?php }?>" <?php if($TPL_VAR["usestock"]&&!$TPL_V2["stock"]){?> disabled class=disabled<?php }?>> <?php if($TPL_VAR["usestock"]&&!$TPL_V2["stock"]){?>[품절]<?php }?> <?php echo $TPL_V2["opt1"]?><?php if($TPL_V2["opt2"]){?>/<?php echo $TPL_V2["opt2"]?><?php }?> <?php if($TPL_V2["price"]!=$TPL_VAR["price"]){?>(<?php echo number_format($TPL_V2["price"])?>원)<?php }?></option> -->
+								<option value="<?php echo $TPL_V2["opt1"]?><?php if($TPL_V2["opt2"]){?>|<?php echo $TPL_V2["opt2"]?><?php }?>" <?php if($TPL_VAR["usestock"]&&!$TPL_V2["stock"]){?> <?php }?>><?php echo $TPL_V2["opt1"]?><?php if($TPL_V2["opt2"]){?>/<?php echo $TPL_V2["opt2"]?><?php }?><?php if($TPL_V2["stock"]){?> (재고 <?php echo $TPL_V2["stock"]?>개)<?php }?><?php if($TPL_V2["price"]!=$TPL_VAR["price"]){?>(<?php echo number_format($TPL_V2["price"])?>원)<?php }?>
+<?php if($TPL_VAR["usestock"]&&!$TPL_V2["stock"]){?> [해외주문]<?php }?>
 <?php }}?><?php }}?>
 							</select>
 						</div>
@@ -804,8 +806,8 @@ section#goodsview2 .goods-contents-area .couponlist-item .couponlist-item-name .
 <?php }?>
 <?php if($TPL_VAR["reserve"]){?>
 							<div class="content-item">
-								<div class="content-title">적립금</div>
-								<div class="content-content blue"><?php echo number_format($TPL_VAR["reserve"])?>원</div>
+								<div class="content-title">배송기간</div>
+								<div class="content-content blue">평균 <?php echo number_format($TPL_VAR["reserve"])?>영업일 소요</div>
 							</div>
 <?php }?>
 <?php if($TPL_VAR["naverNcash"]=='Y'){?>

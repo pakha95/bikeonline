@@ -2,7 +2,7 @@
 <!--{ @ loop }-->
 <div class="goods-list-item">
 	<div class="goods-list-img">
-		<!-- <a href="{goods_src}&amp;goodsno={.goodsno}">{.img_html}</a>-->
+
 		<a href="#" onclick="goGoods({.goodsno})">{.img_html}</a>
 		<!--{? .tts_url }-->
 		<div class="goods-speach-description">
@@ -12,13 +12,13 @@
 		<!--{ / }-->
 	</div>
 	<div class="goods-list-info">
-	<!-- <a href="{goods_src}&amp;goodsno={.goodsno}"> -->
+
 		<a href="#" onclick="goGoods({.goodsno})">
 			<div class="goods-nm">{.goods_prefix}{.goodsnm}</div>
 	<!--{ ? .strprice }-->
 			<div class="goods-price">상품가격 : <span class="red">{.strprice}</span></div>
 		<!--{ ? .reserve }-->
-			<!-- <div class="goods-reserve">적립금 : {=number_format(.reserve)}원</div> -->
+
 		<!--{ / }-->
 	<!--{ : .goodsDiscountPrice }-->
 		<!--{ ? .oriPrice }-->
@@ -48,7 +48,7 @@
 		<!--{ / }-->
 
 		<!--{ ? .reserve }-->
-			<!-- <div class="goods-reserve">적립금 : {=number_format(.reserve)}원</div> -->
+
 		<!--{ / }-->
 	<!--{ : .price }-->
 		<!--{ ? !.strprice }-->
@@ -67,10 +67,10 @@
 			<div class="goods-price">
 				<span class="goods-consumer" style="display: none;"> 상품가격 : </span> <span class="red" style="margin-left:0px;">{=number_format(.price)}원</span>
 				<!--{ ? .special_discount }-->
-				<span class="goods-discount" style="display: none;">({=number_format(.special_discount)}
+				<!-- <span class="goods-discount" style="display: none;">({=number_format(.special_discount)} -->
 				<!--{ ? strstr('원',.special_discount) }-->원<!--{ / }-->
 				<!--{ ? strstr('%',.special_discount) }-->%<!--{ / }-->
-				 할인)</span>
+				 <!-- 할인)</span> -->
 				<!--{ / }-->
 			</div>
 			<!--{ / }-->
@@ -78,18 +78,18 @@
 			<div class="goods-price">
 				<span class="goods-consumer" style="display: none;"> 상품가격 : </span> <span class="red" style="margin-left:0px;">{=number_format(.price)}원</span>
 				<!--{ ? .special_discount }-->
-				<span class="goods-discount" style="display: none;">({=number_format(.special_discount)}
+				<!-- <span class="goods-discount" style="display: none;">({=number_format(.special_discount)} -->
 				<!--{ ? strstr('원',.special_discount) }-->원<!--{ / }-->
 				<!--{ ? strstr('%',.special_discount) }-->%<!--{ / }-->
-				 할인)</span>
+				 <!-- 할인)</span> -->
 				<!--{ / }-->
 			</div>
 		<!--{ / }-->
 		<!--{ ? .coupon }-->
-			<div class="goods-coupon-price" style="display: none;">쿠폰할인 : <span class="red">{=number_format(.coupon)}원</span> <div class="goods-coupon-icon"></div></div>
+		<!-- <div class="goods-coupon-price" style="display: none;">쿠폰할인 : <span class="red">{=number_format(.coupon)}원</span> <div class="goods-coupon-icon"></div></div> -->
 		<!--{ / }-->
 		<!--{ ? .reserve }-->
-			<!-- <div class="goods-reserve">적립금 : {=number_format(.reserve)}원</div> -->
+
 		<!--{ / }-->
 	<!--{ : }-->
 			<div class="goods-price"></div>

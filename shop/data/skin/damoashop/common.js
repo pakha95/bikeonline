@@ -2323,3 +2323,15 @@ function goodsCopyUrl(){
 		temp = prompt("상품의 주소를 복사할 수 있습니다.\n원하는 곳에 붙여넣기 (Ctl+V) 해주세요.", _copyUrl);
 	}
 }
+
+//인풋 텍스트필드에 공백사용 못하게 by jung
+function noSpaceFormPC(obj) { // 공백사용못하게
+    var str_space = /\s/;  // 공백체크
+    if(str_space.exec(obj.value)) { //공백 체크
+        //alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
+        obj.focus();
+        obj.value = obj.value.replace(' ',''); // 공백제거
+        return false;
+    }
+ // onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);"
+}

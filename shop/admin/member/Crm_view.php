@@ -132,8 +132,8 @@ $smsFailCheck = smsFailCheck('single', $data['mobile']);
 		<tr><td colspan="15" height="1" bgcolor="#e4e4e4"></td></tr>
 
 		<tr>
-			<td width="100" height="25" style="padding-right:8px;font:8pt Dotum;letter-spacing:-1px;color:535353;" bgcolor=f6f6f6 align=right><b>이름</b></td>
-			<td width="140" style="padding-left:8px;" class=def><?=$data['name']?></td>
+			<td width="120" height="25" style="padding-right:8px;font:8pt Dotum;letter-spacing:-1px;color:535353;" bgcolor=f6f6f6 align=right><b>이름</b></td>
+			<td width="120" style="padding-left:8px;" class=def><?=$data['name']?></td>
 			<td width="100" height="25" style="padding-right:8px;font:8pt Dotum;letter-spacing:-1px;color:535353;" bgcolor=f6f6f6 align=right><b>아이디</b></td>
 			<td width="200" style="padding-left:8px;" class=def><?=$data['m_id']?></td>
 			<td width="100" height="25" style="padding-right:8px;font:8pt Dotum;letter-spacing:-1px;color:535353;" bgcolor=f6f6f6 align=right><b>성별</b></td>
@@ -274,6 +274,16 @@ $smsFailCheck = smsFailCheck('single', $data['mobile']);
 			</td>
 			<td height="25" style="padding-right:8px;font:8pt Dotum;letter-spacing:-1px;color:535353;" bgcolor=f6f6f6 align=right><b>남기는 말씀</b></td>
 			<td style="padding-left:8px;" class=def colspan=3><?=nl2br($data[memo])?></td>
+		</tr>
+		<tr><td colspan="15" height="1" bgcolor="#e4e4e4"></td></tr>
+		<tr>
+			<td height="25" style="padding-right:8px;font:8pt Dotum;letter-spacing:-1px;color:535353;" bgcolor=f6f6f6 align=right><b>전문 분야(딜러)</b></td>
+			<td style="padding-left:8px;" class=def colspan=5><?=nl2br($data[ex5])?></td>
+		</tr>
+		<tr><td colspan="15" height="1" bgcolor="#e4e4e4"></td></tr>
+		<tr>
+			<td height="25" style="padding-right:8px;font:8pt Dotum;letter-spacing:-1px;color:535353;" bgcolor=f6f6f6 align=right><b>주력/관심 상품(딜러)</b></td>
+			<td style="padding-left:8px;" class=def colspan=5><?=nl2br($data[ex6])?></td>
 		</tr>
 
 		<?

@@ -1,10 +1,10 @@
 <?
 	include "../_header.popup.php";
 
-	if($_POST['save'] == 'setting'){	
+	if($_POST['save'] == 'setting'){
 
 		if(	!$_POST['loofYN'] ){$_POST['loofYN'] = "n";}
-		
+
 		// 볼륨 저장 시 정해진 숫자 보다 크면 고정 볼륨으로 변경
 		if( $_POST['volume'] > 100 ){ $_POST['volume'] = 100; }else if($_POST['volume'] < 0){ $_POST['volume'] = 0; }
 
@@ -15,8 +15,8 @@
 			'volume'=>(string)$_POST['volume'],
 			'loof'	=>(string)$_POST['loofYN'],
 		);
-		$config->save('bgm',$config_bgm);	
-		
+		$config->save('bgm',$config_bgm);
+
 		echo "
 		<script>
 		alert('저장되었습니다');
@@ -33,6 +33,11 @@
 	$checked['urlFix'][$load_config_bgm['urlFix']] = "checked";
 	$checked['bgmuesYN'][$load_config_bgm['use']] = "checked";
 	$checked['loofYN'][$load_config_bgm['loof']] = "checked";
+
+	$disabled['urlFix'] = '';
+	if ($cfg['fixDomain'] == 1) {
+		$disabled['urlFix'] = 'disabled="true"';
+	}
 ?>
 <script>
 	function volume_control(mode){
@@ -52,8 +57,8 @@
 			}else{
 				document.getElementsByName('volume')[0].value = Number(t_volume)-20;
 			}
-		}	
-		
+		}
+
 		volume_state();
 	}
 
@@ -80,7 +85,7 @@
 		}
 	}
 
-	function volume_check(){		
+	function volume_check(){
 		var c_volume = document.getElementsByName('volume')[0].value;
 		if( c_volume < 0 ){	document.getElementsByName('volume')[0].value = 0; }else if(c_volume > 100){ document.getElementsByName('volume')[0].value = 100; }
 	}
@@ -112,7 +117,7 @@
 <tr>
 	<td> 재 생 환 경 </td>
 	<td>
-		<!-- 볼륨 -->		
+		<!-- 볼륨 -->
 		<img src="../img/ico_sound.gif">
 		<font size="6pt">
 		<a href="javascript:volume_control('down');"><img src="../img/bgm_down.gif"></a><span id="volume_img"></span><a href="javascript:volume_control('up');"><img src="../img/bgm_up.gif"></a>
@@ -150,7 +155,7 @@ cssRound('MSG01')
 	</td>
 <tr>
 	<td>
-		<input type="radio" name="urlFix" value="y" <?=$checked['urlFix']['y']?> style="border:0px"> 도메인 주소 고정 <span style="font:8pt 돋움;color:#627dcf;">(프레임을 사용하여 접속 도메인을 유지합니다. <strong>배경음악을 사용하려면 반드시 설정해야 합니다</strong>)<br><div style="padding-left:125px">도메인 주소 고정을 하게 되면 스킨단에서 설정한 파비콘은 적용되어지지 않습니다.</div></span>
+		<input type="radio" name="urlFix" value="y" <?=$checked['urlFix']['y']?><?=$disabled['urlFix']?> style="border:0px"> 도메인 주소 고정 <span style="font:8pt 돋움;color:#627dcf;">(프레임을 사용하여 접속 도메인을 유지합니다. <strong>배경음악을 사용하려면 반드시 설정해야 합니다</strong>)<br><div style="padding-left:125px">도메인 주소 고정을 하게 되면 스킨단에서 설정한 파비콘은 적용되어지지 않습니다.</div></span>
 	</td>
 </tr>
 </table>

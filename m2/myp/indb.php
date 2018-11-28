@@ -52,7 +52,7 @@ if($_POST['encode'] == 'cp') {
 	$_POST['subject'] = validation::xssClean($_POST['subject'], 'html', 'ent_quotes');
 	$_POST['contents'] = validation::xssClean($_POST['contents'], 'html', 'ent_quotes');
 	$_POST['name'] = validation::xssClean($_POST['name'], 'html', 'ent_quotes');
-	
+
 	$regCP949 = '/([\x81-\xA0][\x41-\x5A\x61-\x7A\x81-\xFE])|([\xA1-\xC5][\x41-\x5A\x61-\x7A\x81-\xA0])|([\xC6][\x41-\x52])/';
 	$strInput = $_POST['subject'].$_POST['contents'].$_POST['name'];
 
@@ -89,7 +89,7 @@ switch($mode) {
 		";
 		$db->query($query);
 		$sno=$db->lastID();
-	
+
 		// 이미지 업로드
 		$attach = 0;
 		if ($_FILES['attach']['error'] === UPLOAD_ERR_OK) {	// UPLOAD_ERR_OK = 0
@@ -164,7 +164,7 @@ switch($mode) {
 		}
 
 		$db->query("update ".GD_GOODS_REVIEW." set parent=sno, attach='$attach' where sno='$sno'");
-		
+
 		if ($_POST['ordsno']) {
 			msg('정상적으로 등록되었습니다', '../myp/orderview.php?ordno='.$_POST['ordno']);
 		}
@@ -260,9 +260,20 @@ switch($mode) {
 			regdt		= now(),
 			ip			= '$_SERVER[REMOTE_ADDR]'
 		";
-		$db->query($query);
+		$result = $db->query($query);
 
 		$db->query("update ".GD_MEMBER_QNA." set parent=sno where sno='" . $db->lastID() . "'");
+
+		//1:1 문의글 등록 시 SMS 발송
+		$mobile = $_POST[phone];
+		$mobile = preg_replace("/[^0-9]/", "", $mobile);
+		if($result){
+			$GLOBALS['dataSms']['name'] = $sess[m_id];
+			$GLOBALS['dataSms']['boardName'] = "1:1문의";
+			if($mobile){
+				sendSmsCase('qna_register', $mobile);
+			}
+		}
 
 		msg('정상적으로 등록되었습니다', $sitelink->link_mobile("myp/qna.php","regular"));
 

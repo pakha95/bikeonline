@@ -229,6 +229,13 @@ switch($mode){
 		$cfgMobileShop['vtype_category']	= $_POST['vtype_category'];
 		$cfgMobileShop['vtype_goods_view_skin']	= $_POST['vtype_goods_view_skin'];
 		$cfgMobileShop['goods_view_quick_menu_useyn']	= $_POST['goods_view_quick_menu_useyn'];
+		$cfgMobileShop['vtype_main_pc_disp']			= $_POST['vtype_main_pc_disp'];
+
+		// 상품 더보기형 스킨패치 여부 확인
+		$more_exists = file_exists(dirname(__FILE__).'/../../data/skin_mobileV2/'.$cfg['tplSkinMobile'].'/goods/list/tpl_08.htm');
+		if (!$more_exists) {
+			$cfgMobileShop['vtype_main_pc_disp'] = 0;
+		}
 
 		$qfile->open("../../conf/config.mobileShop.php");
 		$qfile->write("<? \n");
@@ -938,6 +945,13 @@ switch($mode){
 
 		$upd_arr['tpl'] = $_POST['tpl'];
 
+		// 더보기형 스킨패치 안했을 경우 상품 스크롤형으로 저장
+		if ($upd_arr['tpl'] == 'tpl_08') {
+			global $cfg;
+			$more_exists = file_exists(dirname(__FILE__).'/../../data/skin_mobileV2/'.$cfg['tplSkinMobile'].'/goods/list/tpl_08.htm');
+			if ($more_exists == false) $upd_arr['tpl'] = 'tpl_03';
+		}
+
 		## 배너 더미 이미지 삭제 ##
 		$img_chk_query = $db->_query_print('SELECT tpl, tpl_opt FROM '.GD_MOBILE_DESIGN.' WHERE mdesign_no=[i]', $mdesign_no);
 		$res_img_chk = $db->_select($img_chk_query);
@@ -1039,6 +1053,14 @@ switch($mode){
 				$tpl_opt_arr['banner_img'] = $banner_img_name;
 				$upd_arr['tpl_opt'] = $json->encode($tpl_opt_arr);
 				unset($tpl_opt_arr);
+				break;
+			case 'tpl_08' :
+				$upd_arr['line_cnt'] = $_POST['line_cnt_more'];
+				$upd_arr['disp_cnt'] = $_POST['disp_cnt_more'];
+				$upd_arr['banner_width'] = 0;
+				$upd_arr['banner_height'] = 0;
+				$upd_arr['display_type'] = $_POST['display_type'];
+				$upd_arr['tpl_opt'] = '';
 				break;
 			default :
 				$upd_arr['line_cnt'] = $line_cnt;

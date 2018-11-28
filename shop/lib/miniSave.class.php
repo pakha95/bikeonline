@@ -21,13 +21,13 @@ class miniSave
 				$query	= "select * from `".GD_BD_.$this->id."` where idx like 'a%' $qr_notice $this->orderby limit 1";
 				$data = $this->db->fetch($query);
 				$this->idx  = ($data[idx]) ? substr($data[idx],1) : 999;
-				$this->main = $data['main'] ? $data['main'] - 1 : 5000;
+				$this->main = $data['main'] ? $data['main'] - 1 : 10000;
 			}
 		}
 		if($_POST[notice]){
 			if($this->mode=="reply") msg("공지는 답변글의 형태로 등록이 안됩니다",-1);
 			list($chk) = $this->db->fetch("select count(*) from `".GD_BD_.$this->id."` where notice='o'");
-			if(!$chk) $this->main = -10000;
+			if(!$chk) $this->main = -20000;
 			### 공지글이 첫글일때 inf 테이블 데이타 저장
 			list($cnt) = $this->db->fetch("select count(*) from `".GD_BD_.$this->id."`");
 			if($cnt==1){
@@ -63,7 +63,7 @@ class miniSave
 			$this->idx--;
 			### idx값 검증
 			if($this -> idx < 100) msg("올바르지 않은 게시판 그룹번호입니다.",-1);
-			$this->main = 5000;
+			$this->main = 10000;
 
 			list($chk) = $this->db->fetch("select id from ".GD_BOARD_INF." where id='{$this->id}' and idx='a{$this->idx}'");
 			if(!$chk) $this->db->insert(GD_BOARD_INF)->set(array('id'=>$this->id, 'idx'=>'a'.$this->idx))->query();

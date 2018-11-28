@@ -1,0 +1,72 @@
+{*** 딜러샵 지도 | main/html.php?htmid=proc/dealer_map.htm ***}
+{ # header }
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbIoOQH1zDmI32bxqlvyMv35fZofWpugs&callback=initialize" async defer></script>
+<script>
+var mCompany;
+var mName;
+var mMobile;
+var mAddress;
+var mInfoArr = new Array();
+var addresses = new Array();
+<!--{@ mbInfo}-->
+   //mCompany = '{mbInfo.company}';
+   //mName = '{mbInfo.name}';
+   //mMobile = '{mbInfo.mobile}';
+   //mAddress = '{mbInfo.address}'+'{mbInfo.address_sub}';
+   mInfoArr['{.index_}'] = ['{mbInfo.company}','{mbInfo.address} {mbInfo.address_sub}','{mbInfo.name}','{mbInfo.mobile}'];
+   addresses['{.index_}'] = '{mbInfo.address} {mbInfo.address_sub}';
+<!--{/}-->
+
+function initialize() {
+  var mapOptions = {
+                      zoom: 11, // 지도를 띄웠을 때의 줌 크기
+                      mapTypeId: google.maps.MapTypeId.ROADMAP
+
+                  };
+  var map = new google.maps.Map(document.getElementById("google_map"),mapOptions);
+  var mylat = "";
+  var mylong = "";
+   navigator.geolocation.getCurrentPosition(function(pos) {
+     mylat = pos.coords.latitude;
+     mylong = pos.coords.longitude;
+
+   });
+   //37.486720, 126.892103
+   //var myLatLng = new google.maps.LatLng(mylat, mylong);
+   var myLatLng = new google.maps.LatLng('37.486720', '126.892103');
+
+
+
+   var size_x = 40; // 마커로 사용할 이미지의 가로 크기
+   var size_y = 40; // 마커로 사용할 이미지의 세로 크기
+   var myMarker = new google.maps.Marker({
+           map: map,
+     //icon: image, // 마커로 사용할 이미지(변수)
+           icon: {
+               labelOrigin: new google.maps.Point(11, 22),
+               url: '//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
+               size: new google.maps.Size(22, 22),
+               origin: new google.maps.Point(0, 18),
+               anchor: new google.maps.Point(11, 11),
+               },
+           label: {
+               color: 'blue',
+               fontWeight: 'bold',
+               text: '바이크온라인'
+               },
+     //label: company[i][0], // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
+           position: myLatLng
+         });
+   // 마커로 사용할 이미지 주소
+  var image = new google.maps.MarkerImage( 'http://www.bikeonline.co.kr/shop/data/skin/damoashop/img/map/marker.png',
+                                               '',
+                                               '',
+                                               '',
+                                               new google.maps.Size(size_x, size_y));
+
+   // Geocoding *****************************************************
+
+}
+</script>
+<div id="google_map" style="width:790px; height:790px;"></div>
+{ # footer }

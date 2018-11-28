@@ -16,7 +16,7 @@ class mobile_board extends board {
 		if ($this->search['contents'])	$tmp[] = "contents like '%".$this->search['word'] ."%'";
 
 		$tmp2[] = "(".implode(" or ",$tmp).")";
-		
+
 		$this->where[] = implode(" ",$tmp2);
 
 		if($this->subSpeech)$this->where[] = "category = '".$this->subSpeech."'";
@@ -33,7 +33,7 @@ class mobile_board extends board {
 	function getList()
 	{
 		$this->miniList();
- 
+
 		if (!$this->search['word'] && !$this->subSpeech) $this->getIndex();
 		else $this->where[]	= "idx like 'a%'";
 
@@ -71,7 +71,7 @@ class mobile_board extends board {
 		while ($data = $this->db->fetch($res)){
 
 			if(class_exists('validation') && method_exists('validation','xssCleanArray')){
-				$data = validation::xssCleanArray($data , 
+				$data = validation::xssCleanArray($data ,
 					array(
 						validation::DEFAULT_KEY=>'text',
 						'contents' => array($bdUseXss,'ent_noquotes', $bdAllowPluginTag , $bdAllowPluginDomain),
@@ -102,7 +102,14 @@ class mobile_board extends board {
 				$data['imgSizeW']	= $reSize[0];
 				$data['imgSizeH']	= $reSize[1];
 				$data['imgUrl'] = $this->cfg['rootDir']."/data/board/".$this->id."/t/".$div[0];
-			}else{
+			} else if (preg_match('/<img [^>]*src=["|\']([^"|\']+)/i', $data['contents'], $matches)) {
+				if ($matches[1] != '') {
+					$reSize	= ImgSizeSet($matches[1], $bdListImgSizeW,$bdListImgSizeH);
+					$data['imgSizeW']	= $reSize[0];
+					$data['imgSizeH']	= $reSize[1];
+					$data['imgUrl'] = $matches[1];
+				}
+			} else {
 				$data['imgSizeW']	= $bdListImgSizeW;
 				$data['imgSizeH']	= $bdListImgSizeH;
 				$data['imgUrl'] = $this->cfg['rootDir']."/data/skin_mobileV2/".$cfgMobileShop['tplSkinMobile']."/common/img/new/mobile_noimg.png"; //'../../common/img/new/mobile_noimg.png';
@@ -110,7 +117,7 @@ class mobile_board extends board {
 
 			$data['new'] = '';
 			$data['hot'] = '';
- 
+
 			//$data['subject'] = strcut($data['subject'],30);	//모바일은 리스트 제목길이 고정
 			if ($this->var_['bdNew'] && (time()-strtotime($data['regdt']))/60/60 < $this->var_['bdNew']) $data['new'] = 'y';
 			if ($this->var_['bdHot'] && $data['hit']>=$this->var_['bdHot']) $data['hot'] = 'y';
@@ -156,7 +163,7 @@ class mobile_board extends board {
 	{
 		$recode['end'] = ($this->recode['total'] && $this->recode['total']<$this->page['now']*$this->page['num']) ? $this->recode['total']-($this->page['now']-1)*$this->page['num'] : $this->page['num'];
 		if ($this->where) $where = "where ".implode(" and ",$this->where);
-		$this->query = "select name, idx,main,hex(sub) as sub,subject,no,regdt,category,secret,notice,_member,m_no,new_file,old_file,password,comment,hit from `".GD_BD_.$this->id."` ".$where." and notice !='o' ".$this->orderby." limit ".$this->recode[start].",".$recode[end];
+		$this->query = "select name, idx,main,hex(sub) as sub,subject,no,regdt,category,secret,notice,_member,m_no,new_file,old_file,password,comment,hit,contents from `".GD_BD_.$this->id."` ".$where." and notice !='o' ".$this->orderby." limit ".$this->recode[start].",".$recode[end];
 	}
 
 	function _view()
@@ -166,9 +173,9 @@ class mobile_board extends board {
 
 		$query	= "select * from `".GD_BD_.$this->id."` where no='".$this->no."'";
 		$this->data	= $this->db->fetch($query,1);
-		
+
 		if(class_exists('validation') && method_exists('validation','xssCleanArray')){
-			$this->data = validation::xssCleanArray($this->data , 
+			$this->data = validation::xssCleanArray($this->data ,
 				array(
 					validation::DEFAULT_KEY=>'text',
 					'contents'=>array($bdUseXss,'ent_noquotes', $bdAllowPluginTag , $bdAllowPluginDomain ),
@@ -189,7 +196,7 @@ class mobile_board extends board {
 
 		# 제목 스타일
 		if ($this->data['secret']) $this->chkSecret();
-		
+
 		if ($this->relation) $this->relation();
 		$this->data = array_merge($this->data,array(
 					contents	=> ($this->setContents($this->data['contents'],$this->data['html'],1)),
@@ -312,7 +319,7 @@ class mobile_board extends board {
 		} else {
 			$contents	= preg_replace("/<(\/*)(style)/i","&lt\\1\\2",$contents);
 		}
-		
+
 		// 이미지에 쇼핑몰의 상품상세/분류페이지 링크가 걸려있을 경우 유저몰로 링크되어 있는 url을 모바일샵으로 변경
 		$urlMatchPattern = '@href=([\'"])(.*?)(?<!\x5c)\1@i';
 		preg_match_all($urlMatchPattern,$contents,$urlMatch);

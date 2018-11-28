@@ -273,7 +273,8 @@ if($isEnableAdminCheckoutOrder !== true) {
 			$sortAssistDyn=$sortAssistOrdno=array();
 			foreach ($eachOrderGroup as $k => $v) {
 				$sortAssistDyn[$k]  = $v['dyn'];
-				$sortAssistOrdno[$k] = $v['ordno'];
+				//$sortAssistOrdno[$k] = $v['ordno'];//주문번호오류로 주문번호로는 주문일시별 정렬이 안되어 수정 by jung
+				$sortAssistOrdno[$k] = $v['orddt'];
 				$orderList[$orderGroupKey][$k]['stepMsg'] = getStepMsg($v['step'],$v['step2'],$v['ordno']);
 			}
 			array_multisort($sortAssistDyn,SORT_ASC,$sortAssistOrdno,SORT_DESC,$orderList[$orderGroupKey]);
@@ -287,7 +288,8 @@ if($isEnableAdminCheckoutOrder !== true) {
 	else {
 		if(!$cfg['orderPageNum']) $cfg['orderPageNum'] = 15;
 
-		$query = $query.' order by o.ordno desc';
+		//$query = $query.' order by o.ordno desc';//주문번호오류로 주문번호로는 주문일시별 정렬이 안되어 수정 by jung
+		$query = $query.' order by o.orddt desc';
 		$result = $db->_select_page($cfg['orderPageNum'],$page,$query);
 
 		$orderList[9999]=array();

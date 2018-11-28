@@ -1,0 +1,87 @@
+{*** 측면기본타입 | main/index.php ***}
+<!-- 카테고리 메뉴 시작 -->
+<!-- 관련 세부소스는 '기타/추가페이지(proc) > 카테고리메뉴- menuCategory.htm' 안에 있습니다 -->
+{ # menuCategory }
+<!-- 카테고리 메뉴 끝 -->
+<div id="comm" style="padding-top:35px;">
+	<div><img src="../../img/main/community.gif"></div>
+	<ul>
+	<!--{ @dataBoard(20) }-->
+		<!--{? .id == 'order'}-->
+			<!--li><a href="../board/list.php?id={.id}">{.name}</a></li-->
+		<!--{ / }-->
+	<!--{ / }-->
+		<li><a href="../board/list.php?id=notice">바이크온라인 소식</a></li>
+		<li><a href="../board/list.php?id=specialorder">특별주문 전용게시판</a></li>
+		<li><a href="../board/list.php?id=inquiry">상품 판매 문의</a></li>
+		<li><a href="../board/list.php?id=qna">묻고 답하기</a></li>
+	</ul>
+</div>
+<!-- 메인왼쪽 고객센터 01 : Start -->
+<div id="cs">
+	<div class="number">{_cfg['compPhone']}</div>
+	<dl>
+		<dt>MON - FRI</dt>
+		<dd>am 10:00 - pm 18:00</dd>
+		<dt>LUNCH</dt>
+		<dd>am 12:00 - pm 13:00</dd>
+		<dt>SAT, SUN, HOLIDAY </dt>
+		<dd>off</dd>
+	</dl>
+</div>
+<!-- 메인왼쪽 고객센터 01 : End -->
+<div id="div_search"> 
+	<!-- 검색 시작----------------------------------->
+	<form action="../goods/goods_search.php" onsubmit="return chkForm(this)">
+		<input type=hidden name=searched value="Y">
+		<input type=hidden name=log value="1">
+		<input type=hidden name=skey value="all">
+		<input type="hidden" name="hid_pr_text" value="{_s_type['pr_text']}" />
+		<input type="hidden" name="hid_link_url" value="{_s_type['link_url']}" />
+		<input type="hidden" id="edit" name="edit" value=""/>
+<!--{? _s_type['keyword_chk'] == 'on' && _s_type['pr_text'] && !_GET['sword']}-->
+<?php
+{id} = "sword";
+{onkeyup} = "document.getElementById('edit').value='Y'";
+{onclick} = "document.getElementById('sword').value=''";
+{value} = {_s_type['pr_text']};
+?>
+<!--{:}-->
+<?php
+{value} = {_GET['sword']};
+?>
+<!--{/}-->
+		<table cellpadding="0" cellspacing="0" border="0" class="search_table">
+			<tr>
+				<td class="search_td"><input name=sword type=text id="{id}" class="search_input" onkeyup="{onkeyup}" onclick="{onclick}" value="{value}" required label="검색어"></td>
+				<td><input type=image src="../../img/main/icon_search.gif" class="search_btn"></td>
+			</tr>
+		</table>
+	</form>
+	<!-- 검색 끝--------------------------------------> 
+</div>
+<!-- 무통장입금 : Start -->
+<div id="bankinfo">
+	<div><img src="../../img/main/banking.gif"></div>
+	<dl>
+		<!--{ @ dataBank() }-->
+		<dt>{.bank}</dt>
+		<dd>{.account}</dd>
+		<dd>{.name}</dd>
+		<!--{ / }-->
+	</dl>
+</div>
+<!-- 무통장입금 : End -->
+
+<!-- 메인왼쪽배너 : Start -->
+<div style="padding:10px 0;"><!-- (배너관리에서 수정가능) --><!--{ @ dataBanner( 4 ) }-->{.tag}<!--{ / }--></div>
+<div style="padding:10px 0;"><!-- (배너관리에서 수정가능) --><!--{ @ dataBanner( 5 ) }-->{.tag}<!--{ / }--></div>
+<!-- 메인왼쪽배너 : End -->
+
+<div style="padding-top:30px"></div>
+
+<!-- SNS 실시간연동 리스트 : Start-->
+<table cellpadding=0 cellspacing=0 border=0 width=100%>
+<tr><td align=center>{=snsPosts(1)}</td></tr>
+</table>
+<!-- SNS 실시간연동 리스트 : End-->

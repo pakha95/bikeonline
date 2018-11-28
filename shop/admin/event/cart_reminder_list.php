@@ -75,6 +75,7 @@ $cartReminderList = $cartReminder->cartReminderList();
         font-size: 16px;
         font-weight: bold;
         background: #3ba3ec;
+		border-top: #CACACA solid 2px;
     }
 
     .cart-reminder-btn span {
@@ -87,7 +88,7 @@ $cartReminderList = $cartReminder->cartReminderList();
     }
 
     .cart-reminder-once div:last-child {
-        border: none;
+        border-bottom: none;
     }
 
     .cart-reminder-once .cart-reminder-title {
@@ -131,6 +132,7 @@ $cartReminderList = $cartReminder->cartReminderList();
     .cart-reminder-once .cart-reminder-lastsend {
         padding-left: 10px;
         padding-bottom: 10px;
+		border-bottom: none;
     }
 
     .cart-reminder-once .cart-reminder-nextsend {
@@ -144,6 +146,7 @@ $cartReminderList = $cartReminder->cartReminderList();
         font-size: 12px;
         font-weight: bold;
         background: #ecf8fe;
+		border-top: #CACACA solid 2px;
     }
 
     .cart-reminder-once .cart-reminder-nextsend h4 {

@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.7 2017/12/02 19:20:46 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/goods/goods_popup_large.htm 000006274 */ 
+<?php /* Template_ 2.2.7 2018/01/09 19:20:13 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/goods/goods_popup_large.htm 000006321 */ 
 if (is_array($TPL_VAR["t_img"])) $TPL_t_img_1=count($TPL_VAR["t_img"]); else if (is_object($TPL_VAR["t_img"]) && in_array("Countable", class_implements($TPL_VAR["t_img"]))) $TPL_t_img_1=$TPL_VAR["t_img"]->count();else $TPL_t_img_1=0;?>
 <script>
 function fitwin()
@@ -70,7 +70,8 @@ function chgImg(obj)
     strHeight = jQuery('#objImg').outerHeight() + strMenuHeight;
   }
   //resize
-  window.resizeTo( strWidth+320, strHeight+70 );
+//  window.resizeTo( strWidth+320, strHeight+70 );
+  window.resizeTo( 700+320, 700+70 );
 }
 jQuery(window).load(function() {
   var strWidth;
@@ -90,7 +91,7 @@ jQuery(window).load(function() {
     strHeight = jQuery('#objImg').outerHeight() + strMenuHeight;
   }
   //resize
-  window.resizeTo( strWidth+320, strHeight+70 );
+  window.resizeTo( 700+320, 700+70 );
 });
 </script>
 
@@ -104,10 +105,10 @@ jQuery(window).load(function() {
 	<table width=100% height=100% cellpadding=0 cellspacing=0 border=0>
 	<tr>
 		<td align=center>
-		<table width=100% cellpadding=0 cellspacing=0 border=0>
+		<table width=100% height="630px" cellpadding=0 cellspacing=0 border=0>
 		<tr>
 			<!-- <td width=<?php echo $GLOBALS["cfg"]["img_l"]+ 0?>><?php echo goodsimg($TPL_VAR["r_img"][ 0],$GLOBALS["cfg"]["img_l"]+ 0,'id=objImg')?></td> -->
-			<td width=<?php echo $GLOBALS["cfg"]["img_l"]+ 0?>><?php echo goodsimg($TPL_VAR["r_img"][ 0],'','id=objImg')?></td>
+			<td width=<?php echo $GLOBALS["cfg"]["img_l"]+ 0?>><?php echo goodsimgPop($TPL_VAR["r_img"][ 0],'','id=objImg')?></td>
 			<td width=250 nowrap height=100% valign=top align=right style="padding-left:10px">
 
 			<table width=100% height=100% cellpadding=5 cellspacing=0 border=0>

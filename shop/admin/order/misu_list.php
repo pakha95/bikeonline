@@ -10,6 +10,13 @@ include "../_header.php";
 @include "../../conf/config.pay.php";
 include "../../lib/page.class.php";
 @include "../../conf/phone.php";
+@include "../../conf/sms/account.php";
+
+//입금요청 SMS 자동발송 설정 여부
+$checkSmsAutoSendAccount = '';
+if($sms_auto['useAccountAutoSend'] == 'y' && $sms_auto['send_c'] == 'on'){
+	$checkSmsAutoSendAccount = 'y';
+}
 
 // 현재 날짜 -> 주문일로 부터 경과일 수를 계산하기 위함.
 $today = mktime(0,0,0,date('m'), date('d'), date('Y'));
@@ -114,6 +121,11 @@ function fnRequestBanking() {
 	if (cnt == 0) {
 		alert('처리할 주문건을 선택해 주세요.');
 		return;
+	}
+	if('<?php echo $checkSmsAutoSendAccount; ?>' == 'y'){
+		if(!confirm("SMS 자동발송/설정에 입금요청 SMS 추가발송 설정이 되어있습니다. 계속하시겠습니까?")){
+			return;
+		}
 	}
 
 	f.submit();

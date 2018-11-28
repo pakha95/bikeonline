@@ -26,9 +26,9 @@ $fb = new Facebook();
 	</tr>
 </table>
 <div style="padding-top:10px;padding-left:200px">
-	<input type="image" src="../img/btn_save.gif" style="border:0" />	 
+	<input type="image" src="../img/btn_save.gif" style="border:0" />
 </div>
-<br/><br/> 
+<br/><br/>
 
 
 	<input type="hidden" name="mode" value="page" />
@@ -38,7 +38,7 @@ $fb = new Facebook();
 		<tr>
 			<td>페이스북 페이지</td>
 			<td >
-				<input type="radio" name="useYn" value="y" style="border:none" <?if($fb->pageUseYn=='y')echo 'checked';?> />사용함 <input type="radio" name="useYn" value="n" style="border:none" <?if($fb->pageUseYn=='n')echo 'checked';?> />사용안함	 
+				<input type="radio" name="useYn" value="y" style="border:none" <?if($fb->pageUseYn=='y')echo 'checked';?> />사용함 <input type="radio" name="useYn" value="n" style="border:none" <?if($fb->pageUseYn=='n')echo 'checked';?> />사용안함
 			</td>
 		</tr>
 		<tr>
@@ -47,14 +47,14 @@ $fb = new Facebook();
 		</tr>
 		<tr>
 			<td>페이스북 크기</td>
-			<td>가로 <input type="text" value="<?=$fb->pageWidth?>" name="width" class="line" size="10"  onkeypress="NumObj(this);" style="ime-mode:disabled;" /> px / 
-			세로 <input type="text" value="<?=$fb->pageHeight?>" name="height" class="line" size="10" onkeypress="NumObj(this);" style="ime-mode:disabled;"  /> px 
+			<td>가로 <input type="text" value="<?=$fb->pageWidth?>" name="width" class="line" size="10"  onkeypress="NumObj(this);" style="ime-mode:disabled;" /> px /
+			세로 <input type="text" value="<?=$fb->pageHeight?>" name="height" class="line" size="10" onkeypress="NumObj(this);" style="ime-mode:disabled;"  /> px
 			<div class="extext">가로 폭 최소 너비는 292px, 세로 높이는 570px입니다.</div>
 			</td>
 		</tr>
 		<tr>
 			<td>테두리 색상</td>
-			<td><input type="text" value="<?=$fb->pageBordercolor?>" name="bordercolor" class="line" size="10"   />  
+			<td><input type="text" value="<?=$fb->pageBordercolor?>" name="bordercolor" class="line" size="10"   />
 				<div class="extext">스킨 색상에 따라 RGB 색상코드를 넣어 설정할 수 있습니다.</div>
 			</td>
 		</tr>
@@ -67,7 +67,7 @@ $fb = new Facebook();
 						  <input type="checkbox" checked disabled style="border:none"  /> 좋아요
 						</td>
 						<td>
-							<img src="../img/setting1_o.jpg"   /> 
+							<img src="../img/setting1_o.jpg"   />
 						</td>
 					</tr>
 
@@ -99,7 +99,7 @@ $fb = new Facebook();
 		</tr>
 	</table>
 	<div style="padding-top:10px;padding-left:200px">
-		<input type="image" src="../img/btn_save.gif" style="border:0" />	 
+		<input type="image" src="../img/btn_save.gif" style="border:0" />
 	</div>
 </form>
 
@@ -110,11 +110,11 @@ $fb = new Facebook();
 			<td>
 				<div style="line-height:15px">
 					<b>페이지 주소</b><br/>
-					페이스북 페이지를 만들 때 주소를 지정할 수 있습니다. (예. Facebook.com/godomallnews)<br/>
+          페이스북 페이지를 만들 때 주소를 지정할 수 있습니다. (예. Facebook.com/godosoft)<br/>
 					초기설정은 사용되는 모습을 보여드리기 위해 고도의 페이지를 임시로 넣어드렸습니다. 수정하여 사용하세요.<br/><br/>
 					<br/>
 					<b>테두리 색상 조절 </b><br/>
-					테두리를 강조하고 싶으면 RGB 색상값을 지정하여 넣고, 테두리를 감추고 싶으면 스킨의 배경색과 동일한  
+					테두리를 강조하고 싶으면 RGB 색상값을 지정하여 넣고, 테두리를 감추고 싶으면 스킨의 배경색과 동일한
 					색상으로(예를 들어 흰색 #FFFFFF) 설정하세요.
 				</div>
 			</td>
@@ -133,7 +133,7 @@ $fb = new Facebook();
 		<tr>
 			<td>댓글</td>
 			<td >
-				<input type="radio" name="useYn" value="y" style="border:none" <?if($fb->cmtUseYn=='y')echo 'checked';?> />사용함 <input type="radio" name="useYn" value="n" style="border:none" <?if($fb->cmtUseYn=='n')echo 'checked';?> />사용안함	 
+				<input type="radio" name="useYn" value="y" style="border:none" <?if($fb->cmtUseYn=='y')echo 'checked';?> />사용함 <input type="radio" name="useYn" value="n" style="border:none" <?if($fb->cmtUseYn=='n')echo 'checked';?> />사용안함
 			</td>
 		</tr>
 		<tr>
@@ -142,7 +142,7 @@ $fb = new Facebook();
 		</tr>
 		<tr>
 			<td>가로 폭</td>
-			<td><input type="text" value="<?=$fb->cmtWidth?>" name="width" class="line" size="10" onkeypress="NumObj(this);" style="ime-mode:disabled;"  /> px 
+			<td><input type="text" value="<?=$fb->cmtWidth?>" name="width" class="line" size="10" onkeypress="NumObj(this);" style="ime-mode:disabled;"  /> px
 			<div class="extext">최소 권장 너비는 470px입니다.</div>
 			</td>
 		</tr>
@@ -151,7 +151,7 @@ $fb = new Facebook();
 			<td><a href="javascript:clipboard('{facecmt}')">{facecmt}</a>
 			<div class="extext">댓글을 지정한 위치 이외에 넣고 싶을 경우,&nbsp;&nbsp;스킨에 치환코드를 삽입하세요.</div>
 			</td>
-		</tr> 
+		</tr>
 	</table>
 	<div style="padding-top:10px;padding-left:200px">
 		<input type="image" src="../img/btn_save.gif" style="border:0" />
@@ -215,7 +215,7 @@ function NumObj(sip)
 {
 	if (event.keyCode >= 48 && event.keyCode <= 57) { //숫자키만 입력
 		return true;
-	} 
+	}
 	else {
 		 alert("숫자만 기입하세요");
 		 event.returnValue = false;

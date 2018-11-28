@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.7 2017/03/04 00:10:17 /www/jbsinttr8192_godo_co_kr/shop/data/skin_mobileV2/light/ord/order.htm 000038129 */ 
+<?php /* Template_ 2.2.7 2018/03/05 19:02:59 /www/jbsinttr8192_godo_co_kr/shop/data/skin_mobileV2/light/ord/order.htm 000038892 */ 
 if (is_array($TPL_VAR["list"])) $TPL_list_1=count($TPL_VAR["list"]); else if (is_object($TPL_VAR["list"]) && in_array("Countable", class_implements($TPL_VAR["list"]))) $TPL_list_1=$TPL_VAR["list"]->count();else $TPL_list_1=0;
 if (is_array($GLOBALS["r_deli"])) $TPL__r_deli_1=count($GLOBALS["r_deli"]); else if (is_object($GLOBALS["r_deli"]) && in_array("Countable", class_implements($GLOBALS["r_deli"]))) $TPL__r_deli_1=$GLOBALS["r_deli"]->count();else $TPL__r_deli_1=0;?>
 <?php $this->print_("header",$TPL_SCP,1);?>
@@ -233,6 +233,23 @@ section#nm_order #couponListTable td:nth-child(2) div.couponInfoOnlyBtn div.only
 			<textarea name="memo"><?php echo $TPL_VAR["memo"]?></textarea>
 		</td>
 	</tr>
+	<tr>
+		<th>모터사이클</th>
+		<td><span>기종: </span><input type=text name=memoModel placeholder="예)BMW S1000R" style="display:inline;width:50%"><br>
+		<span>연식: </span>
+		<input type=text name=memoModelYear placeholder="예)2018" style="display:inline;width:50%"></td>
+	</tr>
+	<tr>
+		<th>어패럴 치수</th>
+		<td><span>자켓용 허리둘레: </span><input type=text name=memoJacket placeholder="예)100" style="display:inline;width:30%"><span>&nbsp;cm</span><br>
+		<span>팬츠용 허리둘레: </span><input type=text name=memoPants placeholder="예)100" style="display:inline;width:30%"><span>&nbsp;cm</span></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<span style="color:#FF6C68;"> ※ 정확한 주문을 원하시면 바이크 정보와 치수를 입력하여 주시기 바랍니다.</span>
+		</td>
+	</tr>
+
 	<tr id="delivery_check" style="display:none;">
 		<th>회원정보<br/>반영</th>
 		<td>
@@ -438,7 +455,7 @@ $(function () {
                 //checked
             }
             else {
-                
+
                 //not checked
             }
 
@@ -660,7 +677,7 @@ function copy_field()
 
 	getDelivery();
 }
-function last_field() 
+function last_field()
 {
 	var form = document.frmOrder;
 	form.nameReceiver.value = "<?php echo $TPL_VAR["last_name"]?>";

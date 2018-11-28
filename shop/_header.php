@@ -1,9 +1,9 @@
 <?
 
-@include dirname(__FILE__) . "/lib/library.php";
+@include_once dirname(__FILE__) . "/lib/library.php";
 @include dirname(__FILE__) . "/Template_/Template_.class.php";
-@include dirname(__FILE__) . "/conf/config.php";
-@include dirname(__FILE__) . "/lib/tplSkinView.php";
+@include_once dirname(__FILE__) . "/conf/config.php";
+@include_once dirname(__FILE__) . "/lib/tplSkinView.php";
 @include dirname(__FILE__) . "/conf/design_dir.php";
 @include dirname(__FILE__) . "/conf/design_skin_" . $cfg['tplSkin'] . ".php";
 @include dirname(__FILE__) . "/conf/design_skinToday_" . $cfg['tplSkinToday'] . ".php";
@@ -207,7 +207,9 @@ $tpl->assign('setState', $setGoodsConfig['state']);
 
 { // File Key
 
-	$key_file = preg_replace( "'^.*$cfg[rootDir]/'si", "", $_SERVER['SCRIPT_NAME'] );
+	$key_file = $_SERVER['SCRIPT_NAME'];
+	if ($mainpage === true && $skin_key_file != '') $key_file = $skin_key_file;
+	$key_file = preg_replace( "'^.*$cfg[rootDir]/'si", "", $key_file );
 	$key_file = preg_replace( "'\.php$'si", ".htm", $key_file );
 
 	if ( ( $key_file == 'main/html.htm' || $key_file == 'todayshop/html.htm' ) && $_GET['htmid'] != '' ) $key_file = $_GET['htmid'];
@@ -251,14 +253,14 @@ if($cfg[custom_landingpage] > 1 && !preg_match( "/main\/intro*/", $key_file) && 
 	$auth_date = getAdultAuthDate($session->m_id);
 	$auth_date = $auth_date['auth_date'];
 	$current_date = date("Y-m-d");
-	$auth_period = strtotime("+1 years", strtotime($auth_date)); 
+	$auth_period = strtotime("+1 years", strtotime($auth_date));
 	$auth_period = date("Y-m-d", $auth_period);
-	
+
 	if ($cfg[custom_landingpage] == 2 && !Clib_Application::session()->isAdult() && !$sess) {	// 성인 or 회원
 		header('location:'.$cfg[rootDir].'/main/intro_adult.php?returnUrl=' . $returnUrl . ($_SERVER['QUERY_STRING'] ? '&'.$_SERVER['QUERY_STRING'] : ''));
 	}
 	else if ($cfg[custom_landingpage] == 2 && $sess && ($auth_date == '0000-00-00' || $current_date > $auth_period) && ((int)($session->level) < 80)) {	// 회원 성인인증기간(adult_date) 경과 검증
-		header('location:'.$cfg[rootDir].'/main/intro_adult_login.php?returnUrl=' . $returnUrl . ($_SERVER['QUERY_STRING'] ? '&'.$_SERVER['QUERY_STRING'] : '')); 
+		header('location:'.$cfg[rootDir].'/main/intro_adult_login.php?returnUrl=' . $returnUrl . ($_SERVER['QUERY_STRING'] ? '&'.$_SERVER['QUERY_STRING'] : ''));
 	}
 	elseif ($cfg[custom_landingpage] == 3 && !$sess) {	// 회원
 		header('location:'.$cfg[rootDir].'/main/intro_member.php?returnUrl=' . $returnUrl . ($_SERVER['QUERY_STRING'] ? '&'.$_SERVER['QUERY_STRING'] : ''));

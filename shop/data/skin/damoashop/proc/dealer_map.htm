@@ -1,0 +1,168 @@
+{*** 딜러샵 지도 | main/html.php?htmid=proc/dealer_map.htm ***}
+{ # header }
+<?php
+/*
+include_once("/shop/conf/db.conf.php");
+
+$con = mysqli_connect($db_host,$db_user,$db_pass,$db_name);
+
+if (mysqli_connect_errno($con)){
+    echo "DB 연결 실패:" . mysqli_connect_error(); //연결실패문구와 실패원인
+}else{
+    echo "DB 연결 성공 <br>" ;
+}
+
+
+$sql= "SELECT * FROM board";
+$result = mysqli_query($con,$sql);
+
+
+  if($result){
+           echo "조회된 행의 수 : ".mysqli_num_rows($result)."<br>";
+
+              while($row = mysqli_fetch_assoc($result)) {
+                   printf($row["board_list}",$row['tit']);
+               }
+           //결과해제
+          mysqli_free_result($result)
+     }else{
+      echo "Error :" . mysqli_error($db_conn);
+     }
+*/
+
+?>
+<script>
+var mCompany;
+var mName;
+var mMobile;
+var mAddress;
+var mInfoArr = new Array();
+<!--{@ mbInfo}-->
+   mCompany = '{mbInfo.company}';
+   mName = '{mbInfo.name}';
+   mMobile = '{mbInfo.mobile}';
+   mAddress = '{mbInfo.address}'+'{mbInfo.address_sub}';
+   mInfoArr['{.index_}'] = [mCompany,mAddress,mName,mMobile];
+<!--{/}-->
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbIoOQH1zDmI32bxqlvyMv35fZofWpugs&callback=initialize" async defer></script>
+<script>
+     function initialize() {
+       //global mInfoArr;
+       var mylat = "";
+       var mylong = "";
+        navigator.geolocation.getCurrentPosition(function(pos) {
+          mylat = pos.coords.latitude;
+          mylong = pos.coords.longitude;
+
+        });
+        //37.486720, 126.892103
+        //var myLatLng = new google.maps.LatLng(mylat, mylong);
+        var myLatLng = new google.maps.LatLng('37.486720', '126.892103');
+
+        var mapOptions = {
+                            zoom: 10, // 지도를 띄웠을 때의 줌 크기
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+
+                        };
+
+
+        var map = new google.maps.Map(document.getElementById("google_map"), // div의 id과 값이 같아야 함. "map-canvas"
+                                    mapOptions);
+
+        var size_x = 40; // 마커로 사용할 이미지의 가로 크기
+        var size_y = 40; // 마커로 사용할 이미지의 세로 크기
+        var myMarker = new google.maps.Marker({
+                map: map,
+          //icon: image, // 마커로 사용할 이미지(변수)
+                icon: {
+                    labelOrigin: new google.maps.Point(11, 22),
+                    url: '//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
+                    size: new google.maps.Size(22, 22),
+                    origin: new google.maps.Point(0, 18),
+                    anchor: new google.maps.Point(11, 11),
+                    },
+                label: {
+                    color: 'blue',
+                    fontWeight: 'bold',
+                    text: '바이크온라인'
+                    },
+          //label: company[i][0], // 마커에 마우스 포인트를 갖다댔을 때 뜨는 타이틀
+                position: myLatLng
+              });
+        // 마커로 사용할 이미지 주소
+		 var image = new google.maps.MarkerImage( 'http://www.bikeonline.co.kr/shop/data/skin/damoashop/img/map/marker.png',
+                                                    '',
+                                                    '',
+                                                    '',
+                                                    new google.maps.Size(size_x, size_y));
+		  // Geocoding *****************************************************
+		var geocoder = new google.maps.Geocoder();
+    var j = 0;
+		for(var i=0; i < mInfoArr.length; i++){
+      //(function(i) {
+
+			geocoder.geocode( { 'address': mInfoArr[i][1]},(function(i) {return function(results, status) {
+        j = i;
+      		if (status == google.maps.GeocoderStatus.OK) {
+						//map.setCenter(results[0].geometry.location);
+            map.setCenter(myLatLng);
+						var marker = new google.maps.Marker({
+										map: map,
+										icon: {
+												labelOrigin: new google.maps.Point(11, 40),
+												url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+												size: new google.maps.Size(32, 32),
+												origin: new google.maps.Point(0, 0),
+												anchor: new google.maps.Point(11, 40),
+											  },
+										label: {
+												color: 'red',
+												fontWeight: 'bold',
+												text: mInfoArr[i][0]
+											  },
+										position: results[0].geometry.location
+									});
+
+						var infowindow = new google.maps.InfoWindow({ content: mInfoArr[i][0]+'<br/>담당자:'+mInfoArr[i][2]+'<br/>Tel:'+mInfoArr[i][3]});
+						google.maps.event.addListener(marker, "click", function() {infowindow.open(map,marker);});
+						//infowindow.open(map,marker);
+          } else if (status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+            /*setTimeout(geocoder.geocode( { 'address': mInfoArr[j][1]},(function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+    						//map.setCenter(results[0].geometry.location);
+                map.setCenter(myLatLng);
+    						var marker = new google.maps.Marker({
+    										map: map,
+    										icon: {
+    												labelOrigin: new google.maps.Point(11, 40),
+    												url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+    												size: new google.maps.Size(32, 32),
+    												origin: new google.maps.Point(0, 0),
+    												anchor: new google.maps.Point(11, 40),
+    											  },
+    										label: {
+    												color: 'red',
+    												fontWeight: 'bold',
+    												text: mInfoArr[i][0]
+    											  },
+    										position: results[0].geometry.location
+    									});
+
+    						var infowindow = new google.maps.InfoWindow({ content: mInfoArr[j][0]+'<br/>담당자:'+mInfoArr[j][2]+'<br/>Tel:'+mInfoArr[j][3]});
+    						google.maps.event.addListener(marker, "click", function() {infowindow.open(map,marker);});
+              }
+            })),1000);
+            */
+
+					} else {
+						alert("Geocode was not successful for the following reason: " + status);
+					}
+        }
+      }) (i));
+
+    }
+  }
+    </script>
+<div id="google_map" style="width:790px; height:790px;"></div>
+{ # footer }

@@ -8,6 +8,13 @@ include dirname(__FILE__) . "/../_header.php";
 @include $shopRootDir . "/lib/cart.class.php";
 @include $shopRootDir . "/conf/config.pay.php";
 //$_POST = utf8ToEuckr($_POST);
+//###주문번호 오류발생시 주문번호 재생성 by jung
+if(strlen($_POST['ordno']) !== '13') {
+
+### 주문번호 생성
+$_POST['ordno'] = getordno();
+}
+//###주문번호 재생성 끝
 if(method_exists('validation','xssCleanArray')){
 	$_POST = validation::xssCleanArray($_POST, array(
 		validation::DEFAULT_KEY => 'text',

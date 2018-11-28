@@ -131,6 +131,53 @@ switch ($mode){
 		$qfile->write("?>");
 		$qfile->close();
 
+		// 도메인 고정 설정시 htaccess 파일 생성
+		$htaccessContents = '';
+		$htaccessPath = '../../../.htaccess';
+		if ($cfg['fixDomain'] == '1') {
+			$htaccessContents .= "<IfModule mod_rewrite.c>\n";
+			$htaccessContents .= "RewriteEngine on\n";
+			$htaccessContents .= "RewriteBase /\n";
+			$htaccessContents .= "RewriteCond %{REQUEST_URI} =/index.php\n";
+			$htaccessContents .= "RewriteRule ^index.php ".$cfg['rootDir']."/main/index.php [L]\n";
+			$htaccessContents .= "RewriteRule ^data/goods/(.*)$ ".$cfg['rootDir']."/data/goods/$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^setGoods/(.*)$ ".$cfg['rootDir']."/setGoods/$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^goods/goods_view.php(.*)$ ".$cfg['rootDir']."/goods/goods_view.php$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^proc/popup_email.php(.*)$ ".$cfg['rootDir']."/proc/popup_email.php$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^partner/(.*)$ ".$cfg['rootDir']."/partner/$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^skin/(.*)$ ".$cfg['rootDir']."/data/skin/$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^mypage/mypage_coupon.php ".$cfg['rootDir']."/mypage/mypage_coupon.php [R]\n";
+			$htaccessContents .= "RewriteRule ^html.php(.*)$ ".$cfg['rootDir']."/main/html.php$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^proc/multipopup_data.php(.*)$ ".$cfg['rootDir']."/proc/multipopup_data.php$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^proc/multipopup_content.php(.*)$ ".$cfg['rootDir']."/proc/multipopup_content.php$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^data/skin/(.*)$ ".$cfg['rootDir']."/data/skin/$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^member/login.php(.*)$ ".$cfg['rootDir']."/member/login.php$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^goods/goods_cart.php(.*)$ ".$cfg['rootDir']."/goods/goods_cart.php$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^mypage/mypage_wishlist.php(.*)$ ".$cfg['rootDir']."/mypage/mypage_wishlist.php$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^mypage/mypage_today.php(.*)$ ".$cfg['rootDir']."/mypage/mypage_today.php$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^order/order.php(.*)$ ".$cfg['rootDir']."/order/order.php$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^lib/js/ierotator.js ".$cfg['rootDir']."/lib/js/ierotator.js [R]\n";
+			$htaccessContents .= "RewriteRule ^lib/js/ierotator/(.*)$ ".$cfg['rootDir']."/lib/js/ierotator/$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^data/scriptrotator/(.*)$ ".$cfg['rootDir']."/data/scriptrotator/$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^data/category/(.*)$ ".$cfg['rootDir']."/data/category/$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^data/my_icon/(.*)$ ".$cfg['rootDir']."/data/my_icon/$1 [R]\n";
+			$htaccessContents .= "RewriteRule ^proc/indb.cart.tab.php(.*)$ ".$cfg['rootDir']."/proc/indb.cart.tab.php$1 [L]\n";
+			$htaccessContents .= "</IfModule>\n";
+
+			$qfile->open($htaccessPath);
+			$qfile->write($htaccessContents);
+			$qfile->close();
+
+			$config_bgm = array(
+				'urlFix'=>'n'
+			);
+			$config->save('bgm',$config_bgm);
+		}
+		else {
+			$qfile->open($htaccessPath);
+			$qfile->write($htaccessContents);
+			$qfile->close();
+		}
 		break;
 
 	case "delivery":
@@ -430,7 +477,7 @@ switch ($mode){
 
 	case "cartSet" :
 		include '../../conf/config.cart.php';
-		
+
 		// 인감 삭제
 		if ($_POST['sealDel'] === 'Y') {
 				unlink('../..'.$cartCfg['estimateSeal']);

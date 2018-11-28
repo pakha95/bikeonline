@@ -40,6 +40,12 @@ $checked[priodtype][$data[priodtype]] = "checked";
 $checked[eactl][$data[eactl]] = "checked";
 $checked[duplctl][$data[duplctl]] = "checked";
 $checked[payMethod][$data[payMethod]] = "checked";
+if($_GET[mode] == 'register_mobile'){
+	$checked['coupon_expireSms']['1'] = "checked";
+}
+else {
+	$checked['coupon_expireSms'][$data['coupon_expireSms']] = "checked";
+}
 
 $selected['perc'][$perc] = "selected";
 
@@ -318,6 +324,13 @@ function coupon_img_upload(){
 	<td><input type=radio name="payMethod" value="0" class=null <?=$checked['payMethod'][0]?>> 결제수단 상관 없음
 	<input type=radio name="payMethod" value="1" class=null <?=$checked['payMethod'][1]?>> 무통장 입금에서만 사용가능
 	<div><font class="extext">무통장 입금에서만 쿠폰 사용 가능하도록 제한하는것은 여신전문금융업법에 저촉 될 수 있습니다.</font> &nbsp;<a href="javascript:popupLayer('../event/popup.credit_financial_law.php',750,430);"><font class="extext_l">[자세히 보기]</font></a></div>
+	</td>
+	</tr>
+	<tr>
+	<td>사용기간 만료시<div style="margin-left: 1px;">SMS 발송</div></td>
+	<td>
+		<input type="checkbox" name="coupon_expireSms" value="1" <?php echo $checked['coupon_expireSms']['1']; ?> /> 쿠폰 사용 가능일 만료 전에 회원들에게 안내 SMS를 발송합니다.
+		<div class="extext" style="margin: 3px 0px 0px 4px;">안내 SMS 사용 설정은 <a href="../member/sms.auto.php" target="_blank"><span class="extext" style="font-weight: bold;">[SMS설정 > SMS 자동발송/설정]</span></a>에서 가능합니다.</div>
 	</td>
 </tr>
 </table>

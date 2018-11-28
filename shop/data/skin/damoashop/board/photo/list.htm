@@ -47,11 +47,14 @@
 		<!--{ ? _bdListImg == 2 }-->
 			{.link.view}
 		<!--{ : .imgContents }-->
-			<a href="javascript:popupImg('{.imgContents}')"><img src="{.imgContents}" width="{ = .imgSizeW }" height="{ = .imgSizeH }" onerror=this.src="img/noimg.gif" style="border:1 solid #efefef;padding:1px"></a>
+			<a href="javascript:popupImg('{.imgContents}')">
 		<!--{ : .imgnm }-->
-			<a href="javascript:popupImg('../data/board/{id}/{.imgnm}')"><img src="../data/board/{id}/t/{.imgnm}" width="{ = .imgSizeW }" height="{ = .imgSizeH }" onerror=this.src="img/noimg.gif" style="border:1 solid #efefef;padding:1px"></a>
-		<!--{ :  }-->
-			<img src="img/noimg.gif" width="{ = .imgSizeW }" height="{ = .imgSizeH }" style="border:1 solid #efefef;padding:1px">
+		<a href="javascript:popupImg('../data/board/{id}/{.imgnm}')">
+		<!--{ / }-->
+		<!--{ ? .imgContents }-->
+		<img src="{.imgContents}" width="{ = .imgSizeW }" height="{ = .imgSizeH }" onerror=this.src="img/noimg.gif" style="border:1 solid #efefef;padding:1px"></a>
+		<!--{ : }-->
+		<img src="../data/board/{id}/t/{.imgnm}" width="{ = .imgSizeW }" height="{ = .imgSizeH }" onerror=this.src="img/noimg.gif" style="border:1 solid #efefef;padding:1px"></a>
 		<!--{ / }-->
 		</td>
 		<td width=100% style="padding-left:10px">

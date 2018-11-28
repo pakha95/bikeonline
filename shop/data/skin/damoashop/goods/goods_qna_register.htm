@@ -128,7 +128,7 @@ function chkEncoding(form) {
 	<tr>
 		<td style="border:3px solid #F3F3F3; padding:5 5 5 5" align="center">
 
-		<table id="form" cellpadding="5" cellspacing="0 border="0">
+		<table id="form" cellpadding="5" cellspacing="0" border="0">
 		<col width=60>
 		<tr>
 			<td class="input_txt" align="right">작성자</td>
@@ -149,11 +149,17 @@ function chkEncoding(form) {
 			<td class="input_txt" align="right">문자메시지</td>
 			<td><input type=text name=phone style="width:100" label="문자메시지" value="{_data.phone}">  <label class="noline"><input type="checkbox" name="rcv_sms" value="1"<!--{ ? _data.rcv_sms }--> checked<!--{ / }-->> 받습니다.</label></td>
 		</tr>
-		<!--{ ? _cfg.qnaSecret == 'secret' // 비밀글 }-->
+		<!--{ ? _cfg.qnaSecret == 'secret' && _data['sno'] == _data['parent'] && _mode != 'reply_qna'  // 비밀글 }-->
 		<tr><td colspan=2 height=1 bgcolor="#DEDEDE" style="padding:0"></td></tr>
 		<tr>
 			<td class="input_txt" align="right">비밀글</td>
 			<td class="noline"><input type="checkbox" name="secret" value="1"{_data.chksecret}> 비밀글</td>
+		</tr>
+		<!--{ : _cfg.qnaSecret == 'secret' && _data['parentSecret'] == '1' && (_mode == 'reply_qna' || (_mode == 'mod_qna' && _data['sno'] != _data['parent'])) }-->
+		<tr><td colspan=2 height=1 bgcolor="#DEDEDE" style="padding:0"></td></tr>
+		<tr>
+			<td class="input_txt" align="right">비밀글</td>
+			<td class="noline"><font color="E600A9">* 비밀글로 작성된 글입니다. 답변도 비밀글로 작성됩니다.</font></td>
 		</tr>
 		<!--{ / }-->
 		<tr><td colspan=2 height=1 bgcolor="#DEDEDE" style="padding:0"></td></tr>

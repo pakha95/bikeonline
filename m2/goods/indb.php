@@ -43,7 +43,7 @@ if($_POST['encode'] == 'cp') {
 	$_POST['subject'] = validation::xssClean($_POST['subject'], 'html', 'ent_quotes');
 	$_POST['contents'] = validation::xssClean($_POST['contents'], 'html', 'ent_quotes');
 	$_POST['name'] = validation::xssClean($_POST['name'], 'html', 'ent_quotes');
-	
+
 	$regCP949 = '/([\x81-\xA0][\x41-\x5A\x61-\x7A\x81-\xFE])|([\xA1-\xC5][\x41-\x5A\x61-\x7A\x81-\xA0])|([\xC6][\x41-\x52])/';
 	$strInput = $_POST['subject'].$_POST['contents'].$_POST['name'];
 
@@ -102,16 +102,24 @@ switch($mode) {
 			rcv_sms		= '$_POST[rcv_sms]',
 			rcv_email	= '$_POST[rcv_email]'
 		";
-		$db->query($query);
+		$result = $db->query($query);
 
 		$db->query("update ".GD_GOODS_QNA." set parent=sno where sno='" . $db->lastID() . "'");
-		//무료보안서버
-		//$write_end_url = $sitelink->link("goods/indb.php?mode=add_qna_end","regular");
+
+		//상품 문의글 등록 시 SMS 발송
+		if($result){
+			$GLOBALS['dataSms']['name'] = $_POST[name];
+			$GLOBALS['dataSms']['boardName'] = "상품문의";
+			sendSmsCase('qna_register', "");
+		}
+
 		if($_POST['goodsno']){
-			$redirectUrl = '../goods/view.php?goodsno='.$_POST['goodsno'].'&view_area=qna';
+			//무료보안서버
+			$redirectUrl = $sitelink->link_mobile("goods/view.php?goodsno=".$_POST['goodsno']."&view_area=qna","regular");
 		}
 		else{
-			$redirectUrl = '../goods/goods_qna_list.php?isAll='.$_POST['isAll'];
+			//무료보안서버
+			$redirectUrl = $sitelink->link_mobile("goods/goods_qna_list.php?isAll=".$_POST['isAll'],"regular");
 		}
 		msg('정상적으로 등록되었습니다', $redirectUrl);
 		exit;
@@ -155,7 +163,6 @@ switch($mode) {
 			msg("권한이 없습니다.",-1);
 			exit;
 		}
-
 		daum_goods_review($sno);	// 다음 상품평 DB 저장
 		$query = "delete from ".GD_GOODS_REVIEW." where sno = '$sno'";
 		$db->query($query);

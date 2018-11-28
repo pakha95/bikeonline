@@ -1,9 +1,9 @@
-<?php /* Template_ 2.2.7 2017/10/31 18:44:26 /www/jbsinttr8192_godo_co_kr/shop/data/skin_mobileV2/light/goods/list/tpl_01.htm 000005718 */ 
+<?php /* Template_ 2.2.7 2018/10/05 19:53:30 /www/jbsinttr8192_godo_co_kr/shop/data/skin_mobileV2/light/goods/list/tpl_01.htm 000005178 */ 
 if (is_array($TPL_VAR["loop"])) $TPL_loop_1=count($TPL_VAR["loop"]); else if (is_object($TPL_VAR["loop"]) && in_array("Countable", class_implements($TPL_VAR["loop"]))) $TPL_loop_1=$TPL_VAR["loop"]->count();else $TPL_loop_1=0;?>
 <?php if($TPL_loop_1){foreach($TPL_VAR["loop"] as $TPL_V1){?>
 <div class="goods-list-item">
 	<div class="goods-list-img">
-		<!-- <a href="<?php echo $TPL_VAR["goods_src"]?>&amp;goodsno=<?php echo $TPL_V1["goodsno"]?>"><?php echo $TPL_V1["img_html"]?></a>-->
+
 		<a href="#" onclick="goGoods(<?php echo $TPL_V1["goodsno"]?>)"><?php echo $TPL_V1["img_html"]?></a>
 <?php if($TPL_V1["tts_url"]){?>
 		<div class="goods-speach-description">
@@ -13,13 +13,13 @@ if (is_array($TPL_VAR["loop"])) $TPL_loop_1=count($TPL_VAR["loop"]); else if (is
 <?php }?>
 	</div>
 	<div class="goods-list-info">
-	<!-- <a href="<?php echo $TPL_VAR["goods_src"]?>&amp;goodsno=<?php echo $TPL_V1["goodsno"]?>"> -->
+
 		<a href="#" onclick="goGoods(<?php echo $TPL_V1["goodsno"]?>)">
 			<div class="goods-nm"><?php echo $TPL_V1["goods_prefix"]?><?php echo $TPL_V1["goodsnm"]?></div>
 <?php if($TPL_V1["strprice"]){?>
 			<div class="goods-price">상품가격 : <span class="red"><?php echo $TPL_V1["strprice"]?></span></div>
 <?php if($TPL_V1["reserve"]){?>
-			<!-- <div class="goods-reserve">적립금 : <?php echo number_format($TPL_V1["reserve"])?>원</div> -->
+
 <?php }?>
 <?php }elseif($TPL_V1["goodsDiscountPrice"]){?>
 <?php if($TPL_V1["oriPrice"]){?>
@@ -51,7 +51,7 @@ if (is_array($TPL_VAR["loop"])) $TPL_loop_1=count($TPL_VAR["loop"]); else if (is
 <?php }?>
 
 <?php if($TPL_V1["reserve"]){?>
-			<!-- <div class="goods-reserve">적립금 : <?php echo number_format($TPL_V1["reserve"])?>원</div> -->
+
 <?php }?>
 <?php }elseif($TPL_V1["price"]){?>
 <?php if(!$TPL_V1["strprice"]){?>
@@ -95,7 +95,7 @@ if (is_array($TPL_VAR["loop"])) $TPL_loop_1=count($TPL_VAR["loop"]); else if (is
 			<div class="goods-coupon-price" style="display: none;">쿠폰할인 : <span class="red"><?php echo number_format($TPL_V1["coupon"])?>원</span> <div class="goods-coupon-icon"></div></div>
 <?php }?>
 <?php if($TPL_V1["reserve"]){?>
-			<!-- <div class="goods-reserve">적립금 : <?php echo number_format($TPL_V1["reserve"])?>원</div> -->
+
 <?php }?>
 <?php }else{?>
 			<div class="goods-price"></div>

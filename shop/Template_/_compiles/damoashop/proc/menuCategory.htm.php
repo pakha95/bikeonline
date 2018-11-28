@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.7 2017/12/04 18:14:21 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/proc/menuCategory.htm 000007880 */  $this->include_("dataCategory");?>
+<?php /* Template_ 2.2.7 2018/03/16 21:20:23 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/proc/menuCategory.htm 000007802 */  $this->include_("dataCategory");?>
 <div id="left_cate">
 	<div><img src="/shop/data/skin/damoashop/img/main/shopping.gif"></div>
 <?php if($GLOBALS["cfg"]["subCategory"]!= 2){?>
@@ -30,11 +30,11 @@
 									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=<?php echo $TPL_V2["category"]?>&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
 <?php }elseif($TPL_V1["category"]=='004'){?>
 <?php if($TPL_V2["category"]=='004076'){?>
-									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=024010&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
+									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=004076&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
 <?php }elseif($TPL_V2["category"]=='004080'){?>
 									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=031005&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
 <?php }elseif($TPL_V2["category"]=='004081'){?>
-									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=024001&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
+									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=004081&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
 <?php }elseif($TPL_V2["category"]=='004082'){?>
 									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=024002&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
 <?php }elseif($TPL_V2["category"]=='004086'){?>
@@ -50,13 +50,13 @@
 <?php }elseif($TPL_V2["category"]=='004077'){?>
 									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=024006&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
 <?php }elseif($TPL_V2["category"]=='004085'){?>
-									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=024007&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
+									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=004085&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
 <?php }elseif($TPL_V2["category"]=='004078'){?>
-									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=024008&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
+									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=004078&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
 <?php }elseif($TPL_V2["category"]=='004079'){?>
 									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=024009&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
 <?php }elseif($TPL_V2["category"]=='004089'){?>
-									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=027007005&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
+									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=004089&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
 <?php }elseif($TPL_V2["category"]=='004090'){?>
 									<td nowrap class="cate"><a href="<?php echo url("goods/goods_list.php?")?>&category=055002&sort=goodsnm" class="cate2"><?php echo $TPL_V2["catnm"]?></a></td>
 <?php }elseif($TPL_V2["category"]=='004102'){?>

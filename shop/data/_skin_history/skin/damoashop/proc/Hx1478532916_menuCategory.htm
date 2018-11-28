@@ -1,0 +1,103 @@
+{*** 카테고리메뉴 | proc/menuCategory.php ***}
+<div id="left_cate">
+	<div><img src="../img/main/shopping.gif"></div>
+	<!--{ ? _cfg.subCategory != 2 // 1단 또는 서브레이어 출력 유형 }-->
+	<table width="100%" cellpadding=0 cellspacing=0 border=0 id="menuLayer">
+		<!--{ @ dataCategory( _cfg.subCategory, 1 ) }-->
+		<tr>
+		<!--{? .category == '050' ||.category == '002' }-->
+			<td class="catebar"><a href="../goods/goods_list.php?category={.category}&sort=goodsnm" class="cate1">{.catnm}</a></td>
+			<td class="catebar"><img src="/shop/data/category/051_basic.jpg"></td>
+		<!--{:}-->
+			<td class="catebar"><a href="../goods/goods_list.php?category={.category}&sort=goodsnm" class="cate1">{.catnm}</a></td>
+		<!--{/}-->
+			<td style="z-index:100"> 
+				<!--{ ? .sub }-->
+				<div style="position:relative">
+					<div class=subLayer>
+						<table width=100% cellspacing=1 id="table_cate">
+							<!--{ @ .sub }-->
+							<tr>
+							<!--{? .category == '050'||.category == '002' }-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category={..category}&sort=goodsnm" class="cate2">{..catnm}</a></td>
+									
+							<!--{: .category == '004'}-->
+								<!--{? ..category == '004076'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=024010&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004080'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=031005&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004081'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=024001&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004082'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=024002&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004086'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=024012&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004088'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=031006&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004083'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=024004&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004084'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=024005&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004087'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=024011&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004077'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=024006&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004085'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=024007&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004078'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=024008&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004079'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=024009&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004089'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=027007005&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004090'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=055002&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{: ..category == '004102'}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category=025015&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{:}-->
+									<td nowrap class="cate"><a href="../goods/goods_list.php?category={..category}&sort=goodsnm" class="cate2">{..catnm}</a></td>
+								<!--{/}-->
+							<!--{:}-->
+								<td nowrap class="cate"><a href="../goods/goods_list.php?category={..category}&sort=goodsnm" class="cate2">{..catnm}</a></td>
+							<!--{/}-->
+							</tr>
+							<!--{ / }-->
+						</table>
+					</div>
+				</div>
+				<!--{ / }--> 
+			</td>
+		</tr>
+		<!--{ / }-->
+	</table>
+	<!--{ ? _cfg.subCategory }--> 
+	<script>execSubLayer();</script> 
+	<!--{ / }--> 
+	
+	<!--{ : // 1,2단 동시 메뉴 출력 유형 }-->
+	<table width=100% cellpadding=0 cellspacing=0 class="cateUnfold">
+		<!--{ @ dataCategory( _cfg.subCategory, 1 ) }-->
+		<tr>
+		<!--{? .category == '050' ||.category == '002' }-->
+			<td class="catebar"><a href="../goods/goods_list.php?category={.category}&sort=goodsnm">{.catnm}</a></td>
+		<!--{:}-->
+			<td class="catebar"><a href="../goods/goods_list.php?category={.category}&sort=goodsnm">{.catnm}</a></td>
+		<!--{/}-->
+		</tr>
+		<!--{ ? .sub }-->
+		<tr>
+			<td class="catesub">
+				<table>
+					<!--{ @ .sub }-->
+					<tr>
+						<td class="cate"><a href="../goods/goods_list.php?category={..category}&sort=goodsnm">{..catnm}</a></td>
+					</tr>
+					<!--{ / }-->
+				</table>
+			</td>
+		</tr>
+		<!--{ / }--> 
+		<!--{ / }-->
+	</table>
+	<!--{ / }--> 
+</div>

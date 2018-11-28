@@ -7,6 +7,16 @@ include "../_header.php";
 if(!$cfg['counterYN']) $cfg['counterYN'] = 1;
 $checked['counterYN'][$cfg['counterYN']] = 'checked';
 
+if(!$cfg['fixDomain']) $cfg['fixDomain'] = 0;
+$checked['fixDomain'][$cfg['fixDomain']] = 'checked';
+
+$htaccessPath = '../../../.htaccess';
+$disabled['fixDomain'] = '';
+$perms = substr( sprintf('%o', fileperms($htaccessPath)), -3);
+if (file_exists($htaccessPath) !== true || $perms !== '707') {
+	$disabled['fixDomain'] = 'disabled="true"';
+}
+
 $cfgCompany = @array_map('stripslashes', (array)$cfgCompany);
 $cfg['customerHour'] = preg_replace("/<br \/>/","\r\n",$cfg['customerHour']);
 ?>
@@ -144,6 +154,20 @@ function chkForm2(fm)
 <tr>
 	<td>검색엔진 키워드</td>
 	<td><input type=text name=keywords value="<?=$cfg[keywords]?>" style="width:100%"  class=line></td>
+</tr>
+</table>
+
+<div class=title>쇼핑몰 도메인 주소 고정<span>쇼핑몰 도메인 주소를 고정할 수 있는 기능의 사용여부를 설정합니다.</span> <a href="javascript:manual('<?=$guideUrl?>board/view.php?id=basic&no=2')"><img src="../img/btn_q.gif" border=0 align=absmiddle></a></div>
+<table class=tb>
+<col class=cellC><col class=cellL>
+<tr>
+	<td>도메인 주소<br>고정 설정</td>
+	<td class="noline">
+	<input type="radio" name="fixDomain" value="0" <?=$checked['fixDomain'][0]?> />미사용 <input type="radio" name="fixDomain" value="1" <?=$checked['fixDomain'][1]?> <?=$disabled['fixDomain']?>/>사용
+	<div class="extext" style="margin:3px 0 0 3px;line-height:150%">외부 검색사이트에서 쇼핑몰 검색 효율을 증대시키기 위한 기능으로 사용 선택 시, ‘http://godomall.co.kr/shop’ → ‘http://godomall.co.kr’로 주소가 고정됩니다.<br>단, 해당 기능을 사용할 경우 배경음악은 사용할 수 없습니다. (기본관리 > 배경음악 설정> 인터넷 주소 출력 에서 ‘도메인 주소 고정’ 을 선택할 수 없습니다.)</div>
+	<div class="extext" style="margin:3px 0 0 3px;line-height:150%"><font color='EA0095'><b>!주의!</b> 사용으로 설정 시 반드시 메인 페이지에서 사용하는 배너 등의 <b>링크 경로를 절대경로로 설정</b> 하셔야하며, <b>기존에 상대경로로 사용 중인 링크들도 모두 수정</b> 하셔야 합니다.<br>예) &nbsp(기존) . . /service/company.php → (도메인 고정 사용 시) /shop/service/company.php</font></div>
+	<? if ($disabled['fixDomain'] == 'disabled="true"') {?><div class="extext" style="margin:3px 0 0 3px;line-height:150%"><font color='red'><b>패치가 올바르게 적용이 되지 않을 경우 해당 문구가 보이게 됩니다. 올바르게 패치를 적용하려면 1:1문의로 요청하여 주시기 바랍니다.</b></font></div><?}?>
+	</td>
 </tr>
 </table>
 

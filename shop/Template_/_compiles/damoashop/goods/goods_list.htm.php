@@ -1,4 +1,4 @@
-<?php /* Template_ 2.2.7 2017/12/06 14:00:02 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/goods/goods_list.htm 000014682 */  $this->include_("dataSubCategory","dataDisplayGoods");?>
+<?php /* Template_ 2.2.7 2018/03/16 21:30:32 /www/jbsinttr8192_godo_co_kr/shop/data/skin/damoashop/goods/goods_list.htm 000014620 */  $this->include_("dataSubCategory","dataDisplayGoods");?>
 <?php $this->print_("header",$TPL_SCP,1);?>
 
 
@@ -29,7 +29,7 @@
 	<a href="http://www.remus.eu/" target="_blank"><img src="http://jbsinter2.godohosting.com/banner/remus_024006.png" style="width:100%" border="0" height=234 alt="remus_024006" /></a>
 <?php }?>
 <?php if($GLOBALS["category"]=="024007"){?>
-	<a href="http://www.termignoni.it/" target="_blank"><img src="http://jbsinter2.godohosting.com/banner/termignoni_024007.png" style="width:100%" border="0" height=234 alt="termignoni_024007" /></a>
+	<!-- <a href="http://www.termignoni.it/" target="_blank"> --><img src="http://jbsinter2.godohosting.com/banner/termignoni_024007.png" style="width:100%" border="0" height=234 alt="termignoni_024007" /></a>
 <?php }?>
 <?php if($GLOBALS["category"]=="004051"){?>
 	<!-- <a href="http://www.touratech-usa.com/" target="_blank"><img src="http://jbsinter2.godohosting.com/banner/touratech_004051.png" style="width:100%" border="0" height=234 alt="touratech_004051" /></a> -->
@@ -38,13 +38,13 @@
 	<img src="http://jbsinter2.godohosting.com/banner/troy_lee_designs_004050.png" style="width:100%" border="0" height=234 alt="troy_lee_designs_004050" />
 <?php }?>
 <?php if($GLOBALS["category"]=="024008"){?>
-	<a href="http://www.twobros.com/" target="_blank"><img src="http://jbsinter2.godohosting.com/banner/two_brothers_024008.png" style="width:100%" border="0" height=234 alt="two_brothers_024008" /></a>
+	<!-- <a href="http://www.twobros.com/" target="_blank"> --><img src="http://jbsinter2.godohosting.com/banner/two_brothers_024008.png" style="width:100%" border="0" height=234 alt="two_brothers_024008" /></a>
 <?php }?>
 <?php if($GLOBALS["category"]=="004105"){?>
 	<a href="http://www.wunderlichamerica.com/" target="_blank"><img src="http://jbsinter2.godohosting.com/banner/wunderlich_035007.png" style="width:100%" border="0" height=234 alt="wunderlich_035007" /></a>
 <?php }?>
 <?php if($GLOBALS["category"]=="024009"){?>
-	<a href="http://www.yoshimura-rd.com/" target="_blank"><img src="http://jbsinter2.godohosting.com/banner/yoshimura_024009.png" style="width:100%" border="0" height=234 alt="yoshimura_024009" /></a>
+	<img src="http://jbsinter2.godohosting.com/banner/yoshimura_024009.png" style="width:100%" border="0" height=234 alt="yoshimura_024009" />
 <?php }?>
 <?php if($GLOBALS["category"]=="004020"){?>
 	<a href="https://www.hepco-shop.de/?___store=english&___from_store=german" target="_blank"><img src="http://jbsinter2.godohosting.com/banner/hepco_004020.png" style="width:100%" border="0" height=234 alt="hepco_004020" /></a>
@@ -142,7 +142,7 @@
 <!-- capture_start("list_top") -->
 <table width=100% cellpadding=0 cellspacing=0>
 <tr>
-<td><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_01.gif"><a href="javascript:sort('maker desc')"><img name=sort_maker_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('maker')"><img name=sort_maker src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_03.gif"><a href="javascript:sort('goodsnm desc')"><img name=sort_goodsnm_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('goodsnm')"><img name=sort_goodsnm src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_04.gif"><a href="javascript:sort('price desc')"><img name=sort_price_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('price')"><img name=sort_price src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_05.gif"><a href="javascript:sort('reserve desc')"><img name=sort_reserve_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('reserve')"><img name=sort_reserve src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a></td>
+<td><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_01.gif"><a href="javascript:sort('maker desc')"><img name=sort_maker_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('maker')"><img name=sort_maker src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_03.gif"><a href="javascript:sort('model_name desc')"><img name=sort_goodsnm_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('goodsnm')"><img name=sort_goodsnm src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_04.gif"><a href="javascript:sort('price desc')"><img name=sort_price_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('price')"><img name=sort_price src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_05.gif"><a href="javascript:sort('reserve desc')"><img name=sort_reserve_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('reserve')"><img name=sort_reserve src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a></td>
 <td align=right><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_06.gif" align=absmiddle><select onchange="if(typeof(document.sSearch) != 'undefined') { _ID('page_num').value=this.value; document.sSearch.submit() } else { this.form.page_num.value=this.value;this.form.submit() }" style="font:8pt 돋움"><?php if((is_array($TPL_R1=$TPL_VAR["lstcfg"]["page_num"])&&!empty($TPL_R1)) || (is_object($TPL_R1) && in_array("Countable", class_implements($TPL_R1)) && $TPL_R1->count() > 0)) {foreach($TPL_R1 as $TPL_V1){?><option value="<?php echo $TPL_V1?>" <?php echo $GLOBALS["selected"]["page_num"][$TPL_V1]?>><?php echo $TPL_V1?>개씩 정렬<?php }}?></select></td>
 </tr>
 </table>
@@ -178,7 +178,7 @@
 <!-- capture_start("list_top") -->
 <table width=100% cellpadding=0 cellspacing=0>
 <tr>
-<td><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_01.gif"><a href="javascript:sort('maker desc')"><img name=sort_maker_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('maker')"><img name=sort_maker src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_03.gif"><a href="javascript:sort('goodsnm desc')"><img name=sort_goodsnm_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('goodsnm')"><img name=sort_goodsnm src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_04.gif"><a href="javascript:sort('price desc')"><img name=sort_price_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('price')"><img name=sort_price src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_05.gif"><a href="javascript:sort('reserve desc')"><img name=sort_reserve_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('reserve')"><img name=sort_reserve src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a></td>
+<td><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_01.gif"><a href="javascript:sort('maker desc')"><img name=sort_maker_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('maker')"><img name=sort_maker src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_03.gif"><a href="javascript:sort('model_name desc')"><img name=sort_goodsnm_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('goodsnm')"><img name=sort_goodsnm src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_04.gif"><a href="javascript:sort('price desc')"><img name=sort_price_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('price')"><img name=sort_price src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_05.gif"><a href="javascript:sort('reserve desc')"><img name=sort_reserve_desc src="/shop/data/skin/damoashop/img/common/list_up_off.gif"></a><a href="javascript:sort('reserve')"><img name=sort_reserve src="/shop/data/skin/damoashop/img/common/list_down_off.gif"></a></td>
 <td align=right><img src="/shop/data/skin/damoashop/img/common/goodlist_txt_06.gif" align=absmiddle><select onchange="if(typeof(document.sSearch) != 'undefined') { _ID('page_num').value=this.value; document.sSearch.submit() } else { this.form.page_num.value=this.value;this.form.submit() }" style="font:8pt 돋움"><?php if((is_array($TPL_R1=$TPL_VAR["lstcfg"]["page_num"])&&!empty($TPL_R1)) || (is_object($TPL_R1) && in_array("Countable", class_implements($TPL_R1)) && $TPL_R1->count() > 0)) {foreach($TPL_R1 as $TPL_V1){?><option value="<?php echo $TPL_V1?>" <?php echo $GLOBALS["selected"]["page_num"][$TPL_V1]?>><?php echo $TPL_V1?>개씩 정렬<?php }}?></select></td>
 </tr>
 </table>

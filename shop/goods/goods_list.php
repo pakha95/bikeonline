@@ -10,6 +10,16 @@ if (is_file(dirname(__FILE__) . "/../conf/config.soldout.php"))
 include dirname(__FILE__) . "/../conf/config.display.php";
 
 try {
+	//상품 목록 정렬 시 SQL Injection 방어
+	if (class_exists('validation')) {
+		$validation = new validation();
+		if (method_exists($validation, 'check_goods_sort')) {
+			if ($_GET['sort'] != null && $validation->check_goods_sort($_GET['sort']) === false) {
+				$_GET['sort'] = null;
+			}
+		}
+	}
+
 	/*
 	//재고량연동 변경(재고 0되면 자동으로 무한판매)및 문구변경 by jung //////////////////////////////////////
 	mysql_query("update ".GD_GOODS." set runout = 0, usestock = '' where runout = 1 or (usestock ='o' and totstock < 1) ");
@@ -21,8 +31,8 @@ try {
 	mysql_query("update ".GD_GOODS." set goodsnm = concat(\"<span class='green_b'>[해외주문]</span>\",goodsnm) where (usestock ='' and goodsnm NOT LIKE '%해외주문%' and goodsnm NOT LIKE '%국내배송%') or (usestock IS NULL and goodsnm NOT LIKE '%해외주문%' and goodsnm NOT LIKE '%국내배송%') or (totstock ='' and goodsnm NOT LIKE '%해외주문%' and goodsnm NOT LIKE '%국내배송%') or (totstock IS NULL and goodsnm NOT LIKE '%해외주문%' and goodsnm NOT LIKE '%국내배송%') ");
 	mysql_query("update ".GD_GOODS." set goodsnm = concat(\"<span class='red_b'>[국내배송]</span>\",goodsnm) where (totstock > 0 and goodsnm NOT LIKE '%해외주문%' and goodsnm NOT LIKE '%국내배송%') ");
 	mysql_query("update ".GD_GOODS." set goodsnm = REPLACE(goodsnm, \"<span class='green_b'>[해외주문]</span>\",\"<span class='red_b'>[국내배송]</span>\") where (totstock > 0 and goodsnm LIKE '%해외주문%') or (usestock ='o' and goodsnm LIKE '%해외주문%') ");
-	
-	//특별할인상품 재고량 0 되면 미진열로 전환 
+
+	//특별할인상품 재고량 0 되면 미진열로 전환
 	mysql_query("update gd_goods set open = 0 where open = 1 and totstock < 1 and goodsno in (SELECT goodsno FROM `gd_goods_link` where category = 002)");
 	//국내재고상품 재고량 0 되면 국내재고상품 카테고리에서만 관리자 제외한 사용자에게 안보이게 전환
 	mysql_query("update gd_goods_link set hidden = 1,hidden_mobile = 1 where category = 050  and goodsno in (SELECT goodsno FROM `gd_goods` where open = 1 and totstock < 1)");

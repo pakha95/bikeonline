@@ -118,9 +118,28 @@ for($i = 0, $imax = count($cfg_step_keys); $i < $imax; $i++) {
 			if ($_cfg['banner_height'] > 0) {
 				$_cfg['img_width'] = $_cfg['banner_width'];
 				$_cfg['img_height'] = $_cfg['banner_height'];
-			}
+				}
 			break;
-	}
+		case 'tpl_08':
+			if (empty($_cfg['page_cnt'])) $_cfg['page_cnt'] = floor(sizeof($goods_data)/$_cfg['page_goods_cnt']); //템플릿 호출시 설정해야 함
+			if (empty($_cfg['remain_cnt'])) {
+				$_cfg['remain_cnt'] = floor(sizeof($goods_data)%$_cfg['page_goods_cnt']);
+				if($_cfg['remain_cnt'] > 0) {
+					$_cfg['page_cnt'] = $_cfg['page_cnt'] + 1;
+				}
+			}
+			if (empty($_cfg['goods_cnt'])) $_cfg['goods_cnt'] = sizeof($goods_data);
+
+			// page_goods_cnt의 갯수에 따라 배열에 분할 할당
+			foreach($goods_data as $idx => $data) {
+				$key = floor($idx/$_cfg['page_goods_cnt']);
+				$_cfg['goods_data'][$key][] = $data;
+			}
+
+			$_cfg['more_btn_class'] = '';
+			if ($_cfg['page_cnt'] < 2) $_cfg['more_btn_class'] = 'hidden';
+			break;
+}
 
 	$cfg_step[ $cfg_step_keys[$i] ] = $_cfg;
 }

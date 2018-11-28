@@ -2258,3 +2258,71 @@ function openOrderSmsPopup(f, checkboxName)
 		}
 	}
 }
+
+
+//SMS 자동발송/설정 사용안내 레이어 박스 생성
+function smsAutoSendLayerInfoBox(event, infoType, layerWidth, layerHeight)
+{
+	if(!event) event = window.Event;
+
+	var layer_id = 'smsAutoSendLayer';
+	var posX = event.pageX || event.clientX + (document.body.scrollLeft || document.documentElement.scrollLeft);
+	var posY = event.pageY || event.clientY + (document.body.scrollTop || document.documentElement.scrollTop);
+
+	if(document.getElementById(layer_id)){
+		removeSmsAutoLayerInfoBox(layer_id);
+	}
+
+	var htmlContents = getSmsAutoSendLayerMessage(infoType);
+	htmlContents +=	"<div style='background-color: black; position: absolute; bottom: 0px; width: 100%; text-align: center;'><a href='javascript:;' onclick=\"javascript:removeSmsAutoLayerInfoBox('"+layer_id+"');\" style='color: white; font-weight: bold;'>Close</a></div>";
+
+	var obj = document.createElement("div");
+	with (obj.style){
+		position = "absolute";
+		left = posX +'px';
+		top = posY +'px';
+		width = layerWidth + 'px';
+		height = layerHeight + 'px';
+		backgroundColor = "#ffffff";
+		border = "2px solid #000000";
+	}
+	obj.id = layer_id;
+	obj.innerHTML = htmlContents;
+	document.body.appendChild(obj);
+}
+
+//SMS 자동발송/설정 사용안내 레이어 박스 삭제
+function removeSmsAutoLayerInfoBox(layer_id)
+{
+	if(document.getElementById(layer_id)){
+		document.getElementById(layer_id).parentNode.removeChild(document.getElementById(layer_id));
+	}
+}
+
+//SMS 자동발송/설정 사용안내 레이어 박스 컨텐츠
+function getSmsAutoSendLayerMessage(infoType)
+{
+	var htmlContents = '';
+	switch(infoType){
+		case 'coupon_expire' :
+			htmlContents += "<div style='padding: 10px; color: #0074ba;'>";
+			htmlContents += "프로모션 > 쿠폰리스트 > 수정 or 쿠폰만들기의 '사용기간 만료시 SMS 발송' 사용 설정이 된 쿠폰을 보유한 회원들을 발송대상으로 합니다.<br />";
+			htmlContents += "<a href='../event/coupon.php' target='_blank' style='color: #0074ba;'><strong>[쿠폰리스트 바로가기]</strong></a><br />";
+			htmlContents += "<a href='../event/coupon_register.php' target='_blank' style='color: #0074ba;'><strong>[쿠폰만들기 바로가기]</strong></a><br />";
+			htmlContents += "<div style='margin-top: 10px;'>● 자동발송 설정일 익일부터 발송이 됩니다.</div>";
+			htmlContents +=	"<div>● 쿠폰을 사용한 회원들은 발송대상에서 제외됩니다.</div>";
+			htmlContents +=	"<div>● '광고성 정보, 이벤트SMS수신' 에 동의한 회원들을 대상으로 발송됩니다.</div>";
+			htmlContents +=	"<div>● 휴대폰번호가 없는 회원에게는 발송되지 않습니다.</div>";
+			htmlContents +=	"</div>";
+		break;
+
+		case 'account' :
+			htmlContents += "<div style='padding: 10px; color: #0074ba;'>";
+			htmlContents +=	"<div>● 입금확인이 된 주문서는 발송대상에서 제외됩니다.</div>";
+			htmlContents +=	"<div>● 설정값 변경 시 변경된 당일에는 추가발송 SMS가 발송되지 않습니다.</div>";
+			htmlContents +=	"</div>";
+		break;
+
+	}
+	return htmlContents;
+}

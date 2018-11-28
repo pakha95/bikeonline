@@ -1,5 +1,5 @@
 <?
-$bdName="바이크온라인 소식";
+$bdName="공지사항";
 $bdGroup="";
 $bdSkin="default";
 $bdAlign="center";
@@ -25,7 +25,7 @@ $bdTypeMail="";
 $bdHeader="<!-- 상단이미지 || 현재위치 -->
 <TABLE width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">
 <TR>
-	<td class=\"path\">HOME > <b>바이크온라인 소식</b></td>
+	<td class=\"path\">HOME > <b>공지사항</b></td>
 </TR>
 </TABLE>";
 $bdFooter="";
@@ -57,5 +57,5 @@ $bdHomepageNo="on";
 $bdUseXss="html";
 $bdAllowPluginDomain="youtube.com|facebook.com|instagram.com|naver.com|daum.net|tistory.com|flicker.com";
 $bdAllowPluginTag="iframe|embed";
-$bdUseMobile="N";
+$bdUseMobile="Y";
 ?>

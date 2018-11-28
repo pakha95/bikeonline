@@ -382,7 +382,9 @@ foreach($order->getOrderItems() as $item) {
 	<td width=50 nowrap><a href="../../todayshop/today_goods.php?tgsno=<?=$item[tgsno]?>" target=_blank><?=goodsimg($item[img_s],30,"style='border:1 solid #cccccc'",1)?></a></td>
 	<td width=100%><a href="../todayshop/goods_reg.php?mode=modify&tgsno=<?=$item[tgsno]?>"  target=_blank>
 	<? } ?>
-	<font class=small color=0074BA><? if ($item['todaygoods']=='y') echo '<투데이샵상품>'?><?=$item[goodsnm]?>
+	<!-- by jung $item[goods_prefix]. -->
+	<font class=small color=0074BA><? if ($item['todaygoods']=='y') echo '<투데이샵상품>'?><?=$item[goods_prefix].$item[goodsnm]?>
+	<!-- end -->
 	<? if ($item[opt1]){ ?>[<?=$item[opt1]?><? if ($item[opt2]){ ?>/<?=$item[opt2]?><? } ?>]<? } ?>
 	<? if ($item[addopt]){ ?><div>[<?=str_replace("^","] [",$item[addopt])?>]</div><? } ?></a>
 	<div style="padding-top:3"><font class=small1 color=6d6d6d>제조사 : <?=$item[maker] ? $item[maker] : '없음'?></div>

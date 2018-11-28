@@ -7,46 +7,138 @@ function dataGoodsRelation( $goodsno, $limit=0 ){
 	global $db, $cfg_related;
 
 	$goods = array();
+	$category = $_GET['category'];
 
-	list ($category, $relationis, $relation) = $db->fetch("select category, relationis, relation from
-		".GD_GOODS." a
-		left join ".GD_GOODS_LINK." b on a.goodsno=b.goodsno
-	where
-		a.goodsno='$goodsno'
-		and open
-	order by b.category desc
-	limit 1
-	"); # 총 레코드수
+	if (empty($category) === true || strlen($category) < 3) {
+		list ($category, $relationis, $relation) = $db->fetch("select category, relationis, relation from
+			".GD_GOODS." a
+			left join ".GD_GOODS_LINK." b on a.goodsno=b.goodsno
+		where
+			a.goodsno='$goodsno'
+			and open
+		order by b.category desc
+		limit 1
+		"); # 총 레코드수
+	}
+	else {
+		list ($relationis, $relation) = $db->fetch("select relationis, relation from
+			".GD_GOODS." a
+			left join ".GD_GOODS_LINK." b on a.goodsno=b.goodsno
+		where
+			a.goodsno='$goodsno'
+			and open
+			and b.category='$category'"
+		); # 총 레코드수
+	}
 
 	### 관련상품 리스트
 	if (!$relationis){
 		// 상품분류 연결방식 전환 여부에 따른 처리
-		$categoryWhere	= getCategoryLinkQuery('a.category', $category, 'where');
-
-		$query = "
-		select a.goodsno,b.goods_prefix,b.goodsnm,b.img_i,b.img_s,b.img_m,b.img_l,b.use_mobile_img,b.img_x,b.img_pc_x,c.price,b.strprice,b.shortdesc,b.icon,b.regdt from
-			".GD_GOODS_LINK." a,
-			".GD_GOODS." b
-			left join ".GD_GOODS_OPTION." c on b.goodsno=c.goodsno and link and go_is_deleted <> '1' and go_is_display = '1'
-		where
-			a.goodsno=b.goodsno
-			and ".$categoryWhere."
-			and a.goodsno!='$goodsno'
-			and open
-		";
+		$categoryWhere	= getCategoryLinkQuery('category', $category, 'where');
 
 		// 품절 상품 제외시
 		if ($cfg_related['exclude_soldout']) {
-			$query .= "
-			AND !(
-					b.runout = 1
-				OR
-					(b.usestock = 'o' AND b.usestock IS NOT NULL AND b.totstock < 1)
-				)
-			";
+			$soldout = "and !(g.runout = 1 or (g.usestock = 'o' and g.usestock is not null and g.totstock < 1)) ";
 		}
 
-		$query .= " order by rand() ";
+		//선택한 상품의 관련 카테고리 중 판매량이 높은 상품
+		$query = "
+		select gl.goodsno,g.goodsnm,g.img_i,g.img_s,g.img_m,g.img_l,g.use_mobile_img,g.img_x,g.img_pc_x,go.price,g.strprice,g.shortdesc,g.icon,oi.totea sort,g.regdt from
+			(select goodsno, sum(ea) totea from ".GD_ORDER." o
+			left join ".GD_ORDER_ITEM." oi on oi.ordno=o.ordno WHERE o.step2 < 40 and o.step > 0 and o.orddt > date_add(now(), interval -1 month) group by goodsno) oi,
+			".GD_GOODS_LINK." gl,
+			".GD_GOODS." g
+			left join ".GD_GOODS_OPTION." go on g.goodsno=go.goodsno and link and go_is_deleted <> '1' and go_is_display = '1'
+		where
+			g.goodsno = oi.goodsno
+			and gl.goodsno=g.goodsno
+			and open
+			and gl.goodsno!='$goodsno'
+			and ".$categoryWhere."
+			".$soldout."
+		group by oi.goodsno
+		order by sort desc
+		limit 100
+		";
+
+		//DB Cache 사용 141030
+		$dbCache = Core::loader('dbcache')->setLocation('relation');
+
+		if (!$arr_sales = $dbCache->getCache($query)) {
+			$res = $db->query($query);
+			while ( $data = $db->fetch( $res, 1 ) ) {
+				$data[icon] = setIcon($data[icon],$data[regdt]);
+
+				// PC용 모바일 이미지인 경우 오버라이드 처리
+				if (Clib_Application::isMobile()) {
+					if ($data['use_mobile_img'] === '0') {
+						$imgArr = explode('|', $data[$data['img_pc_x']]);
+						$data['img_x'] = $imgArr[0];
+					}
+				}
+				$arr_sales[] = $data;
+			}
+			if ($dbCache) { $dbCache->setCache($query, $arr_sales); }
+			$rows = count($arr_sales);
+		}
+		else {
+			$rows = count($arr_sales);
+		}
+
+		if ($rows < 100) {
+
+			//선택한 상품의 관련 카테고리 중 신상품
+			$query = "
+			select gl.goodsno,g.goodsnm,g.img_i,g.img_s,g.img_m,g.img_l,g.use_mobile_img,g.img_x,g.img_pc_x,go.price,g.strprice,g.shortdesc,g.icon,(0) sort,g.regdt
+			from
+				(select goodsno, category from ".GD_GOODS_LINK." where ".$categoryWhere." and goodsno!='$goodsno' group by goodsno having category='$category' or ".$categoryWhere.") gl,
+				".GD_GOODS." g
+				left join ".GD_GOODS_OPTION." go on g.goodsno=go.goodsno and link and go_is_deleted <> '1' and go_is_display = '1'
+				left join ".GD_ORDER_ITEM." oi on g.goodsno=oi.goodsno
+			where
+				oi.goodsno is null
+				and gl.goodsno=g.goodsno
+				and open
+				".$soldout."
+			order by goodsno desc
+			limit ".(100-$rows);
+
+			if (!$arr_relation = $dbCache->getCache($query)) {
+				$res = $db->query($query);
+				while ( $data = $db->fetch( $res, 1 ) ) {
+					$data[icon] = setIcon($data[icon],$data[regdt]);
+
+					// PC용 모바일 이미지인 경우 오버라이드 처리
+					if (Clib_Application::isMobile()) {
+						if ($data['use_mobile_img'] === '0') {
+							$imgArr = explode('|', $data[$data['img_pc_x']]);
+							$data['img_x'] = $imgArr[0];
+						}
+					}
+					$arr_relation[] = $data;
+				}
+				if ($dbCache) { $dbCache->setCache($query, $arr_relation); }
+			}
+		}
+
+		//판매량과 신상품 목록 병합
+		if (!is_array($arr_sales) && !is_array($arr_relation)) return false;
+		else if (is_array($arr_sales) && is_array($arr_relation)) $arr_relation = array_merge($arr_sales,$arr_relation);
+		else if (is_array($arr_sales) && !is_array($arr_relation)) $arr_relation = $arr_sales;
+
+		//병합된 목록을 설정된 노출값 갯수만큼 랜덤으로 배열저장
+		$rows = count($arr_relation);
+		if ($rows < $limit) $limit = $rows;
+		$random = array_rand($arr_relation,$limit);
+		shuffle($random);
+		if (!is_array($random) && strlen($random) > 0) $arr_temp[] = $arr_relation[0];
+		else {
+			for($i=0;$i<count($random);$i++) {
+				$arr_temp[] = $arr_relation[$random[$i]];
+			}
+		}
+
+		$arr_relation = $arr_temp;
 
 	} else {
 		if (!$relation) return false;
@@ -57,7 +149,7 @@ function dataGoodsRelation( $goodsno, $limit=0 ){
 			$query = "
 			SELECT
 
-				G.goodsno,G.goods_prefix,G.goodsnm,G.img_i,G.img_s,G.img_m,G.img_l,G.use_mobile_img,G.img_x,G.img_pc_x,O.price,G.strprice,G.shortdesc,G.icon,G.regdt
+				G.goodsno,G.goodsnm,G.img_i,G.img_s,G.img_m,G.img_l,G.use_mobile_img,G.img_x,G.img_pc_x,O.price,G.strprice,G.shortdesc,G.icon,G.regdt
 
 			FROM ".GD_GOODS_RELATED." AS R
 
@@ -97,7 +189,7 @@ function dataGoodsRelation( $goodsno, $limit=0 ){
 		}
 		else {
 			$query = "
-			select a.goodsno,a.goods_prefix,a.goodsnm,a.goods_prefix,a.img_i,a.img_s,a.img_m,a.img_l,a.use_mobile_img,a.img_x,a.img_pc_x,b.price,a.strprice,a.shortdesc,a.icon,a.regdt from
+			select a.goodsno,a.goodsnm,a.img_i,a.img_s,a.img_m,a.img_l,a.use_mobile_img,a.img_x,a.img_pc_x,b.price,a.strprice,a.shortdesc,a.icon,a.regdt from
 				".GD_GOODS." a,
 				".GD_GOODS_OPTION." b
 			where
@@ -117,27 +209,28 @@ function dataGoodsRelation( $goodsno, $limit=0 ){
 				";
 			}
 		}
-	}
-	if ( $limit > 0 ) $query .= " limit " . $limit;
 
-	//DB Cache 사용 141030
-	$dbCache = Core::loader('dbcache')->setLocation('relation');
+		if ( $limit > 0 ) $query .= " limit " . $limit;
 
-	if (!$arr_relation = $dbCache->getCache($query)) {
-		$res = $db->query($query);
-		while ( $data = $db->fetch( $res, 1 ) ) {
-			$data[icon] = setIcon($data[icon],$data[regdt]);
+		//DB Cache 사용 141030
+		$dbCache = Core::loader('dbcache')->setLocation('relation');
 
-			// PC용 모바일 이미지인 경우 오버라이드 처리
-			if (Clib_Application::isMobile()) {
-				if ($data['use_mobile_img'] === '0') {
-					$imgArr = explode('|', $data[$data['img_pc_x']]);
-					$data['img_x'] = $imgArr[0];
+		if (!$arr_relation = $dbCache->getCache($query)) {
+			$res = $db->query($query);
+			while ( $data = $db->fetch( $res, 1 ) ) {
+				$data[icon] = setIcon($data[icon],$data[regdt]);
+
+				// PC용 모바일 이미지인 경우 오버라이드 처리
+				if (Clib_Application::isMobile()) {
+					if ($data['use_mobile_img'] === '0') {
+						$imgArr = explode('|', $data[$data['img_pc_x']]);
+						$data['img_x'] = $imgArr[0];
+					}
 				}
+				$arr_relation[] = $data;
 			}
-			$arr_relation[] = $data;
+			if ($dbCache) { $dbCache->setCache($query, $arr_relation); }
 		}
-		if ($dbCache) { $dbCache->setCache($query, $arr_relation); }
 	}
 
 	if($relationis){

@@ -463,12 +463,12 @@ function orderCntCalc(o, cnt, set) {
 		cnt = o;
 		o = $('#ea');
 	}
-	
+
 	try {
 		o = o.get(0);
 	}
 	catch (e) {}
-	
+
 	var step = parseInt(o.getAttribute('step')) || 1;
 	var min = parseInt(o.getAttribute('min')) || 1;
 	var max = parseInt(o.getAttribute('max')) || 0;
@@ -509,7 +509,7 @@ function orderCntCalc(o, cnt, set) {
 	orderPriceCalc(o, cal_cnt);
 }
 
-function orderPriceCalc(o, cal_cnt) {		
+function orderPriceCalc(o, cal_cnt) {
 	var price = parseInt(o.getAttribute('data-price'));
 	var order_price = cal_cnt * price;
 	$('#order_price').text(comma(order_price));
@@ -601,7 +601,7 @@ function addHomeButtonForDevice(title){ //즐겨찾기
 	}else{
 		sm_HomePageUri = "http://"+document.domain+"/m2";
 	}
-	
+
 	var sm_HomeButtonIconUri="";
 	var linkElements=document.getElementsByTagName('link');
 	for (var i = 0; i < linkElements.length; i++) {
@@ -738,7 +738,7 @@ function frmMake(오픈 url,레이어 프레임 이름, 해당 프레임상단 타이틀, 아이핀여부
 */
 function frmMake(url,frmName,title,ipin,layer,height){
 	var frmClassName = titleId = closeId = frameHeight = _font = _height = "";
-	
+
 	_height = $("#wrap").innerHeight() + $("#footer").innerHeight();
 	_font = ipin === true?'28':'20';
 	if (typeof(layer) != 'undefined' && layer === true){
@@ -761,7 +761,7 @@ function frmMake(url,frmName,title,ipin,layer,height){
 	_frm += "<iframe id='" + frmName + "' class='mobileLayerFrame' name='" + frmName + "' style='height:" + frameHeight + ";' src='" + url + "'></iframe>";
 	_frm += "</div>";
 	_frm += "</section>";
-	
+
 	$("body").append(_frm);
 	if (typeof(layer) != 'undefined' && layer === true){
 		$(".layer-class").css("top",($(window).scrollTop() + 100) + "px");
@@ -792,7 +792,7 @@ function alertBox(txt, callbackMethod, jsonData){
         }
     });
 }
- 
+
 function alertBoxFocus(txt, obj){
     modal({
         type: 'alert',
@@ -803,8 +803,8 @@ function alertBoxFocus(txt, obj){
         }
     });
 }
- 
-    
+
+
 function confirmBox(txt, callbackMethod, jsonData){
     modal({
         type: 'confirm',
@@ -817,7 +817,7 @@ function confirmBox(txt, callbackMethod, jsonData){
         }
     });
 }
- 
+
 function promptBox(txt, callbackMethod, jsonData){
     modal({
         type: 'prompt',
@@ -830,7 +830,7 @@ function promptBox(txt, callbackMethod, jsonData){
         }
     });
 }
- 
+
 function successBox(txt){
     modal({
         type: 'success',
@@ -838,7 +838,7 @@ function successBox(txt){
         text: txt
     });
 }
- 
+
 function warningBox(txt){
     modal({
         type: 'warning',
@@ -847,7 +847,7 @@ function warningBox(txt){
         center: false
     });
 }
- 
+
 function infoBox(txt){
     modal({
         type: 'info',
@@ -856,7 +856,7 @@ function infoBox(txt){
         autoclose: true
     });
 }
- 
+
 function errorBox(txt){
     modal({
         type: 'error',
@@ -864,7 +864,7 @@ function errorBox(txt){
         text: txt
     });
 }
- 
+
 function invertedBox(txt){
     modal({
         type: 'inverted',
@@ -872,7 +872,7 @@ function invertedBox(txt){
         text: txt
     });
 }
- 
+
 function primaryBox(txt){
     modal({
         type: 'primary',
@@ -882,3 +882,14 @@ function primaryBox(txt){
 }
 // 경고창 끝
 
+//인풋 텍스트필드에 공백사용 못하게 by jung
+function noSpaceForm(obj) { // 공백사용못하게
+    var str_space = /\s/;  // 공백체크
+    if(str_space.exec(obj.value)) { //공백 체크
+        //alert("해당 항목에는 공백을 사용할수 없습니다.\n\n공백은 자동적으로 제거 됩니다.");
+        obj.focus();
+        obj.value = obj.value.replace(' ',''); // 공백제거
+        return false;
+    }
+ // onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);"
+}
